@@ -5,14 +5,16 @@ import java.util.Date;
 
 public class LogEntry {
 
-    Account acc;
-    int val;
-    String date;
+    private Account acc;
+    private int val;
+    private String date;
+    private Boolean add; // True if money added, false if money subtracted
     // TODO: Add Currency
 
-    public LogEntry(Account acc, int val, String date) {
+    public LogEntry(Account acc, int val, Boolean add, String date) {
         this.acc = acc;
         this.val = val;
+        this.add = add;
         this.date = date; // must be in YYYY-MM-DD format
     }
 
@@ -22,6 +24,10 @@ public class LogEntry {
 
     public int getVal() {
         return val;
+    }
+
+    public Boolean getAdd() {
+        return add;
     }
 
     public String getDate() {
