@@ -6,8 +6,10 @@ public class Account {
     // TODO: Add Currency
     // the balance of the account, in cents
     private int balance;
+    private String name;
 
-    public Account(int balance) {
+    public Account(String name, int balance) {
+        this.name = name;
         this.balance = balance; // initial balance
     }
 
@@ -17,6 +19,10 @@ public class Account {
 
     public void subValue(int value) {
         this.balance -= value;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getBalance() {
