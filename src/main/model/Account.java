@@ -4,6 +4,8 @@ package model;
 public class Account {
 
     // TODO: Add Currency
+    // TODO: Record Log Entry ?
+
     // the balance of the account, in cents
     private int balance;
     private String name;
