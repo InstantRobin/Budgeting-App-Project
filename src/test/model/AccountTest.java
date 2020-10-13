@@ -1,9 +1,6 @@
 package model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +11,6 @@ class AccountTest {
 
     Account acc = new Account("test",0);
     String date = "2020-10-12";
-    List<LogEntry> result;
 
     public void compareValues(Account account, List<LogEntry> res){
 

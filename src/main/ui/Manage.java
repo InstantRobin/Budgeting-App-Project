@@ -10,27 +10,41 @@ import java.util.List;
 // TODO: Restructure Heavily
 public class Manage {
 
-    public static void moveMoney(Account acc1, Account acc2, int val, String date){
+    private List<Account> accounts = new ArrayList<>();
+
+    public Manage() {
+        runManage(); // from Teller
+    }
+
+    private void runManage(){
         //stub
     }
 
-    public static void addMoney(Account acc, int val, String date){
+    private void makeAccount(String name, int val) {
+        accounts.add(new Account(name,val));
+    }
+
+    private void moveMoney(Account acc1, Account acc2, int val, String date){
         //stub
     }
 
-    public static void removeMoney(Account acc, int val, String date){
+    private void addMoney(Account acc, int val, String date){
         //stub
     }
 
-    public static void logAction(Account acc, int val, String date){
+    private void removeMoney(Account acc, int val, String date){
         //stub
     }
 
-    public static void returnHistory(){
+    private void logAction(Account acc, int val, String date){
         //stub
     }
 
-    public static void returnAccValues(){
+    private void returnHistory(){
+        //stub
+    }
+
+    private void returnAccValues(){
         //stub
     }
 }
