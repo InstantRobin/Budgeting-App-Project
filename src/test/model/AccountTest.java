@@ -12,26 +12,26 @@ class AccountTest {
 
     @BeforeEach
     public void beforeEach(){
-        acc.subValue(acc.getBalance(), date);
+        acc.subValue(acc.getBalance());
     }
 
     @Test
     public void addValueTest(){
-        acc.addValue(1000, date);
+        acc.addValue(1000);
         assertEquals(1000,acc.getBalance());
     }
 
     @Test
     public void subValueTest(){
-        acc.addValue(1000, date);
-        acc.subValue(500, date);
+        acc.addValue(1000);
+        acc.subValue(500);
         assertEquals(500,acc.getBalance());
     }
 
     @Test
     public void subValueNegativeTest(){
-        acc.addValue(500, date);
-        acc.subValue(1000, date);
+        acc.addValue(500);
+        acc.subValue(1000);
         assertEquals(-500,acc.getBalance());
     }
 }
