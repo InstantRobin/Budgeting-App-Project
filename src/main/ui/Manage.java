@@ -9,7 +9,6 @@ import java.util.List;
 
 // TODO: Restructure Heavily
 public class Manage {
-    private List<LogEntry> history = new ArrayList<LogEntry>();
 
     public static void moveMoney(Account acc1, Account acc2, int val, String date){
         //stub
