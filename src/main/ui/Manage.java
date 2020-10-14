@@ -85,7 +85,7 @@ public class Manage {
     private int getVal() {
         System.out.println("Enter desired amount:");
 
-        return sc.nextInt() * 100;
+        return (int)(sc.nextFloat() * 100);
 
     }
 
@@ -107,30 +107,27 @@ public class Manage {
     }
 
     private void viewBalance(Account acc) {
-        System.out.println(acc.getBalance());
+        System.out.println(acc.getStringBalance());
     }
 
-    private void deposit(Account acc, int val, String date){
+    private void deposit(Account acc, int val, String date) {
+        acc.addValue(val,date);
+    }
+
+    private void withdraw(Account acc, int val, String date) {
+        acc.subValue(val,date);
+    }
+
+    private void transfer(Account acc1, Account acc2, int val, String date) {
+        withdraw(acc1,val,date);
+        deposit(acc2,val,date);
+    }
+
+    private void logAction(Account acc, int val, String date) {
         //stub
     }
 
-    private void withdraw(Account acc, int val, String date){
-        //stub
-    }
-
-    private void transfer(Account acc1, Account acc2, int val, String date){
-        //stub
-    }
-
-    private void logAction(Account acc, int val, String date){
-        //stub
-    }
-
-    private void returnHistory(){
-        //stub
-    }
-
-    private void returnAccValues(){
+    private void returnHistory() {
         //stub
     }
 }

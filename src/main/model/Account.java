@@ -43,4 +43,16 @@ public class Account {
     public List<LogEntry> getHistory() {
         return history;
     }
+
+    // Returns Balance in $X.XX string form
+    public String getStringBalance() {
+        int before = ((balance - (balance % 100)) / 100);
+        int after = balance % 100;
+
+        if (after < 10) {
+            return ("$" + before + "." + after + "0");
+        } else {
+            return ("$" + before + "." + after);
+        }
+    }
 }
