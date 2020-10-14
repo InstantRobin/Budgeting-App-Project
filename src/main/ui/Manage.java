@@ -4,6 +4,7 @@ package ui;
 import model.Account;
 import model.LogEntry;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -90,16 +91,16 @@ public class Manage {
 
     }
 
-    private String getDate() {
-        System.out.println("Enter date of action:");
+    private LocalDate getDate() {
+        System.out.println("Enter date of action in number form:");
         System.out.println("Year:");
-        String year = sc.next();
+        int year = sc.nextInt();
         System.out.println("Month:");
-        String month = sc.next();
+        int month = sc.nextInt();
         System.out.println("Day:");
-        String day = sc.next();
+        int day = sc.nextInt();
 
-        return (year + " - " + month + " - " + day);
+        return LocalDate.of(year,month,day);
     }
 
     private String getName() {
@@ -111,15 +112,15 @@ public class Manage {
         System.out.println(acc.getStringBalance());
     }
 
-    private void deposit(Account acc, int val, String date) {
+    private void deposit(Account acc, int val, LocalDate date) {
         acc.addValue(val,date);
     }
 
-    private void withdraw(Account acc, int val, String date) {
+    private void withdraw(Account acc, int val, LocalDate date) {
         acc.subValue(val,date);
     }
 
-    private void transfer(Account acc1, Account acc2, int val, String date) {
+    private void transfer(Account acc1, Account acc2, int val, LocalDate date) {
         withdraw(acc1,val,date);
         deposit(acc2,val,date);
     }
