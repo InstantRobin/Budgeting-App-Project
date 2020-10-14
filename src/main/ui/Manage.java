@@ -21,8 +21,8 @@ public class Manage {
     private void runManage() {
         boolean cont = true;
         Scanner sc = new Scanner(System.in);
+        System.out.println("Welcome to Budgeteer!");
         while (cont) {
-            System.out.println("Welcome to Budgeteer!");
             doChoice(getChoice());
 
 
@@ -57,6 +57,7 @@ public class Manage {
                 withdraw(getAcc(),getVal(),getDate());
                 break;
             case 4:
+                System.out.println("First select source, then select destination");
                 transfer(getAcc(),getAcc(),getVal(),getDate());
                 break;
                 //TODO
