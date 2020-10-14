@@ -19,18 +19,18 @@ public class Account {
         this.balance = balance; // initial balance
     }
 
-    public void logEvent(int value, boolean add, LocalDate date) {
-        history.add(new LogEntry(this, value, add, date));
+    public void logEvent(int value, LocalDate date) {
+        history.add(new LogEntry(this, value, date));
     }
 
     public void addValue(int value, LocalDate date) {
         this.balance += value;
-        history.add(new LogEntry(this, value,true, date));
+        history.add(new LogEntry(this, value, date));
     }
 
     public void subValue(int value, LocalDate date) {
         this.balance -= value;
-        history.add(new LogEntry(this, value,false, date));
+        history.add(new LogEntry(this, -1 * value, date));
     }
 
     public String getName() {

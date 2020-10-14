@@ -9,15 +9,13 @@ public class LogEntry {
     private Account acc;
     private int val;
     private LocalDate date;
-    private Boolean add; // True if money added, false if money subtracted
     // https://www.geeksforgeeks.org/localdate-format-method-in-java/
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // TODO: Add Currency
 
-    public LogEntry(Account acc, int val, Boolean add, LocalDate date) {
+    public LogEntry(Account acc, int val, LocalDate date) {
         this.acc = acc;
         this.val = val;
-        this.add = add;
         this.date = date; // must be in YYYY-MM-DD format
     }
 
@@ -27,10 +25,6 @@ public class LogEntry {
 
     public int getVal() {
         return val;
-    }
-
-    public Boolean getAdd() {
-        return add;
     }
 
     public LocalDate getDate() {

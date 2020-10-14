@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LogEntryTest {
 
     Account acc = new Account("test",0);
-    LogEntry log = new LogEntry(acc,200,true, LocalDate.of(2020,10,12));
+    LogEntry log = new LogEntry(acc,200, LocalDate.of(2020,10,12));
 
     @Test
     public void getYearTest() {
