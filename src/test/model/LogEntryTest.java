@@ -25,4 +25,9 @@ public class LogEntryTest {
     public void getDayTest() {
         assertEquals(12, log.getDay());
     }
+
+    @Test
+    public void getStringDate() {
+        assertEquals("2020-10-12",log.getStringDate());
+    }
 }

@@ -39,7 +39,7 @@ public class Manage {
                 + "3)Withdraw\n"
                 + "4)Transfer\n"
                 + "5)Make New Account\n"
-        );
+                + "6)Get Account History\n");
 
         // https://www.javatpoint.com/how-to-get-input-from-user-in-java
         return sc.nextInt();
@@ -62,6 +62,9 @@ public class Manage {
                 break;
             case 5:
                 makeAccount(getName(),getVal());
+                break;
+            case 6:
+                printHistory(getAcc());
                 break;
         }
     }
@@ -139,5 +142,12 @@ public class Manage {
     // Makes new Account w/ given name, initial value
     private void makeAccount(String name, int val) {
         accounts.add(new Account(name,val));
+    }
+
+    private void printHistory(Account acc) {
+        for (LogEntry item : acc.getHistory()) {
+            System.out.println("     " + item.getStringDate() + ": "
+                    + item.getVal());
+        }
     }
 }
