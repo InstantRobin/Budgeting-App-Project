@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AccountTest {
 
     Account acc = new Account("test",0);
-    String date = "2020-10-12";
+    LocalDate date = LocalDate.of(2020,10,12);
 
     public void compareValues(Account account, List<LogEntry> res){
 

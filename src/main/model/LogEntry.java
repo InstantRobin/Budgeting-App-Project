@@ -1,17 +1,18 @@
 package model;
 // Represents a log entry of an account value change
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class LogEntry {
 
     private Account acc;
     private int val;
-    private String date;
+    private LocalDate date;
     private Boolean add; // True if money added, false if money subtracted
     // TODO: Add Currency
 
-    public LogEntry(Account acc, int val, Boolean add, String date) {
+    public LogEntry(Account acc, int val, Boolean add, LocalDate date) {
         this.acc = acc;
         this.val = val;
         this.add = add;
@@ -30,19 +31,19 @@ public class LogEntry {
         return add;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public String getYear() {
-        return date.substring(0,4);
+    public int getYear() {
+        return date.getYear();
     }
 
-    public String getMonth() {
-        return date.substring(5,7);
+    public int getMonth() {
+        return date.getMonthValue();
     }
 
-    public String getDay() {
-        return date.substring(8,10);
+    public int getDay() {
+        return date.getDayOfMonth();
     }
 }
