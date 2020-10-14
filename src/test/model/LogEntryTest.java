@@ -8,8 +8,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LogEntryTest {
 
-    Account acc = new Account("test",0);
-    LogEntry log = new LogEntry(acc,200, LocalDate.of(2020,10,12));
+    Account acc = new Account("test",200);
+    LogEntry log = new LogEntry(acc,200, acc.getBalance(), LocalDate.of(2020,10,12));
+
+    @Test
+    public void getTotalTest() {
+        assertEquals(200,log.getTotal());
+    }
+
+    @Test
+    public void getStringValTest(){
+        // TODO
+    }
+
+    @Test
+    public void getStringTotalTest() {
+        // TODO
+    }
 
     @Test
     public void getYearTest() {

@@ -20,17 +20,17 @@ public class Account {
     }
 
     public void logEvent(int value, LocalDate date) {
-        history.add(new LogEntry(this, value, date));
+        history.add(new LogEntry(this, value, this.balance, date));
     }
 
     public void addValue(int value, LocalDate date) {
         this.balance += value;
-        history.add(new LogEntry(this, value, date));
+        logEvent(value, date);
     }
 
     public void subValue(int value, LocalDate date) {
         this.balance -= value;
-        history.add(new LogEntry(this, -1 * value, date));
+        logEvent(-1 * value, date);
     }
 
     public String getName() {

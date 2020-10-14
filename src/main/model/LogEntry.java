@@ -8,14 +8,16 @@ public class LogEntry {
 
     private Account acc;
     private int val;
+    private int total;
     private LocalDate date;
     // https://www.geeksforgeeks.org/localdate-format-method-in-java/
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // TODO: Add Currency
 
-    public LogEntry(Account acc, int val, LocalDate date) {
+    public LogEntry(Account acc, int val, int total, LocalDate date) {
         this.acc = acc;
         this.val = val;
+        this.total = total;
         this.date = date; // must be in YYYY-MM-DD format
     }
 
@@ -25,6 +27,10 @@ public class LogEntry {
 
     public int getVal() {
         return val;
+    }
+
+    public int getTotal() {
+        return total;
     }
 
     public LocalDate getDate() {
@@ -46,4 +52,24 @@ public class LogEntry {
     public String getStringDate() {
         return (date.format(formatter));
     }
+
+    public String getStringMoney(int balance) {
+        int before = ((balance - (balance % 100)) / 100);
+        int after = balance % 100;
+
+        if (after < 10) {
+            return ("$" + before + "." + "0" + after);
+        } else {
+            return ("$" + before + "." + after);
+        }
+    }
+
+    public String getStringVal() {
+        return getStringMoney(val);
+    }
+
+    public String getStringTotal() {
+        return getStringMoney(total);
+    }
+
 }

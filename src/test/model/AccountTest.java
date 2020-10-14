@@ -25,7 +25,7 @@ class AccountTest {
     }
 
     public LogEntry newLogEntry(int val){
-        return (new LogEntry(acc,val,date));
+        return (new LogEntry(acc,val,acc.getBalance(),date));
     }
 
 
