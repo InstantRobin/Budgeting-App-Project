@@ -147,6 +147,8 @@ public class Manage {
     // Returns the history of actions to a given account
     // TODO: Make header, add action result value
     private void printHistory(Account acc) {
+        System.out.println("     " + "Date        " + "Change  " + "Total");
+        //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "$XXX.XX"
         for (LogEntry item : acc.getHistory()) {
             System.out.println("     " + item.getStringDate() + ": "
                     + item.getVal());
