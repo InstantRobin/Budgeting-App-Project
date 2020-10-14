@@ -29,6 +29,12 @@ class AccountTest {
         return (new LogEntry(acc,val,add,date));
     }
 
+
+    @Test
+    public void getNameTest() {
+        assertEquals("test",acc.getName());
+    }
+
     @Test
     public void addValueTest(){ //Checks if addValue adds value, logs properly
         acc.addValue(1000, date);
@@ -77,13 +83,42 @@ class AccountTest {
 
     @Test
     public void logEventTestMult(){ //Checks if logEvent works properly with multiple events
-        acc.logEvent(700,true,date);
-        acc.logEvent(900,false,date);
+        acc.logEvent(700,true, date);
+        acc.logEvent(900,false, date);
 
         List<LogEntry> result = new ArrayList<>();
         result.add(newLogEntry(700,true));
         result.add(newLogEntry(900,false));
 
         compareValues(acc,result);
+    }
+
+    @Test
+    public void getStringBalanceTest() { // Checks to make sure returns properly for nums in all decimal places
+        assertEquals("$0.00", acc.getStringBalance());
+
+        acc.addValue(1, date);
+        assertEquals("$0.01", acc.getStringBalance());
+
+        acc.addValue(9, date);
+        assertEquals("$0.10", acc.getStringBalance());
+
+        acc.addValue(1, date);
+        assertEquals("$0.11", acc.getStringBalance());
+
+        acc.addValue(89, date);
+        assertEquals("$1.00", acc.getStringBalance());
+
+        acc.addValue(1, date);
+        assertEquals("$1.01", acc.getStringBalance());
+
+        acc.addValue(9, date);
+        assertEquals("$1.10", acc.getStringBalance());
+
+        acc.addValue(1, date);
+        assertEquals("$1.11", acc.getStringBalance());
+
+        acc.addValue(1000, date);
+        assertEquals("$11.11", acc.getStringBalance());
     }
 }
