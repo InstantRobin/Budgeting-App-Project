@@ -23,12 +23,13 @@ public class LogEntry implements Comparable<LogEntry> {
     }
 
     // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
+    // EFFECT: Allows comparing two LogEntries to quickly determine which comes before which, useful for sorting
     @Override
     public int compareTo(LogEntry o) {
         return getDate().compareTo(o.getDate());
     }
 
-    public void updateTotal(int i) {
+    public void setTotal(int i) {
         total = i;
     }
 
@@ -62,7 +63,7 @@ public class LogEntry implements Comparable<LogEntry> {
         return date.getDayOfMonth();
     }
 
-    // returns Date in YYYY-MM-DD String format
+    // EFFECT: returns Date in YYYY-MM-DD String format
     public String getStringDate() {
         return (date.format(formatter));
     }

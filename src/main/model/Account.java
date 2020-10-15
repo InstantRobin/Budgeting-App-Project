@@ -16,6 +16,7 @@ public class Account {
     private List<LogEntry> history = new ArrayList<>();
 
     // EFFECT: Initializes account with name, initial balance
+    // Modifies: this
     // Balance can be negative
     public Account(String name, int balance) {
         this.name = name;
@@ -55,9 +56,9 @@ public class Account {
         for (int loc = 0; loc < history.size(); loc++) {
             LogEntry item = history.get(loc);
             if (loc == 0) {
-                item.updateTotal(item.getVal());
+                item.setTotal(item.getVal());
             } else {
-                item.updateTotal(history.get(loc - 1).getTotal() + item.getVal());
+                item.setTotal(history.get(loc - 1).getTotal() + item.getVal());
             }
         }
     }

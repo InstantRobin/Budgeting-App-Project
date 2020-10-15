@@ -122,12 +122,14 @@ public class Manage {
     }
 
     // REQUIRES: Val > 0
+    // MODIFIES: acc
     // EFFECT: Deposits given val in given account
     private void deposit(Account acc, int val, LocalDate date) {
         acc.addValue(val,date);
     }
 
     // REQUIRES: Val > 0
+    // MODIFIES: acc
     // EFFECT: Withdraws given val from given account
     private void withdraw(Account acc, int val, LocalDate date) {
         acc.subValue(val,date);
@@ -141,6 +143,7 @@ public class Manage {
     }
 
     // REQUIRES: Val > 0
+    // MODIFIES: acc1 acc2
     // EFFECT: Does actual transfer process
     private void transfer(Account acc1, Account acc2, int val, LocalDate date) {
         withdraw(acc1,val,date);
@@ -148,6 +151,7 @@ public class Manage {
     }
 
     // REQUIRES name is at least 1 char long
+    // MODIFIES: accounts
     // EFFECT: Makes new Account w/ given name, initial value
     private void makeAccount(String name, int val) {
         accounts.add(new Account(name,val));
