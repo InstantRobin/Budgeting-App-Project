@@ -2,6 +2,7 @@ package ui;
 // Manages main actions of program
 
 import model.Account;
+import model.History;
 import model.LogEntry;
 
 import java.time.LocalDate;
@@ -159,9 +160,12 @@ public class Manage {
 
     // EFFECT: Returns the history of actions on a given account
     private void printHistory(Account acc) {
+        History hist = acc.getHistory();
+        hist.updateTotals();
+
         System.out.println("     " + "Date        " + "Change  " + "| Total");
         //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"
-        for (LogEntry item : acc.getHistory()) {
+        for (LogEntry item : hist) {
             System.out.println("     " + item.getStringDate() + ": "
                     + Account.moneyToString(item.getVal()) + " | " + Account.moneyToString(item.getTotal()));
         }

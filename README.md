@@ -30,6 +30,8 @@ As a user, I want to be able to set up regular deposits
 
 As a user, I want to be able to store my account data
 As a user, I want to be able to log my actions and their date
-As a user, I want to be able to see a history of these actions
+As a user, I want to be able to add logged action to a history of logged actions
+As a user, I want to be able to sort and update this history
+As a user, I want to be able to print a history of these actions
 As a user, I want to be able to remove actions from the log
 As a user, I want to be able to create charts/graphs of this data

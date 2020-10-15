@@ -2,8 +2,6 @@ package model;
 // Represents a place where money is stored, also contains a history of all deposits/withdrawals
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Account {
@@ -13,7 +11,7 @@ public class Account {
     // the balance of the account, in cents
     private int balance;
     private String name;
-    private List<LogEntry> history = new ArrayList<>();
+    private History history = new History();
 
     // EFFECT: Initializes account with name, initial balance
     // Modifies: this
@@ -44,24 +42,7 @@ public class Account {
         logEvent(-1 * value, date);
     }
 
-    // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
-    // EFFECT: Sorts the History List, because items can be added non-chronologically
-    public void sortHistory() {
-        Collections.sort(history);
-    }
 
-    // EFFECT: Sorts history, then goes through chronologically to update the total values to be accurate
-    public void updateHistoryTotals() {
-        sortHistory();
-        for (int loc = 0; loc < history.size(); loc++) {
-            LogEntry item = history.get(loc);
-            if (loc == 0) {
-                item.setTotal(item.getVal());
-            } else {
-                item.setTotal(history.get(loc - 1).getTotal() + item.getVal());
-            }
-        }
-    }
 
     // Getters
 
@@ -73,7 +54,7 @@ public class Account {
         return balance;
     }
 
-    public List<LogEntry> getHistory() {
+    public History getHistory() {
         return history;
     }
 
