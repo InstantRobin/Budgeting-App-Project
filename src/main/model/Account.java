@@ -48,8 +48,12 @@ public class Account {
 
     // Returns Balance in $X.XX string form
     public String getStringBalance() {
-        int before = ((balance - (balance % 100)) / 100);
-        int after = balance % 100;
+        return moneyToString(balance);
+    }
+
+    public static String moneyToString(int money) {
+        int before = ((money - (money % 100)) / 100);
+        int after = money % 100;
 
         if (after < 10) {
             return ("$" + before + "." + "0" + after);

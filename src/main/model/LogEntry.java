@@ -62,24 +62,4 @@ public class LogEntry implements Comparable<LogEntry> {
     public String getStringDate() {
         return (date.format(formatter));
     }
-
-    public String getStringMoney(int balance) {
-        int before = ((balance - (balance % 100)) / 100);
-        int after = balance % 100;
-
-        if (after < 10) {
-            return ("$" + before + "." + "0" + after);
-        } else {
-            return ("$" + before + "." + after);
-        }
-    }
-
-    public String getStringVal() {
-        return getStringMoney(val);
-    }
-
-    public String getStringTotal() {
-        return getStringMoney(total);
-    }
-
 }

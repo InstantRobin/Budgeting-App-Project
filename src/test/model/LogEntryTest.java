@@ -17,33 +17,6 @@ public class LogEntryTest {
     }
 
     @Test
-    public void getStringValTest() {
-        LogEntry log = new LogEntry(acc,0, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.00",log.getStringVal());
-
-        log = new LogEntry(acc,1, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.01",log.getStringVal());
-
-        log = new LogEntry(acc,10, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.10",log.getStringVal());
-
-        log = new LogEntry(acc,11, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.11",log.getStringVal());
-
-        log = new LogEntry(acc,11, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.11",log.getStringVal());
-
-        log = new LogEntry(acc,20, acc.getBalance(), LocalDate.of(2020,10,12));
-        assertEquals("$0.11",log.getStringVal());
-    }
-
-    @Test
-    public void getStringTotalTest() {
-        LogEntry log = new LogEntry(acc,200, 500, LocalDate.of(2020,10,12));
-        assertEquals("$5.00",log.getStringTotal());
-    }
-
-    @Test
     public void getYearTest() {
         assertEquals(2020, log.getYear());
     }
