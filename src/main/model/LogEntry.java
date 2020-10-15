@@ -1,5 +1,5 @@
 package model;
-// Represents a log entry of an account value change
+// Represents a log entry of an account value change event
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,11 +14,12 @@ public class LogEntry implements Comparable<LogEntry> {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // TODO: Add Currency
 
+    // REQUIRES: Initializes LogEntry
     public LogEntry(Account acc, int val, int total, LocalDate date) {
-        this.acc = acc;
-        this.val = val;
-        this.total = total;
-        this.date = date; // must be in YYYY-MM-DD format
+        this.acc = acc; // Account of where even occurred
+        this.val = val; // Value of the change (pos for deposit, negative for widthdrawl
+        this.total = total; // The total money in the account at the time of the event
+        this.date = date; // The date of the event
     }
 
     // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
@@ -30,6 +31,8 @@ public class LogEntry implements Comparable<LogEntry> {
     public void updateTotal(int i) {
         total = i;
     }
+
+    // Getters
 
     public Account getAcc() {
         return acc;
@@ -59,6 +62,7 @@ public class LogEntry implements Comparable<LogEntry> {
         return date.getDayOfMonth();
     }
 
+    // returns Date in YYYY-MM-DD String format
     public String getStringDate() {
         return (date.format(formatter));
     }

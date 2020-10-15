@@ -18,6 +18,7 @@ public class Manage {
         runManage(); // from Teller
     }
 
+    // EFFECT: The primary function, takes + follows user input until told to quit
     private void runManage() {
         boolean cont = true;
         Scanner sc = new Scanner(System.in);
@@ -25,13 +26,12 @@ public class Manage {
         while (cont) {
             doChoice(getChoice());
 
-
             System.out.println("Input true to continue, false to end");
             cont = sc.nextBoolean();
         }
     }
 
-    // Presents users with option,s gets User Action
+    // EFFECT: Presents users with options, gets User Action
     private int getChoice() {
         System.out.print("Enter the corresponding number of desired action:\n"
                 + "1)View Account Balance\n"
@@ -45,7 +45,8 @@ public class Manage {
         return sc.nextInt();
     }
 
-    // Calls corresponding function to user choice as documented in getChoice()
+    // REQUIRES: 1 < choice 6
+    // EFFECT: Calls corresponding function to user choice as documented in getChoice()
     private void doChoice(int choice) {
         switch (choice) {
             case 1:
@@ -73,7 +74,7 @@ public class Manage {
     //GET USER INPUT FNS//
     //*****************//
 
-    // Presents user with list of accounts, takes user input, returns selected account
+    // EFFECT: Presents user with list of accounts, takes user input, returns selected account
     private Account getAcc() {
         Scanner sc = new Scanner(System.in);
 
@@ -86,13 +87,13 @@ public class Manage {
         return accounts.get(acc - 1);
     }
 
-    // Gets int value from User
+    // EFFECT: Gets int value from User
     private int getVal() {
         System.out.println("Enter desired amount:");
         return (int)(sc.nextFloat() * 100);
     }
 
-    // Gets LocalDate date from user, separate input for year, month, date
+    // EFFECT: Gets LocalDate date from user, separate input for year, month, date
     private LocalDate getDate() {
         System.out.println("Enter date of action in number form:");
         System.out.println("Year:");
@@ -105,7 +106,7 @@ public class Manage {
         return LocalDate.of(year,month,day);
     }
 
-    // Gets string name from user
+    // EFFECT: Gets string name from user
     private String getName() {
         System.out.println("Enter name:");
         return sc.next();
@@ -115,36 +116,44 @@ public class Manage {
     //CHOICE-ACTION FNS//
     //****************//
 
+    // EFFECT: Prints given Account balance as a formatted String
     private void viewBalance(Account acc) {
         System.out.println(acc.getStringBalance());
     }
 
+    // REQUIRES: Val > 0
+    // EFFECT: Deposits given val in given account
     private void deposit(Account acc, int val, LocalDate date) {
         acc.addValue(val,date);
     }
 
+    // REQUIRES: Val > 0
+    // EFFECT: Withdraws given val from given account
     private void withdraw(Account acc, int val, LocalDate date) {
         acc.subValue(val,date);
     }
 
-    // Intermediate step required bc fn takes two accounts, extra command needed to reduce vagueness
+    // REQUIRES: Val > 0
+    // EFFECT: Intermediate step required bc fn takes two accounts, extra command needed to reduce vagueness
     private void transferStep() {
         System.out.println("First select source, then select destination");
         transfer(getAcc(),getAcc(),getVal(),getDate());
     }
 
-    // Does actual transfer process
+    // REQUIRES: Val > 0
+    // EFFECT: Does actual transfer process
     private void transfer(Account acc1, Account acc2, int val, LocalDate date) {
         withdraw(acc1,val,date);
         deposit(acc2,val,date);
     }
 
-    // Makes new Account w/ given name, initial value
+    // REQUIRES name is at least 1 char long
+    // EFFECT: Makes new Account w/ given name, initial value
     private void makeAccount(String name, int val) {
         accounts.add(new Account(name,val));
     }
 
-    // Returns the history of actions to a given account
+    // EFFECT: Returns the history of actions on a given account
     private void printHistory(Account acc) {
         System.out.println("     " + "Date        " + "Change  " + "| Total");
         //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"

@@ -207,4 +207,13 @@ class AccountTest {
         acc.addValue(1000, date);
         assertEquals("$11.11", acc.getStringBalance());
     }
+
+    @Test
+    public void getStringBalanceNegativeTest() { // Checks to make sure returns properly for nums in all decimal places
+        acc.subValue(100,date);
+        assertEquals("$-1.00", acc.getStringBalance());
+
+        acc.subValue(25,date);
+        assertEquals("$-1.25", acc.getStringBalance());
+    }
 }
