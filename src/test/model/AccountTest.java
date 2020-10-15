@@ -13,19 +13,20 @@ class AccountTest {
     Account acc = new Account("test",0);
     LocalDate date = LocalDate.of(2020,10,12);
 
-    public void compareValues(Account account, List<LogEntry> res){
+    public void compareValues(Account account, List<LogEntry> result){
 
         List<LogEntry> history = account.getHistory();
 
         for (int ent = 0; ent < history.size(); ent++){
-            assertEquals(res.get(ent).getAcc(), history.get(ent).getAcc());
-            assertEquals(res.get(ent).getVal(), history.get(ent).getVal());
-            assertEquals(res.get(ent).getDate(), history.get(ent).getDate());
+            assertEquals(result.get(ent).getAcc(), history.get(ent).getAcc());
+            assertEquals(result.get(ent).getVal(), history.get(ent).getVal());
+            assertEquals(result.get(ent).getTotal(), history.get(ent).getTotal());
+            assertEquals(result.get(ent).getDate(), history.get(ent).getDate());
         }
     }
 
-    public LogEntry newLogEntry(int val){
-        return (new LogEntry(acc,val,acc.getBalance(),date));
+    public LogEntry newLogEntry(int val, int total){
+        return (new LogEntry(acc,val,total,date));
     }
 
 
@@ -39,7 +40,7 @@ class AccountTest {
         acc.addValue(1000, date);
 
         List<LogEntry> result = new ArrayList<>();
-        result.add(newLogEntry(1000));
+        result.add(newLogEntry(1000,1000));
 
         assertEquals(1000,acc.getBalance());
         compareValues(acc,result);
@@ -51,8 +52,8 @@ class AccountTest {
         acc.subValue(500, date);
 
         List<LogEntry> result = new ArrayList<>();
-        result.add(newLogEntry(1000));
-        result.add(newLogEntry(-500));
+        result.add(newLogEntry(1000,1000));
+        result.add(newLogEntry(-500,500));
 
         assertEquals(500,acc.getBalance());
         compareValues(acc,result);
@@ -64,8 +65,8 @@ class AccountTest {
         acc.subValue(1000, date);
 
         List<LogEntry> result = new ArrayList<>();
-        result.add(newLogEntry(500));
-        result.add(newLogEntry(-1000));
+        result.add(newLogEntry(500,500));
+        result.add(newLogEntry(-1000,-500));
 
         assertEquals(-500,acc.getBalance());
         compareValues(acc,result);
@@ -75,7 +76,7 @@ class AccountTest {
     public void logEventTest(){ //Checks if logEvent works properly with one event
         acc.logEvent(500, date);
         List<LogEntry> result = new ArrayList<>();
-        result.add(newLogEntry(500));
+        result.add(newLogEntry(500,0));
 
         compareValues(acc,result);
     }
@@ -86,8 +87,94 @@ class AccountTest {
         acc.logEvent(-900, date);
 
         List<LogEntry> result = new ArrayList<>();
-        result.add(newLogEntry(700));
-        result.add(newLogEntry(-900));
+        result.add(newLogEntry(700,0));
+        result.add(newLogEntry(-900,0));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void sortHistoryTestBackwards() {
+        acc.logEvent(500,LocalDate.of(2020,5,20));
+        acc.logEvent(800,LocalDate.of(2020,5,19));
+        acc.sortHistory();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,800,acc.getBalance(),LocalDate.of(2020,5,19)));
+        result.add(new LogEntry(acc,500,acc.getBalance(),LocalDate.of(2020,5,20)));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void sortHistoryTestForwards() {
+        acc.logEvent(800,LocalDate.of(2020,5,19));
+        acc.logEvent(500,LocalDate.of(2020,5,20));
+        acc.sortHistory();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,800,acc.getBalance(),LocalDate.of(2020,5,19)));
+        result.add(new LogEntry(acc,500,acc.getBalance(),LocalDate.of(2020,5,20)));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void sortHistoryTestTriple() {
+        acc.logEvent(200,LocalDate.of(2020,5,17));
+        acc.logEvent(800,LocalDate.of(2020,5,19));
+        acc.logEvent(500,LocalDate.of(2020,5,18));
+        acc.sortHistory();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,200,acc.getBalance(),LocalDate.of(2020,5,17)));
+        result.add(new LogEntry(acc,500,acc.getBalance(),LocalDate.of(2020,5,18)));
+        result.add(new LogEntry(acc,800,acc.getBalance(),LocalDate.of(2020,5,19)));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void sortHistoryTestMonths() {
+        acc.logEvent(200,LocalDate.of(2020,2,17));
+        acc.logEvent(800,LocalDate.of(2020,4,15));
+        acc.logEvent(500,LocalDate.of(2020,3,19));
+        acc.sortHistory();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,200,acc.getBalance(),LocalDate.of(2020,2,17)));
+        result.add(new LogEntry(acc,500,acc.getBalance(),LocalDate.of(2020,3,19)));
+        result.add(new LogEntry(acc,800,acc.getBalance(),LocalDate.of(2020,4,15)));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void sortHistoryTestYears() {
+        acc.logEvent(200,LocalDate.of(2018,5,17));
+        acc.logEvent(800,LocalDate.of(2020,2,15));
+        acc.logEvent(500,LocalDate.of(2019,3,19));
+        acc.sortHistory();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,200,acc.getBalance(),LocalDate.of(2018,5,17)));
+        result.add(new LogEntry(acc,500,acc.getBalance(),LocalDate.of(2019,3,19)));
+        result.add(new LogEntry(acc,800,acc.getBalance(),LocalDate.of(2020,2,15)));
+
+        compareValues(acc,result);
+    }
+
+    @Test
+    public void updateHistoryTotalsTest() {
+        acc.logEvent(200,LocalDate.of(2018,5,17));
+        acc.logEvent(800,LocalDate.of(2020,2,15));
+        acc.logEvent(-500,LocalDate.of(2019,3,19));
+        acc.updateHistoryTotals();
+
+        List<LogEntry> result = new ArrayList<>();
+        result.add(new LogEntry(acc,200,200,LocalDate.of(2018,5,17)));
+        result.add(new LogEntry(acc,-500,-300,LocalDate.of(2019,3,19)));
+        result.add(new LogEntry(acc,800,500,LocalDate.of(2020,2,15)));
 
         compareValues(acc,result);
     }

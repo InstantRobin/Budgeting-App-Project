@@ -3,6 +3,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Account {
@@ -54,6 +55,23 @@ public class Account {
             return ("$" + before + "." + "0" + after);
         } else {
             return ("$" + before + "." + after);
+        }
+    }
+
+    // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
+    public void sortHistory() {
+        Collections.sort(history);
+    }
+
+    public void updateHistoryTotals() {
+        sortHistory();
+        for (int loc = 0; loc < history.size(); loc++) {
+            LogEntry item = history.get(loc);
+            if (loc == 0) {
+                item.updateTotal(item.getVal());
+            } else {
+                item.updateTotal(history.get(loc - 1).getTotal() + item.getVal());
+            }
         }
     }
 }

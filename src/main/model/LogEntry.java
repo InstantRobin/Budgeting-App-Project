@@ -4,7 +4,7 @@ package model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class LogEntry {
+public class LogEntry implements Comparable<LogEntry> {
 
     private Account acc;
     private int val;
@@ -19,6 +19,16 @@ public class LogEntry {
         this.val = val;
         this.total = total;
         this.date = date; // must be in YYYY-MM-DD format
+    }
+
+    // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
+    @Override
+    public int compareTo(LogEntry o) {
+        return getDate().compareTo(o.getDate());
+    }
+
+    public void updateTotal(int i) {
+        total = i;
     }
 
     public Account getAcc() {
