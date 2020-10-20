@@ -48,22 +48,22 @@ public class Manage {
     private Boolean doChoice(int choice) {
         switch (choice) {
             case 1:
-                viewBalance(getAcc());
+                viewBalance(getAccInput());
                 break;
             case 2:
-                deposit(getAcc(),getVal(),getDate());
+                deposit(getAccInput(), getValInput(), getDateInput());
                 break;
             case 3:
-                withdraw(getAcc(),getVal(),getDate());
+                withdraw(getAccInput(), getValInput(), getDateInput());
                 break;
             case 4:
                 transferStep(); // transfer requires 2 acc's, so needs more complicated fn
                 break;
             case 5:
-                makeAccount(getName(),getVal(),getCurrency());
+                makeAccount(getNameInput(), getValInput(), getCurrencyInput());
                 break;
             case 6:
-                printHistory(getAcc());
+                printHistory(getAccInput());
                 break;
             case 7:
                 return false;
@@ -76,7 +76,7 @@ public class Manage {
     //*****************//
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account
-    private Account getAcc() {
+    private Account getAccInput() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the corresponding number of desired account");
@@ -89,13 +89,13 @@ public class Manage {
     }
 
     // EFFECT: Gets int value from User
-    private int getVal() {
+    private int getValInput() {
         System.out.println("Enter desired amount:");
         return (int)(sc.nextFloat() * 100);
     }
 
     // EFFECT: Gets LocalDate date from user, separate input for year, month, date
-    private LocalDate getDate() {
+    private LocalDate getDateInput() {
         System.out.println("Enter date of action in number form:");
         System.out.println("Year:");
         int year = sc.nextInt();
@@ -108,33 +108,29 @@ public class Manage {
     }
 
     // EFFECT: Gets string name from user
-    private String getName() {
+    private String getNameInput() {
         System.out.println("Enter name:");
         return sc.next();
     }
 
     // EFFECT: Gets Currency from user
-    private Currency getCurrency() {
+    private Currency getCurrencyInput() {
         System.out.println("Select Currency");
         List<Currency> currencies = new ArrayList<>();
-        int last = -1;
+        int item = 0;
 
         for (Account acc : accounts) {
             if (!currencies.contains(acc.getCurrency())) {
                 currencies.add(acc.getCurrency());
+                System.out.println(item + ") " + currencies.get(item).getName());
+                item += 1;
             }
         }
 
-        for (int i = 0; i < currencies.size();i++) {
-            System.out.println(i + ") " + currencies.get(i).getName());
-            if (i == currencies.size() - 1) {
-                last = i + 1;
-                System.out.println(last + ") New Currency");
-            }
-        }
+        System.out.println(item + 1 + ") New Currency");
 
         int choice = sc.nextInt();
-        if (choice == last) {
+        if (choice == item + 1) {
             return newCurrency();
         } else {
             return currencies.get(choice);
@@ -180,7 +176,7 @@ public class Manage {
     // EFFECT: Intermediate step required bc fn takes two accounts, extra command needed to reduce vagueness
     private void transferStep() {
         System.out.println("First select source, then select destination");
-        transfer(getAcc(),getAcc(),getVal(),getDate());
+        transfer(getAccInput(), getAccInput(), getValInput(), getDateInput());
     }
 
     // REQUIRES: Val > 0
@@ -210,7 +206,8 @@ public class Manage {
 
         System.out.println("     " + "Date        " + "Change  " + "| Total");
         //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"
-        for (LogEntry item : hist) {
+        for (int i = 0; i < hist.size();i++) {
+            LogEntry item = hist.get(i);
             System.out.println("     " + item.getStringDate() + ": "
                     + Account.moneyToString(item.getVal(),acc.getCurrency()) + " | "
                     + Account.moneyToString(item.getTotal(),acc.getCurrency()));

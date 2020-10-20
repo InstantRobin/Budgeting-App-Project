@@ -15,7 +15,7 @@ class AccountTest {
 
     public void compareValues(Account account, List<LogEntry> result){
 
-        List<LogEntry> history = account.getHistory();
+        History history = account.getHistory();
 
         for (int ent = 0; ent < history.size(); ent++){
             assertEquals(result.get(ent).getAcc(), history.get(ent).getAcc());
