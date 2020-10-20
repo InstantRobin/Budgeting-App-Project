@@ -2,7 +2,6 @@ package model;
 // Represents a place where money is stored, also contains a history of all deposits/withdrawals
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Account {
 
@@ -11,14 +10,17 @@ public class Account {
     // the balance of the account, in cents
     private int balance;
     private String name;
+    private Currency currency;
     private History history = new History();
+
 
     // EFFECT: Initializes account with name, initial balance
     // Modifies: this
     // Balance can be negative
-    public Account(String name, int balance) {
+    public Account(String name, int balance, Currency currency) {
         this.name = name;
         this.balance = balance;
+        this.currency = currency;
     }
 
     // EFFECT: Logs date, amount changed, current total account value, and the date of the action in a LogEntry
@@ -58,21 +60,25 @@ public class Account {
         return history;
     }
 
+    public Currency getCurrency() {
+        return currency;
+    }
+
     // EFFECT: Returns Balance in $X.XX string form
     public String getStringBalance() {
-        return moneyToString(balance);
+        return moneyToString(balance, currency);
     }
 
 
     // EFFECT: Turns int of currency (in cents) into $X.XX string form
-    public static String moneyToString(int money) {
+    public static String moneyToString(int money, Currency cur) {
         int before = ((money - (money % 100)) / 100);
         int after = money % 100;
 
         if (after >= 0 && after < 10) {
-            return ("$" + before + "." + "0" + after);
+            return (cur.getSymbol() + before + "." + "0" + after);
         } else {
-            return ("$" + before + "." + Math.abs(after));
+            return (cur.getSymbol() + before + "." + Math.abs(after));
         }
     }
 }

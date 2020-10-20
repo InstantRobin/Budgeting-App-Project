@@ -16,8 +16,6 @@ public class Manage {
     private List<Account> accounts = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public static Currency USD = new Currency("USD","$",1);
-
     public Manage() {
         runManage(); // from Teller
     }
@@ -27,12 +25,7 @@ public class Manage {
         boolean cont = true;
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Budgeteer!");
-        while (cont) {
-            doChoice(getChoice());
-
-            System.out.println("Input true to continue, false to end");
-            cont = sc.nextBoolean();
-        }
+        while (doChoice(getChoice())) {} // Is this bad code???
     }
 
     // EFFECT: Presents users with options, gets User Action
@@ -43,7 +36,8 @@ public class Manage {
                 + "3)Withdraw\n"
                 + "4)Transfer\n"
                 + "5)Make New Account\n"
-                + "6)Get Account History\n");
+                + "6)Get Account History\n"
+                + "7)Exit\n");
 
         // https://www.javatpoint.com/how-to-get-input-from-user-in-java
         return sc.nextInt();
@@ -51,7 +45,7 @@ public class Manage {
 
     // REQUIRES: 1 < choice 6
     // EFFECT: Calls corresponding function to user choice as documented in getChoice()
-    private void doChoice(int choice) {
+    private Boolean doChoice(int choice) {
         switch (choice) {
             case 1:
                 viewBalance(getAcc());
@@ -66,12 +60,15 @@ public class Manage {
                 transferStep(); // transfer requires 2 acc's, so needs more complicated fn
                 break;
             case 5:
-                makeAccount(getName(),getVal());
+                makeAccount(getName(),getVal(),getCurrency());
                 break;
             case 6:
                 printHistory(getAcc());
                 break;
+            case 7:
+                return false;
         }
+        return true;
     }
 
     //*******************//
@@ -116,6 +113,46 @@ public class Manage {
         return sc.next();
     }
 
+    // EFFECT: Gets Currency from user
+    private Currency getCurrency() {
+        System.out.println("Select Currency");
+        List<Currency> currencies = new ArrayList<>();
+        int last = -1;
+
+        for (Account acc : accounts) {
+            if (!currencies.contains(acc.getCurrency())) {
+                currencies.add(acc.getCurrency());
+            }
+        }
+
+        for (int i = 0; i < currencies.size();i++) {
+            System.out.println(i + ") " + currencies.get(i).getName());
+            if (i == currencies.size() - 1) {
+                last = i + 1;
+                System.out.println(last + ") New Currency");
+            }
+        }
+
+        int choice = sc.nextInt();
+        if (choice == last) {
+            return newCurrency();
+        } else {
+            return currencies.get(choice);
+        }
+
+    }
+
+    private Currency newCurrency() {
+        System.out.println("Enter Currency Name:");
+        String name = sc.next();
+        System.out.println("Existing Currency not found, please enter information for this Currency");
+        System.out.println("Enter Symbol:");
+        String symbol = sc.next();
+        System.out.println("Enter Exchange Rate to USD");
+        int exRate = sc.nextInt();
+        return (new Currency(name,symbol,exRate));
+    }
+
     //******************//
     //CHOICE-ACTION FNS//
     //****************//
@@ -150,6 +187,11 @@ public class Manage {
     // MODIFIES: acc1 acc2
     // EFFECT: Does actual transfer process
     private void transfer(Account acc1, Account acc2, int val, LocalDate date) {
+        Currency cur1 = acc1.getCurrency();
+        Currency cur2 = acc2.getCurrency();
+        if (cur1 != cur2) {
+            val = (int)(val * cur1.getExchangeRateUSD() / cur2.getExchangeRateUSD());
+        }
         withdraw(acc1,val,date);
         deposit(acc2,val,date);
     }
@@ -157,8 +199,8 @@ public class Manage {
     // REQUIRES name is at least 1 char long
     // MODIFIES: accounts
     // EFFECT: Makes new Account w/ given name, initial value
-    private void makeAccount(String name, int val) {
-        accounts.add(new Account(name,val));
+    private void makeAccount(String name, int val, Currency currency) {
+        accounts.add(new Account(name,val, currency));
     }
 
     // EFFECT: Returns the history of actions on a given account
@@ -170,7 +212,8 @@ public class Manage {
         //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"
         for (LogEntry item : hist) {
             System.out.println("     " + item.getStringDate() + ": "
-                    + Account.moneyToString(item.getVal()) + " | " + Account.moneyToString(item.getTotal()));
+                    + Account.moneyToString(item.getVal(),acc.getCurrency()) + " | "
+                    + Account.moneyToString(item.getTotal(),acc.getCurrency()));
         }
     }
 }
