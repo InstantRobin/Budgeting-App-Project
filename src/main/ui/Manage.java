@@ -2,6 +2,7 @@ package ui;
 // Manages main actions of program
 
 import model.Account;
+import model.Currency;
 import model.History;
 import model.LogEntry;
 
@@ -14,6 +15,8 @@ public class Manage {
 
     private List<Account> accounts = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+
+    public static Currency USD = new Currency("USD","$",1);
 
     public Manage() {
         runManage(); // from Teller
