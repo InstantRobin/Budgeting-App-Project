@@ -1,6 +1,7 @@
 package model;
 // Represents the event history of an account
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -29,6 +30,23 @@ public class History {
                 item.setTotal(history.get(loc - 1).getTotal() + item.getVal());
             }
         }
+    }
+
+    // https://stackoverflow.com/questions/56357708/joda-localdate-compare-if-equal-or-before-and-after
+    // EFFECT: Returns all entries in a given date range
+    public History getDateRange(LocalDate start, LocalDate end) {
+        History dateRange = new History();
+        sort();
+        for (LogEntry entry : history) {
+            if (!entry.getDate().isAfter(start)) {
+                continue;
+            } else if (!entry.getDate().isAfter(end)) {
+                dateRange.add(entry);
+            } else {
+                break;
+            }
+        }
+        return dateRange;
     }
 
     public void add(LogEntry ent) {

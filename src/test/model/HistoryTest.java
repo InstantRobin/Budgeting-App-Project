@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public class HistoryTest {
     History hist = new History();
     Account acc = new Account("test",0, TestDefaults.USD);
     LocalDate date = LocalDate.of(2020,10,12);
+    List<LogEntry> result;
 
     public LogEntry logEvent(int val, LocalDate date){
         return (new LogEntry(acc,val,0,date));
@@ -26,13 +28,18 @@ public class HistoryTest {
         }
     }
 
+    @BeforeEach
+    public void beforeEach() {
+        result = new ArrayList<>();
+    }
+
+
     @Test
     public void sortHistoryTestBackwards() {
         hist.add(logEvent(500, LocalDate.of(2020,5,20)));
         hist.add(logEvent(800,LocalDate.of(2020,5,19)));
         hist.sort();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
         result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,20)));
 
@@ -45,7 +52,6 @@ public class HistoryTest {
         hist.add(logEvent(500,LocalDate.of(2020,5,20)));
         hist.sort();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
         result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,20)));
 
@@ -59,7 +65,6 @@ public class HistoryTest {
         hist.add(logEvent(500,LocalDate.of(2020,5,18)));
         hist.sort();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2020,5,17)));
         result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,18)));
         result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
@@ -74,7 +79,6 @@ public class HistoryTest {
         hist.add(logEvent(500,LocalDate.of(2020,3,19)));
         hist.sort();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2020,2,17)));
         result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,3,19)));
         result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,4,15)));
@@ -89,7 +93,6 @@ public class HistoryTest {
         hist.add(logEvent(500,LocalDate.of(2019,3,19)));
         hist.sort();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2018,5,17)));
         result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2019,3,19)));
         result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,2,15)));
@@ -104,11 +107,21 @@ public class HistoryTest {
         hist.add(logEvent(-500,LocalDate.of(2019,3,19)));
         hist.updateTotals();
 
-        List<LogEntry> result = new ArrayList<>();
         result.add(new LogEntry(acc,200,200,LocalDate.of(2018,5,17)));
         result.add(new LogEntry(acc,-500,-300,LocalDate.of(2019,3,19)));
         result.add(new LogEntry(acc,800,500,LocalDate.of(2020,2,15)));
 
         compareValues(hist,result);
+    }
+
+    @Test
+    public void getDateRangeTest() {
+        hist.add(logEvent(200,LocalDate.of(2018,5,17)));
+        hist.add(logEvent(-500,LocalDate.of(2019,3,17)));
+        hist.add(logEvent(-500,LocalDate.of(2019,3,18)));
+        hist.add(logEvent(800,LocalDate.of(2019,3,19)));
+        hist.add(logEvent(-500,LocalDate.of(2019,3,21)));
+
+        result.add(logEvent(200,LocalDate.of(2018,5,17)));
     }
 }

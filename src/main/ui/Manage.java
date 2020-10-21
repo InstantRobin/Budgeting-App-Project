@@ -22,10 +22,11 @@ public class Manage {
 
     // EFFECT: The primary function, takes + follows user input until told to quit
     private void runManage() {
-        boolean cont = true;
-        Scanner sc = new Scanner(System.in);
+        int choice;
         System.out.println("Welcome to Budgeteer!");
-        while (doChoice(getChoice())) {} // Is this bad code???
+        do {
+            choice = getChoice();
+        } while (doChoice(choice));
     }
 
     // EFFECT: Presents users with options, gets User Action
