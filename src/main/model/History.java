@@ -38,7 +38,7 @@ public class History {
         History dateRange = new History();
         sort();
         for (LogEntry entry : history) {
-            if (!entry.getDate().isAfter(start)) {
+            if (entry.getDate().isBefore(start)) {
                 continue;
             } else if (!entry.getDate().isAfter(end)) {
                 dateRange.add(entry);

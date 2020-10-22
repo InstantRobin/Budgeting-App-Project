@@ -114,14 +114,44 @@ public class HistoryTest {
         compareValues(hist,result);
     }
 
+    LocalDate date1 = LocalDate.of(2018,5,17);
+    LocalDate date2 = LocalDate.of(2019,3,17);
+    LocalDate date3 = LocalDate.of(2019,3,18);
+    LocalDate date4 = LocalDate.of(2019,3,19);
+    LocalDate date5 = LocalDate.of(2019,3,21);
+
     @Test
     public void getDateRangeTest() {
-        hist.add(logEvent(200,LocalDate.of(2018,5,17)));
-        hist.add(logEvent(-500,LocalDate.of(2019,3,17)));
-        hist.add(logEvent(-500,LocalDate.of(2019,3,18)));
-        hist.add(logEvent(800,LocalDate.of(2019,3,19)));
-        hist.add(logEvent(-500,LocalDate.of(2019,3,21)));
+        hist.add(logEvent(200,date1));
+        hist.add(logEvent(-300,date2));
+        hist.add(logEvent(-400,date3));
+        hist.add(logEvent(500,date4));
+        hist.add(logEvent(-600,date5));
 
-        result.add(logEvent(200,LocalDate.of(2018,5,17)));
+//        compareValues(hist.getDateRange(LocalDate.of(2018,4,16),
+//                LocalDate.of(2018,5,16)),
+//                result);
+
+        result.add(logEvent(200,date1));
+
+//        compareValues(hist.getDateRange(date1,
+//                date2.minusDays(1)),
+//                result);
+
+        result.add(logEvent(-300,date2));
+
+        compareValues(hist.getDateRange(date1,
+                                        date2),
+                    result);
+
+        result.clear();
+
+        result.add(logEvent(-300,date2));
+        result.add(logEvent(-400,date3));
+        result.add(logEvent(500,date4));
+
+        compareValues(hist.getDateRange(date2,
+                date4),
+                result);
     }
 }
