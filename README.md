@@ -28,10 +28,13 @@ As a user, I want to be able to assign a currency to an account <br>
 As a user, I want to be able to set up regular purchases <br>
 As a user, I want to be able to set up regular deposits <br>
 
-As a user, I want to be able to store my account data <br>
 ✔️As a user, I want to be able to log my actions and their date <br>
+As a user, I want to be able to remove actions from the log <br>
 ✔️As a user, I want to be able to add logged action to a history of logged actions <br>
 ✔️As a user, I want to be able to sort and update this history <br>
 ✔️As a user, I want to be able to print a history of these actions <br>
-As a user, I want to be able to remove actions from the log <br>
+
+As a user, I want to be able to store my account data to a file<br>
+As a user, I want to be able to load my account data from a file<br>
+
 As a user, I want to be able to create charts/graphs of this data <br>
