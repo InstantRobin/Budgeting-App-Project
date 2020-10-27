@@ -1,15 +1,18 @@
 package model;
 // Represents a place where money is stored, also contains a history of all deposits/withdrawals
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 
-public class Account {
+public class Account implements Writable {
 
     // TODO: Add Currency
 
+    private String name;
     // the balance of the account, in cents
     private int balance;
-    private String name;
     private Currency currency;
     private History history = new History();
 
@@ -69,6 +72,16 @@ public class Account {
         return moneyToString(balance, currency);
     }
 
+    // from CPSC 210 EdX JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("balance",balance);
+        json.put("currency",currency);
+        json.put("history",history.toJson());
+        return json;
+    }
 
     // EFFECT: Turns int of currency (in cents) into $X.XX string form
     public static String moneyToString(int money, Currency cur) {

@@ -1,10 +1,13 @@
 package model;
 // Represents a log entry of an account value change event
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class LogEntry implements Comparable<LogEntry> {
+public class LogEntry implements Comparable<LogEntry>, Writable {
 
     private Account acc;
     private int val;
@@ -31,6 +34,17 @@ public class LogEntry implements Comparable<LogEntry> {
 
     public void setTotal(int i) {
         total = i;
+    }
+
+    // from CPSC 210 EdX JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("account",acc);
+        json.put("val", val);
+        json.put("total",total);
+        json.put("date", date);
+        return json;
     }
 
     // Getters

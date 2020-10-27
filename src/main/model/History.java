@@ -1,11 +1,15 @@
 package model;
 // Represents the event history of an account
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class History {
+public class History implements Writable {
 
     private ArrayList<LogEntry> history = new ArrayList<>();
 
@@ -48,6 +52,27 @@ public class History {
         }
         return dateRange;
     }
+
+    // from CPSC 210 EdX JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("array",logEntriesToJson());
+        return json;
+    }
+
+    // from CPSC 210 EdX JsonSerializationDemo
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray logEntriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (LogEntry entry : history) {
+            jsonArray.put(entry.toJson());
+        }
+
+        return jsonArray;
+    }
+
 
     public void add(LogEntry ent) {
         history.add(ent);
