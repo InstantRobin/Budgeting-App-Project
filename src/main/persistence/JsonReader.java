@@ -59,6 +59,8 @@ public class JsonReader {
         Currency currency = getCurrency(object.getJSONObject("currency"));
         Account acc = new Account(name,balance,currency);
         getHistory(acc,object.getJSONObject("history").getJSONArray("array"));
+
+        accounts.add(acc);
     }
 
     private Currency getCurrency(JSONObject object) {
