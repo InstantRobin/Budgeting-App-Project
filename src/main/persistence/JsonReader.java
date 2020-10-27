@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import model.Currency;
-import model.History;
 import org.json.*;
 
 // Represents a reader that reads workroom from JSON data stored in file
@@ -55,7 +54,7 @@ public class JsonReader {
 
     private void addAccount(List<Account> accounts, JSONObject object) {
         String name = object.getString("name");
-        int balance = object.getInt("name");
+        int balance = object.getInt("balance");
         Currency currency = getCurrency(object.getJSONObject("currency"));
         Account acc = new Account(name,balance,currency);
         getHistory(acc,object.getJSONObject("history").getJSONArray("array"));

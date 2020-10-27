@@ -10,23 +10,31 @@
         "history": {"array": [{
             "val": 40000,
             "date": "2020-10-16",
-            "total": 90000,
+            "total": 40000,
             "account": "Robin"
         }]}
     },
     {
-        "balance": 15000,
+        "balance": 115000,
         "name": "test",
         "currency": {
             "symbol": "$",
             "name": "USD",
             "exchangeRateUSD": 1
         },
-        "history": {"array": [{
-            "val": -15000,
-            "date": "2020-10-26",
-            "total": -15000,
-            "account": "test"
-        }]}
+        "history": {"array": [
+            {
+                "val": -15000,
+                "date": "2020-10-26",
+                "total": -15000,
+                "account": "test"
+            },
+            {
+                "val": 100000,
+                "date": "2020-10-26",
+                "total": 85000,
+                "account": "test"
+            }
+        ]}
     }
 ]

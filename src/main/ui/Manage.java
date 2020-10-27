@@ -9,6 +9,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,13 @@ public class Manage {
 
     public Manage() {
         jsonWriter = new JsonWriter(JSON_STORE);
-        //jsonReader = new JsonReader(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         accounts = new ArrayList<>();
         currencies = new ArrayList<>();
         currencies.add(new Currency("USD","$",1));
+
+        load();
         runManage(); // from Teller
     }
 
@@ -229,6 +232,14 @@ public class Manage {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
             return false;
+        }
+    }
+
+    private void load() {
+        try {
+            accounts = jsonReader.read();
+        } catch (IOException e) {
+            System.out.println("Unable to read file: " + JSON_STORE);
         }
     }
 
