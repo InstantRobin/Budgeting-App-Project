@@ -78,7 +78,7 @@ public class Account implements Writable {
         JSONObject json = new JSONObject();
         json.put("name",name);
         json.put("balance",balance);
-        json.put("currency",currency);
+        json.put("currency",currency.toJson());
         json.put("history",history.toJson());
         return json;
     }

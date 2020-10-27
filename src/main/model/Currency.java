@@ -1,7 +1,10 @@
 package model;
 // Represents a form of currency
 
-public class Currency {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Currency implements Writable {
 
     String name;
     String symbol;
@@ -18,6 +21,16 @@ public class Currency {
     // EFFECTS: Sets exchangeRateUSD to new given value to reflect currency ratio shifts
     public void updateExchangeRate(double newRate) {
         this.exchangeRateUSD = newRate;
+    }
+
+    // from CPSC 210 EdX JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("symbol", symbol);
+        json.put("exchangeRateUSD",exchangeRateUSD);
+        return json;
     }
 
     public String getName() {

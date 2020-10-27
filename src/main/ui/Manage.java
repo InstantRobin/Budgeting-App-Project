@@ -5,7 +5,10 @@ import model.Account;
 import model.Currency;
 import model.History;
 import model.LogEntry;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +16,22 @@ import java.util.Scanner;
 
 public class Manage {
 
-    private List<Account> accounts = new ArrayList<>();
+    private List<Account> accounts;
+    private List<Currency> currencies;
     Scanner sc = new Scanner(System.in);
 
+    // from CPSC 210 EdX JsonSerializationDemo
+    private static final String JSON_STORE = "./data/accounts.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     public Manage() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
+
+        accounts = new ArrayList<>();
+        currencies = new ArrayList<>();
+        currencies.add(new Currency("USD","$",1));
         runManage(); // from Teller
     }
 
@@ -67,7 +82,7 @@ public class Manage {
                 printHistory(getAccInput());
                 break;
             case 7:
-                return false;
+                return !save();
         }
         return true;
     }
@@ -78,6 +93,7 @@ public class Manage {
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account
     private Account getAccInput() {
+        //TODO: Don't allow duplicate names
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the corresponding number of desired account");
@@ -116,6 +132,8 @@ public class Manage {
 
     // EFFECT: Gets Currency from user
     private Currency getCurrencyInput() {
+        // TODO: Implement Currency Array, default USD
+        // TODO: Save Currency Array?
         System.out.println("Select Currency");
         List<Currency> currencies = new ArrayList<>();
         int item = 0;
@@ -198,6 +216,20 @@ public class Manage {
     // EFFECT: Makes new Account w/ given name, initial value
     private void makeAccount(String name, int val, Currency currency) {
         accounts.add(new Account(name,val, currency));
+    }
+
+    // from CPSC 210 EdX JsonSerializationDemo
+    private Boolean save() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(accounts);
+            jsonWriter.close();
+            System.out.println("All Saved");
+            return true;
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+            return false;
+        }
     }
 
     // EFFECT: Returns the history of actions on a given account

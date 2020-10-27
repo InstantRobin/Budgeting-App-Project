@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class LogEntry implements Comparable<LogEntry>, Writable {
 
-    private Account acc;
+    private String acc; // Name of the Account
     private int val;
     private int total;
     private LocalDate date;
@@ -19,7 +19,7 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
 
     // REQUIRES: Initializes LogEntry
     public LogEntry(Account acc, int val, int total, LocalDate date) {
-        this.acc = acc; // Account of where even occurred
+        this.acc = acc.getName(); // Account of where even occurred
         this.val = val; // Value of the change (pos for deposit, negative for widthdrawl
         this.total = total; // The total money in the account at the time of the event
         this.date = date; // The date of the event
@@ -49,7 +49,7 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
 
     // Getters
 
-    public Account getAcc() {
+    public String getAcc() {
         return acc;
     }
 

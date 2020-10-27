@@ -2,9 +2,10 @@ package persistence;
 // from CPSC 210 EdX JsonSerializationDemo
 
 import model.Account;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.io.*;
+import java.util.List;
 
 // Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
@@ -26,9 +27,13 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(Account acc) {
-        JSONObject json = acc.toJson();
-        saveToFile(json.toString(TAB));
+    public void write(List<Account> accounts) {
+        JSONArray jsonArray = new JSONArray();
+        for (Account acc : accounts) {
+            jsonArray.put(acc.toJson());
+            System.out.println("Saved " + acc.getName());
+        }
+        saveToFile(jsonArray.toString(TAB));
     }
 
     // MODIFIES: this
