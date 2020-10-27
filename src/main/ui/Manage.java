@@ -141,7 +141,7 @@ public class Manage {
         for (Account acc : accounts) {
             if (!currencies.contains(acc.getCurrency())) {
                 currencies.add(acc.getCurrency());
-                System.out.println(item + ") " + currencies.get(item).getName());
+                System.out.println((item + 1) + ") " + currencies.get(item).getName());
                 item += 1;
             }
         }
