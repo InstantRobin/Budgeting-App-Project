@@ -7,7 +7,20 @@
             "name": "USD",
             "exchangeRateUSD": 1
         },
-        "history": {"array": []}
+        "history": {"array": [
+            {
+                "val": -60,
+                "date": "2019-09-15",
+                "total": 10,
+                "account": "test1"
+            },
+            {
+                "val": 230,
+                "date": "2020-02-12",
+                "total": 10,
+                "account": "test1"
+            }
+        ]}
     },
     {
         "balance": 543,
@@ -17,6 +30,19 @@
             "name": "USD",
             "exchangeRateUSD": 1
         },
-        "history": {"array": []}
+        "history": {"array": [
+            {
+                "val": 50,
+                "date": "2020-10-29",
+                "total": 543,
+                "account": "test2"
+            },
+            {
+                "val": 80,
+                "date": "2020-11-19",
+                "total": 543,
+                "account": "test2"
+            }
+        ]}
     }
 ]

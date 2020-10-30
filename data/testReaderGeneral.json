@@ -1,0 +1,48 @@
+[
+    {
+      "balance": 543,
+      "name": "test2",
+      "currency": {
+        "symbol": "$",
+        "name": "USD",
+        "exchangeRateUSD": 1
+      },
+      "history": {"array": [
+        {
+          "val": 50,
+          "date": "2020-10-29",
+          "total": 90000,
+          "account": "test2"
+        },
+        {
+          "val": 80,
+          "date": "2020-11-19",
+          "total": 140000,
+          "account": "test2"
+        }
+      ]}
+    },
+    {
+        "balance": 10,
+        "name": "test1",
+        "currency": {
+            "symbol": "$",
+            "name": "USD",
+            "exchangeRateUSD": 1
+        },
+      "history": {"array": [
+        {
+          "val": -60,
+          "date": "2019-09-15",
+          "total": 90000,
+          "account": "test1"
+        },
+        {
+          "val": 230,
+          "date": "2020-02-12",
+          "total": 140000,
+          "account": "test1"
+        }
+      ]}
+    }
+]
