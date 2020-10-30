@@ -121,6 +121,10 @@ public class HistoryTest {
         LocalDate date4 = LocalDate.of(2019,3,19);
         LocalDate date5 = LocalDate.of(2019,3,21);
 
+        compareValues(hist.getDateRange(LocalDate.of(2018,4,16),
+                LocalDate.of(2018,5,16)),
+                result);
+
         hist.add(logEvent(200,date1));
         hist.add(logEvent(-300,date2));
         hist.add(logEvent(-400,date3));
