@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HistoryTest {
     History hist = new History();
     Account acc = new Account("test",0, TestDefaults.USD);
-    LocalDate date = LocalDate.of(2020,10,12);
     List<LogEntry> result;
 
     public LogEntry logEvent(int val, LocalDate date){

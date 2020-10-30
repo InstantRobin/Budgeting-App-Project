@@ -1,9 +1,10 @@
 package model;
-// Represents a form of currency
+
 
 import org.json.JSONObject;
 import persistence.Writable;
 
+// Represents a form of currency with a name, symbol, and exchange rate of one unit into USD
 public class Currency implements Writable {
 
     String name;
@@ -24,6 +25,7 @@ public class Currency implements Writable {
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
+    // EFFECTS: Converts Currency into Json Object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

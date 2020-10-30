@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AccountTest {
+public class AccountTest {
 
     Account acc = new Account("test",0, TestDefaults.USD);
     LocalDate date = LocalDate.of(2020,10,12);

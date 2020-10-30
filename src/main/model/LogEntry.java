@@ -1,5 +1,4 @@
 package model;
-// Represents a log entry of an account value change event
 
 import org.json.JSONObject;
 import persistence.Writable;
@@ -7,6 +6,7 @@ import persistence.Writable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+// Represents a log entry of an account changing in value
 public class LogEntry implements Comparable<LogEntry>, Writable {
 
     private String acc; // Name of the Account
@@ -37,6 +37,7 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
+    // EFFECTS: Converts LogEntry into Json Object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

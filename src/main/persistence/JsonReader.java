@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import model.Currency;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads a list of Accounts from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -24,7 +24,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads Account List from file and returns it;
     // throws IOException if an error occurs reading data from file
     public List<Account> read() throws IOException {
         String jsonData = readFile(source);
@@ -52,6 +52,7 @@ public class JsonReader {
         return accounts;
     }
 
+    // EFFECTS: Parses Account, adds it to given list
     private void addAccount(List<Account> accounts, JSONObject object) {
         String name = object.getString("name");
         int balance = object.getInt("balance");
@@ -62,6 +63,7 @@ public class JsonReader {
         accounts.add(acc);
     }
 
+    // EFFECTS: Parses Currency, returns it
     private Currency getCurrency(JSONObject object) {
         String name = object.getString("name");
         String symbol = object.getString("symbol");
@@ -69,6 +71,7 @@ public class JsonReader {
         return new Currency(name,symbol,exchangeRateUSD);
     }
 
+    // EFFECTS: Parses History, adds to given account
     private void getHistory(Account acc,JSONArray array) {
         // https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

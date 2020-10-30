@@ -2,7 +2,6 @@ package persistence;
 // based on CPSC 210 EdX JsonSerializationDemo
 
 import model.Account;
-import model.TestDefaults;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

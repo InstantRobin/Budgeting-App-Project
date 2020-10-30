@@ -7,7 +7,7 @@ import org.json.JSONArray;
 import java.io.*;
 import java.util.List;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of a List of Accounts to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -26,7 +26,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of Account List to file
     public void write(List<Account> accounts) {
         JSONArray jsonArray = new JSONArray();
         for (Account acc : accounts) {

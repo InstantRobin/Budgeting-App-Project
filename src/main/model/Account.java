@@ -1,11 +1,11 @@
 package model;
-// Represents a place where money is stored, also contains a history of all deposits/withdrawals
 
 import org.json.JSONObject;
 import persistence.Writable;
 
 import java.time.LocalDate;
 
+// Represents a place where money is stored, also contains a history of all deposits/withdrawals
 public class Account implements Writable {
 
     // TODO: Add Currency
@@ -73,6 +73,7 @@ public class Account implements Writable {
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
+    // EFFECT: Converts Account into Json Object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

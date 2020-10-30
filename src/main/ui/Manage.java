@@ -18,8 +18,9 @@ import java.util.Scanner;
 public class Manage {
 
     private List<Account> accounts;
-    private List<Currency> currencies;
-    Scanner sc = new Scanner(System.in);
+    // currencies still TODO
+//    private List<Currency> currencies;
+    private Scanner sc = new Scanner(System.in);
 
     // from CPSC 210 EdX JsonSerializationDemo
     private static final String JSON_STORE = "./data/accounts.json";
@@ -31,8 +32,8 @@ public class Manage {
         jsonReader = new JsonReader(JSON_STORE);
 
         accounts = new ArrayList<>();
-        currencies = new ArrayList<>();
-        currencies.add(new Currency("USD","$",1));
+//        currencies = new ArrayList<>();
+//        currencies.add(new Currency("USD","$",1));
 
         load();
         runManage(); // from Teller
