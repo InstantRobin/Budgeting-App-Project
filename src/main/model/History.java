@@ -86,4 +86,26 @@ public class History implements Writable {
     public int size() {
         return history.size();
     }
+
+    // https://stackoverflow.com/questions/46444855/checking-if-arraylist-contains-an-object-with-an-attribute
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof History) {
+            History history1 = (History) o;
+            if (history.size() != history1.size()) {
+                return false;
+            }
+            for (int entry = 0; entry < history.size(); entry++) {
+                if ((!(history1.get(entry).getAcc().equals(history.get(entry).getAcc()))
+                        & (history1.get(entry).getVal() != history.get(entry).getVal())
+                        & (history1.get(entry).getTotal() != history.get(entry).getTotal())
+                        & (history1.get(entry).getDate() != history.get(entry).getDate()))) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
