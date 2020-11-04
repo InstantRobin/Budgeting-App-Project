@@ -7,11 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class HistoryTest {
+public class HistoryTest extends TestDefaults{
     History hist = new History();
-    Account acc = new Account("test",0, TestDefaults.USD);
+    History hist2 = new History();
+    Account acc = new Account("test",0, USD);
     List<LogEntry> result;
 
     public LogEntry logEvent(int val, LocalDate date){
@@ -111,6 +112,65 @@ public class HistoryTest {
         result.add(new LogEntry(acc,800,500,LocalDate.of(2020,2,15)));
 
         compareValues(hist,result);
+    }
+
+    @Test
+    public void equalsTestDifObject() {
+        assertNotEquals(hist2,date);
+    }
+
+    @Test
+    public void equalsTestEmpty() {
+        assertEquals(hist, hist2);
+    }
+
+    @Test
+    public void equalsTestSame() {
+        Account acc2 = new Account("test2",1200,USD);
+        LocalDate date2 = LocalDate.of(2020,1,1);
+
+        hist.add(new LogEntry(acc,500,500,date2));
+        hist2.add(new LogEntry(acc,500,500,date2));
+        assertEquals(hist, hist2);
+
+        hist.add(new LogEntry(acc2,1400,1900,date));
+        hist2.add(new LogEntry(acc2,1400,1900,date));
+        assertEquals(hist, hist2);
+    }
+
+    @Test
+    public void equalsTestDifSize() {
+        hist.add(new LogEntry(acc,500,500,date));
+        assertNotEquals(hist, hist2);
+
+        hist.add(new LogEntry(acc,500,500,date));
+        hist2.add(new LogEntry(acc,500,500,date));
+        assertNotEquals(hist, hist2);
+    }
+
+    @Test
+    public void equalsTestDifAccounts() {
+        Account acc2 = new Account("test2",1200,USD);
+
+        hist.add(new LogEntry(acc,500,100,date));
+        hist2.add(new LogEntry(acc2,500,100,date));
+        assertNotEquals(hist,hist2);
+    }
+
+    @Test
+    public void equalsTestDifVal() {
+        hist.add(new LogEntry(acc,500,100,date));
+        hist2.add(new LogEntry(acc,400,100,date));
+        assertNotEquals(hist,hist2);
+    }
+
+    @Test
+    public void equalsTestDifDate() {
+        LocalDate date2 = LocalDate.of(2020,1,1);
+
+        hist.add(new LogEntry(acc,500,100,date));
+        hist2.add(new LogEntry(acc,500,100,date2));
+        assertNotEquals(hist,hist2);
     }
 
     @Test

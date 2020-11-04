@@ -47,7 +47,7 @@ public class MoveMoneyTest extends TestDefaults{
         assertEquals(history,acc1.getHistory());
 
         history = new History();
-        history.add(new LogEntry(acc1,500,1500,date));
+        history.add(new LogEntry(acc2,500,1500,date));
         assertEquals(history,acc2.getHistory());
     }
 

@@ -97,9 +97,9 @@ public class History implements Writable {
             }
             for (int entry = 0; entry < history.size(); entry++) {
                 if ((!(history1.get(entry).getAcc().equals(history.get(entry).getAcc()))
-                        & (history1.get(entry).getVal() != history.get(entry).getVal())
-                        & (history1.get(entry).getTotal() != history.get(entry).getTotal())
-                        & (history1.get(entry).getDate() != history.get(entry).getDate()))) {
+                        || (history1.get(entry).getVal() != history.get(entry).getVal())
+                        || (history1.get(entry).getTotal() != history.get(entry).getTotal())
+                        || (history1.get(entry).getDate() != history.get(entry).getDate()))) {
                     return false;
                 }
             }
