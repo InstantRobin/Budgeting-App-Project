@@ -1,10 +1,7 @@
 package ui;
 // Manages main actions of program
 
-import model.Account;
-import model.Currency;
-import model.History;
-import model.LogEntry;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -98,10 +95,10 @@ public class Manage {
     private void doMoveMoney(int choice) {
         switch (choice) {
             case 1:
-                deposit(getAccInput(), getValInput(), getDateInput());
+                Actions.deposit(getAccInput(), getValInput(), getDateInput());
                 break;
             case 2:
-                withdraw(getAccInput(), getValInput(), getDateInput());
+                Actions.withdraw(getAccInput(), getValInput(), getDateInput());
                 break;
             case 3:
                 transferStep(); // transfer requires 2 acc's, so needs more complicated fn
@@ -130,13 +127,13 @@ public class Manage {
     private void doManageAccounts(int choice) {
         switch (choice) {
             case 1:
-                viewBalance(getAccInput());
+                Actions.viewBalance(getAccInput());
                 break;
             case 2:
                 makeAccount(getNameInput(), getValInput(), getCurrencyInput());
                 break;
             case 3:
-                printHistory(getAccInput());
+                Actions.printHistory(getAccInput());
                 break;
             case 4:
                 break;
@@ -268,43 +265,11 @@ public class Manage {
     //CHOICE-ACTION FNS//
     //****************//
 
-    // EFFECT: Prints given Account balance as a formatted String
-    private void viewBalance(Account acc) {
-        System.out.println(acc.getStringBalance());
-    }
-
-    // REQUIRES: Val > 0
-    // MODIFIES: acc
-    // EFFECT: Deposits given val in given account
-    private void deposit(Account acc, int val, LocalDate date) {
-        acc.addValue(val,date);
-    }
-
-    // REQUIRES: Val > 0
-    // MODIFIES: acc
-    // EFFECT: Withdraws given val from given account
-    private void withdraw(Account acc, int val, LocalDate date) {
-        acc.subValue(val,date);
-    }
-
     // REQUIRES: Val > 0
     // EFFECT: Intermediate step required bc fn takes two accounts, extra command needed to reduce vagueness
     private void transferStep() {
         System.out.println("First select source, then select destination");
-        transfer(getAccInput(), getAccInput(), getValInput(), getDateInput());
-    }
-
-    // REQUIRES: Val > 0
-    // MODIFIES: acc1 acc2
-    // EFFECT: Does actual transfer process
-    private void transfer(Account acc1, Account acc2, int val, LocalDate date) {
-        Currency cur1 = acc1.getCurrency();
-        Currency cur2 = acc2.getCurrency();
-        if (cur1 != cur2) {
-            val = (int)(val * cur1.getExchangeRateUSD() / cur2.getExchangeRateUSD());
-        }
-        withdraw(acc1,val,date);
-        deposit(acc2,val,date);
+        Actions.transfer(getAccInput(), getAccInput(), getValInput(), getDateInput());
     }
 
     // REQUIRES name is at least 1 char long
@@ -312,6 +277,14 @@ public class Manage {
     // EFFECT: Makes new Account w/ given name, initial value
     private void makeAccount(String name, int val, Currency currency) {
         accounts.add(new Account(name,val, currency));
+    }
+
+    private void load() {
+        try {
+            accounts = jsonReader.read();
+        } catch (IOException e) {
+            System.out.println("Unable to read file: " + JSON_STORE);
+        }
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
@@ -326,26 +299,5 @@ public class Manage {
         }
     }
 
-    private void load() {
-        try {
-            accounts = jsonReader.read();
-        } catch (IOException e) {
-            System.out.println("Unable to read file: " + JSON_STORE);
-        }
-    }
 
-    // EFFECT: Returns the history of actions on a given account
-    private void printHistory(Account acc) {
-        History hist = acc.getHistory();
-        hist.updateTotals();
-
-        System.out.println("     " + "Date        " + "Change  " + "| Total");
-        //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"
-        for (int i = 0; i < hist.size();i++) {
-            LogEntry item = hist.get(i);
-            System.out.println("     " + item.getStringDate() + ": "
-                    + Account.moneyToString(item.getVal(),acc.getCurrency()) + " | "
-                    + Account.moneyToString(item.getTotal(),acc.getCurrency()));
-        }
-    }
 }
