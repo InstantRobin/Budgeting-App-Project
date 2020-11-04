@@ -2,14 +2,34 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDate;
 
-public class CurrencyTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+public class CurrencyTest extends TestDefaults{
     Currency test1 = new Currency("test","£",0.5);
+    Currency test2 = new Currency("test","£",0.5);
+    Currency test3 = new Currency("test3","$",2);
 
     @Test
     public void testUpdateExchangeRate() {
         test1.updateExchangeRate(2);
         assertEquals(2, test1.getExchangeRateUSD());
+    }
+
+    @Test
+    public void equalsTestDifObject() {
+        assertNotEquals(test1,date);
+    }
+
+    @Test
+    public void equalsTestSame() {
+        assertEquals(test1, test2);
+    }
+
+    @Test
+    public void equalsTestDifferent() {
+        assertNotEquals(test1, test3);
     }
 }
