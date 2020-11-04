@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static ui.GetInput.*;
-import static model.Actions.*;
+import static model.MoveMoney.*;
 
 public class Manage {
 
@@ -147,7 +147,7 @@ public class Manage {
                 printHistory(getAccInput(accounts));
                 break;
             case 3:
-                makeAccount(accounts, getNameInput(), getValInput(), getCurrencyInput(currencies));
+                makeAccount(getNameInput(), getValInput(), getCurrencyInput(currencies));
                 break;
             case 4:
                 break;
@@ -210,6 +210,33 @@ public class Manage {
         transfer(getAccInput(accounts), getAccInput(accounts), getValInput(), getDateInput());
     }
 
+    // EFFECT: Prints given Account balance as a formatted String
+    public static void viewBalance(Account acc) {
+        System.out.println(acc.getStringBalance());
+    }
+
+    // EFFECT: Returns the history of actions on a given account
+    private void printHistory(Account acc) {
+        History hist = acc.getHistory();
+        hist.updateTotals();
+
+        System.out.println("     " + "Date        " + "Change  " + "| Total");
+        //                 "     " + "yyyy-MM-dd: " + "$XXX.XX " + "| $XXX.XX"
+        for (int i = 0; i < hist.size();i++) {
+            LogEntry item = hist.get(i);
+            System.out.println("     " + item.getStringDate() + ": "
+                    + Account.moneyToString(item.getVal(),acc.getCurrency()) + " | "
+                    + Account.moneyToString(item.getTotal(),acc.getCurrency()));
+        }
+    }
+
+
+    // REQUIRES name is at least 1 char long
+    // MODIFIES: accounts
+    // EFFECT: Makes new Account w/ given name, initial value
+    private void makeAccount(String name, int val, Currency currency) {
+        accounts.add(new Account(name,val, currency));
+    }
 
     // MODIFIES: Accounts, Currencies
     // EFFECTS: Loads Accounts from json file, creates Currencies from loaded Accounts
