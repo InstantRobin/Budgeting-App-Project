@@ -35,7 +35,6 @@ public class Manage {
 //        currencies = new ArrayList<>();
 //        currencies.add(new Currency("USD","$",1));
 
-        load();
         runManage(); // from Teller
     }
 
@@ -44,51 +43,141 @@ public class Manage {
         int choice;
         System.out.println("Welcome to Budgeteer!");
         do {
-            choice = getChoice();
-        } while (doChoice(choice));
+            choice = getCategory();
+        } while (doCategory(choice));
     }
 
-    // EFFECT: Presents users with options, gets User Action
-    private int getChoice() {
-        System.out.print("Enter the corresponding number of desired action:\n"
-                + "1)View Account Balance\n"
-                + "2)Deposit\n"
-                + "3)Withdraw\n"
-                + "4)Transfer\n"
-                + "5)Make New Account\n"
-                + "6)Get Account History\n"
-                + "7)Exit\n");
+    // EFFECT: Presents users with categories, gets User Selection
+    private int getCategory() {
+        List<String> options = new ArrayList<>();
+        options.add("Move Money");
+        options.add("Manage Accounts");
+        options.add("Manage Saved Data");
+        options.add("Exit");
+        printOptions(options);
 
         // https://www.javatpoint.com/how-to-get-input-from-user-in-java
         return sc.nextInt();
     }
 
-    // REQUIRES: 1 < choice 6
-    // EFFECT: Calls corresponding function to user choice as documented in getChoice()
-    private Boolean doChoice(int choice) {
+    // REQUIRES: 1 < choice 4
+    // EFFECT: Calls corresponding category function as outlined in getCategory()
+    private Boolean doCategory(int choice) {
+        switch (choice) {
+            case 1:
+                doMoveMoney(getMoveMoney());
+                break;
+            case 2:
+                doManageAccounts(getManageAccounts());
+                break;
+            case 3:
+                doManageData(getManageData());
+                break;
+            case 4:
+                return false;
+            case 9:
+                return false;
+        }
+        return true;
+    }
+
+    // EFFECT: Presents users with money movement options, gets User Selection
+    private int getMoveMoney() {
+        List<String> options = new ArrayList<>();
+        options.add("Deposit");
+        options.add("Withdraw");
+        options.add("Transfer");
+        options.add("Go Back");
+        printOptions(options);
+        return sc.nextInt();
+    }
+
+    // REQUIRES: 1 < choice 4
+    // EFFECT: Calls corresponding function as outlined in getMoveMoney()
+    private void doMoveMoney(int choice) {
+        switch (choice) {
+            case 1:
+                deposit(getAccInput(), getValInput(), getDateInput());
+                break;
+            case 2:
+                withdraw(getAccInput(), getValInput(), getDateInput());
+                break;
+            case 3:
+                transferStep(); // transfer requires 2 acc's, so needs more complicated fn
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Command not recognized, please try again");
+                doMoveMoney(getMoveMoney());
+        }
+    }
+
+    // EFFECT: Presents users with account management options, gets User Selection
+    private int getManageAccounts() {
+        List<String> options = new ArrayList<>();
+        options.add("View Account Balance");
+        options.add("Get Account History");
+        options.add("Make New Account");
+        options.add("Go Back");
+        printOptions(options);
+        return sc.nextInt();
+    }
+
+    // REQUIRES: 1 < choice 4
+    // EFFECT: Calls corresponding function as outlined in getManageAccounts()
+    private void doManageAccounts(int choice) {
         switch (choice) {
             case 1:
                 viewBalance(getAccInput());
                 break;
             case 2:
-                deposit(getAccInput(), getValInput(), getDateInput());
-                break;
-            case 3:
-                withdraw(getAccInput(), getValInput(), getDateInput());
-                break;
-            case 4:
-                transferStep(); // transfer requires 2 acc's, so needs more complicated fn
-                break;
-            case 5:
                 makeAccount(getNameInput(), getValInput(), getCurrencyInput());
                 break;
-            case 6:
+            case 3:
                 printHistory(getAccInput());
                 break;
-            case 7:
-                return !save();
+            case 4:
+                break;
+            default:
+                System.out.println("Command not recognized, please try again");
+                doManageAccounts(getManageAccounts());
         }
-        return true;
+    }
+
+    // EFFECT: Presents users with data management options, gets User Selection
+    private int getManageData() {
+        List<String> options = new ArrayList<>();
+        options.add("Load");
+        options.add("Save");
+        options.add("Go Back");
+        printOptions(options);
+        return sc.nextInt();
+    }
+
+    // REQUIRES: 1 < choice 3
+    // EFFECT: Calls corresponding function as outlined in getManageData()
+    private void doManageData(int choice) {
+        switch (choice) {
+            case 1:
+                load();
+                break;
+            case 2:
+                save();
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Command not recognized, please try again");
+                doManageAccounts(getManageAccounts());
+        }
+    }
+
+    private void printOptions(List<String> options) {
+        System.out.println("Enter the corresponding number of desired action:");
+        for (int i = 0; i < options.size(); i++) {
+            System.out.println((i + 1) + ")" + options.get(i));
+        }
     }
 
     //*******************//
