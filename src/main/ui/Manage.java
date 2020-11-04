@@ -75,8 +75,9 @@ public class Manage {
                 break;
             case 4:
                 return false;
-            case 9:
-                return false;
+            default :
+                System.out.println("Command not recognized, please try again\n");
+                break;
         }
         return true;
     }
@@ -108,7 +109,7 @@ public class Manage {
             case 4:
                 break;
             default:
-                System.out.println("Command not recognized, please try again");
+                System.out.println("Command not recognized, please try again\n");
                 doMoveMoney(getMoveMoney());
         }
     }
@@ -140,7 +141,7 @@ public class Manage {
             case 4:
                 break;
             default:
-                System.out.println("Command not recognized, please try again");
+                System.out.println("Command not recognized, please try again\n");
                 doManageAccounts(getManageAccounts());
         }
     }
@@ -168,11 +169,13 @@ public class Manage {
             case 3:
                 break;
             default:
-                System.out.println("Command not recognized, please try again");
+                System.out.println("Command not recognized, please try again\n");
                 doManageAccounts(getManageAccounts());
         }
     }
 
+    // REQUIRES: List.size() >= 1
+    // EFFECT: Prints out list of given actions
     private void printOptions(List<String> options) {
         System.out.println("Enter the corresponding number of desired action:");
         for (int i = 0; i < options.size(); i++) {
@@ -312,16 +315,14 @@ public class Manage {
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
-    private Boolean save() {
+    private void save() {
         try {
             jsonWriter.open();
             jsonWriter.write(accounts);
             jsonWriter.close();
             System.out.println("All Saved");
-            return true;
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
-            return false;
         }
     }
 
