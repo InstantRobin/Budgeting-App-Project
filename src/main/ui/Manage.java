@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static ui.GetInput.*;
+import static model.Actions.*;
 
 public class Manage {
 
@@ -104,10 +105,10 @@ public class Manage {
     private void doMoveMoney(int choice) {
         switch (choice) {
             case 1:
-                Actions.deposit(getAccInput(accounts), getValInput(), getDateInput());
+                deposit(getAccInput(accounts), getValInput(), getDateInput());
                 break;
             case 2:
-                Actions.withdraw(getAccInput(accounts), getValInput(), getDateInput());
+                withdraw(getAccInput(accounts), getValInput(), getDateInput());
                 break;
             case 3:
                 transferStep(); // transfer requires 2 acc's, so needs more complicated fn
@@ -140,13 +141,13 @@ public class Manage {
     private void doManageAccounts(int choice) {
         switch (choice) {
             case 1:
-                Actions.viewBalance(getAccInput(accounts));
+                viewBalance(getAccInput(accounts));
                 break;
             case 2:
-                Actions.printHistory(getAccInput(accounts));
+                printHistory(getAccInput(accounts));
                 break;
             case 3:
-                makeAccount(getNameInput(), getValInput(), getCurrencyInput(currencies));
+                makeAccount(accounts, getNameInput(), getValInput(), getCurrencyInput(currencies));
                 break;
             case 4:
                 break;
@@ -206,15 +207,9 @@ public class Manage {
     // EFFECT: Intermediate step required bc fn takes two accounts, extra command needed to reduce vagueness
     private void transferStep() {
         System.out.println("First select source, then select destination");
-        Actions.transfer(getAccInput(accounts), getAccInput(accounts), getValInput(), getDateInput());
+        transfer(getAccInput(accounts), getAccInput(accounts), getValInput(), getDateInput());
     }
 
-    // REQUIRES name is at least 1 char long
-    // MODIFIES: accounts
-    // EFFECT: Makes new Account w/ given name, initial value
-    private void makeAccount(String name, int val, Currency currency) {
-        accounts.add(new Account(name,val, currency));
-    }
 
     // MODIFIES: Accounts, Currencies
     // EFFECTS: Loads Accounts from json file, creates Currencies from loaded Accounts

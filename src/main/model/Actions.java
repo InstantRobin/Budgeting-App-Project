@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Actions {
     // REQUIRES: Val > 0
@@ -36,6 +37,14 @@ public class Actions {
     public static void viewBalance(Account acc) {
         System.out.println(acc.getStringBalance());
     }
+
+    // REQUIRES name is at least 1 char long
+    // MODIFIES: accounts
+    // EFFECT: Makes new Account w/ given name, initial value
+    public static void makeAccount(List<Account> accounts, String name, int val, Currency currency) {
+        accounts.add(new Account(name,val, currency));
+    }
+
 
     // EFFECT: Returns the history of actions on a given account
     public static void printHistory(Account acc) {
