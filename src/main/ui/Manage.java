@@ -17,7 +17,7 @@ public class Manage {
 
     private List<Account> accounts;
     // currencies still TODO
-//    private List<Currency> currencies;
+    private List<Currency> currencies;
     private Scanner sc = new Scanner(System.in);
 
     // from CPSC 210 EdX JsonSerializationDemo
@@ -30,8 +30,8 @@ public class Manage {
         jsonReader = new JsonReader(JSON_STORE);
 
         accounts = new ArrayList<>();
-//        currencies = new ArrayList<>();
-//        currencies.add(new Currency("USD","$",1));
+        currencies = new ArrayList<>();
+        currencies.add(new Currency("USD","$",1));
 
         runManage(); // from Teller
     }
@@ -143,10 +143,10 @@ public class Manage {
                 Actions.viewBalance(getAccInput(accounts));
                 break;
             case 2:
-                makeAccount(getNameInput(), getValInput(), getCurrencyInput(accounts));
+                Actions.printHistory(getAccInput(accounts));
                 break;
             case 3:
-                Actions.printHistory(getAccInput(accounts));
+                makeAccount(getNameInput(), getValInput(), getCurrencyInput(currencies));
                 break;
             case 4:
                 break;
@@ -216,11 +216,37 @@ public class Manage {
         accounts.add(new Account(name,val, currency));
     }
 
+    // MODIFIES: Accounts, Currencies
+    // EFFECTS: Loads Accounts from json file, creates Currencies from loaded Accounts
     private void load() {
         try {
             accounts = jsonReader.read();
         } catch (IOException e) {
             System.out.println("Unable to read file: " + JSON_STORE);
+        }
+        getCurrencies();
+        setCurrencies();
+    }
+
+    // MODIFIES: Currencies
+    // EFFECTS: Builds list of currencies from Accounts
+    private void getCurrencies() {
+        for (Account acc : accounts) {
+            if (!currencies.contains(acc.getCurrency())) {
+                currencies.add(acc.getCurrency());
+            }
+        }
+    }
+
+    // MODIFIES: Accounts
+    // EFFECTS: Makes sure account w/ same currency all refer to the same object
+    private void setCurrencies() {
+        for (Account acc : accounts) {
+            for (Currency currency : currencies) {
+                if (currency == acc.getCurrency()) {
+                    acc = new Account(acc.getName(),acc.getBalance(),currency);
+                }
+            }
         }
     }
 

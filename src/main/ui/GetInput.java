@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class GetInput {
     //    currencies still TODO
-    //    private List<Currency> currencies;
     private Scanner sc = new Scanner(System.in);
 
 
@@ -57,29 +56,25 @@ public class GetInput {
     }
 
     // EFFECT: Gets Currency from user
-    static Currency getCurrencyInput(List<Account> accounts) {
+    static Currency getCurrencyInput(List<Currency> currencies) {
         // TODO: Implement Currency Array, default USD
         // TODO: Save Currency Array?
         Scanner sc = new Scanner(System.in);
         System.out.println("Select Currency");
-        List<Currency> currencies = new ArrayList<>();
-        int item = 0;
+        int item = 1;
 
-        for (Account acc : accounts) {
-            if (!currencies.contains(acc.getCurrency())) {
-                currencies.add(acc.getCurrency());
-                System.out.println((item + 1) + ") " + currencies.get(item).getName());
-                item += 1;
-            }
+        for (Currency curr : currencies) {
+            System.out.println((item) + ") " + currencies.get(item - 1).getName());
+            item += 1;
         }
 
-        System.out.println(item + 1 + ") New Currency");
+        System.out.println(item + ") New Currency");
 
         int choice = sc.nextInt();
-        if (choice == item + 1) {
+        if (choice == item) {
             return newCurrency();
         } else {
-            return currencies.get(choice);
+            return currencies.get(choice - 1);
         }
 
     }
@@ -92,7 +87,7 @@ public class GetInput {
         System.out.println("Enter Symbol:");
         String symbol = sc.next();
         System.out.println("Enter Exchange Rate to USD");
-        int exRate = sc.nextInt();
+        double exRate = sc.nextDouble();
         return (new Currency(name,symbol,exRate));
     }
 }

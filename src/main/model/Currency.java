@@ -46,4 +46,16 @@ public class Currency implements Writable {
     public double getExchangeRateUSD() {
         return exchangeRateUSD;
     }
+
+
+    // https://stackoverflow.com/questions/46444855/checking-if-arraylist-contains-an-object-with-an-attribute
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Currency) {
+            Currency currency = (Currency) obj;
+            return this.name.equals(currency.name);
+        } else {
+            return false;
+        }
+    }
 }
