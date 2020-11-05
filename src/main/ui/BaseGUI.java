@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import static java.awt.event.KeyEvent.VK_E;
+import static java.awt.event.KeyEvent.VK_ENTER;
 
 public class BaseGUI extends JFrame {
 
@@ -38,15 +42,36 @@ public class BaseGUI extends JFrame {
         button1.addActionListener(e -> createMoveMoneyButtons());
     }
 
+
+
     private void createMoveMoneyButtons() {
+        reset();
         JButton deposit = new JButton("Deposit");
         JButton withdraw = new JButton("Withdraw");
         JButton transfer = new JButton("Transfer");
-        reset();
         container.add(deposit,BorderLayout.WEST);
         container.add(withdraw,BorderLayout.CENTER);
         container.add(transfer,BorderLayout.EAST);
-        deposit.addActionListener(e -> manage.doMoveMoney(1));
+        deposit.addActionListener(e -> makeDeposit());
+    }
+
+    public void makeDeposit() { //unfinished
+        reset();
+        int val;
+        JTextArea input = new JTextArea();
+        JButton submit = new JButton();
+        container.add(input,BorderLayout.CENTER);
+        container.add(submit,BorderLayout.SOUTH);
+        submit.addActionListener(e -> input.getText());
+    }
+
+    private int getVal() {
+        JTextArea input = new JTextArea();
+        JButton submit = new JButton();
+        container.add(input,BorderLayout.CENTER);
+        container.add(submit,BorderLayout.SOUTH);
+        submit.addActionListener(e -> input.getText());
+        return 0; //stub
     }
 
     private void reset() {
