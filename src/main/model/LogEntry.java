@@ -20,7 +20,7 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     // REQUIRES: Initializes LogEntry
     public LogEntry(Account acc, int val, int total, LocalDate date) {
         this.acc = acc.getName(); // Account of where even occurred
-        this.val = val; // Value of the change (pos for deposit, negative for widthdrawl
+        this.val = val; // Value of the change (pos for deposit, negative for withdrawal
         this.total = total; // The total money in the account at the time of the event
         this.date = date; // The date of the event
     }

@@ -1,8 +1,8 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;
 
+// Static functions involving the movement of money into, out of, and between accounts
 public class MoveMoney {
     // REQUIRES: Val > 0
     // MODIFIES: acc

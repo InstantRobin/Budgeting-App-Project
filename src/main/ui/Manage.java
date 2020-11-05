@@ -17,7 +17,6 @@ import static model.MoveMoney.*;
 public class Manage {
 
     private List<Account> accounts;
-    // currencies still TODO
     private List<Currency> currencies;
     private Scanner sc = new Scanner(System.in);
 
@@ -34,7 +33,7 @@ public class Manage {
         currencies = new ArrayList<>();
         currencies.add(new Currency("USD","$",1));
 
-        runManage(); // from Teller
+        //runManage(); // from Teller
     }
 
     // EFFECT: The primary function, takes + follows user input until told to quit
@@ -65,7 +64,7 @@ public class Manage {
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding category function as outlined in getCategory()
-    private Boolean doCategory(int choice) {
+    public Boolean doCategory(int choice) {
         switch (choice) {
             case 1:
                 doMoveMoney(getMoveMoney());
@@ -102,7 +101,7 @@ public class Manage {
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding function as outlined in getMoveMoney()
-    private void doMoveMoney(int choice) {
+    public void doMoveMoney(int choice) {
         switch (choice) {
             case 1:
                 deposit(getAccInput(accounts), getValInput(), getDateInput());
@@ -138,7 +137,7 @@ public class Manage {
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding function as outlined in getManageAccounts()
-    private void doManageAccounts(int choice) {
+    public void doManageAccounts(int choice) {
         switch (choice) {
             case 1:
                 viewBalance(getAccInput(accounts));
@@ -173,7 +172,7 @@ public class Manage {
 
     // REQUIRES: 1 < choice 3
     // EFFECT: Calls corresponding function as outlined in getManageData()
-    private void doManageData(int choice) {
+    public void doManageData(int choice) {
         switch (choice) {
             case 1:
                 load();

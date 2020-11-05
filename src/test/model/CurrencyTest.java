@@ -2,8 +2,6 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -20,6 +18,7 @@ public class CurrencyTest extends TestDefaults{
 
     @Test
     public void equalsTestDifObject() {
+        //noinspection AssertBetweenInconvertibleTypes
         assertNotEquals(test1,date);
     }
 
