@@ -31,13 +31,7 @@ public class MoveMoney extends SubWindow {
     }
 
     public void makeDeposit() { //unfinished
-        reset();
-        int val;
-        JTextArea input = new JTextArea();
-        JButton submit = new JButton();
-        container.add(input,BorderLayout.CENTER);
-        container.add(submit,BorderLayout.SOUTH);
-        submit.addActionListener(e -> input.getText());
+        getInput();
     }
 
     private void makeWithdrawal() {

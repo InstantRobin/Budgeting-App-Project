@@ -27,7 +27,8 @@ public class BaseGUI extends JFrame {
         super("Budgeteer");
 
         setSize(WIDTH,HEIGHT);
-        setLayout(new FlowLayout());
+        FlowLayout layout = new FlowLayout(FlowLayout.CENTER,10,(HEIGHT / 3));
+        setLayout(layout);
 
         container = getContentPane();
 
