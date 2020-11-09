@@ -1,21 +1,24 @@
-package ui.windows;
+package ui.windows.subwindows;
+
+import ui.windows.Home;
+import ui.windows.SubWindow;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-public class ManageAccounts extends Window {
+public class ManageAccounts extends SubWindow {
 
+    // maybe rename buttons?
     private JButton button1 = new JButton("View Account Balance");
     private JButton button2 = new JButton("View Account History");
     private JButton button3 = new JButton("Make New Account");
-    private ArrayList<JButton> buttons = new ArrayList<>();
 
-    public ManageAccounts(Container container) {
-        super(container);
+    public ManageAccounts(Container container, Home home) {
+        super(container,home);
         buttons.add(button1);
         buttons.add(button2);
         buttons.add(button3);
+        buttons.add(back);
     }
 
     public void updateGUI() {
@@ -24,6 +27,7 @@ public class ManageAccounts extends Window {
         button1.addActionListener(e -> viewAcctBal());
         button2.addActionListener(e -> viewAcctHist());
         button3.addActionListener(e -> makeNewAcct());
+        addBackButtonListener();
     }
 
     public void viewAcctBal() { //unfinished

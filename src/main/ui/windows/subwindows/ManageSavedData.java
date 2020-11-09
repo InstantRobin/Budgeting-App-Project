@@ -1,19 +1,22 @@
-package ui.windows;
+package ui.windows.subwindows;
+
+import ui.windows.Home;
+import ui.windows.SubWindow;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
-public class ManageSavedData extends Window {
+public class ManageSavedData extends SubWindow {
 
+    // maybe rename buttons?
     private JButton button1 = new JButton("Load");
     private JButton button2 = new JButton("Save");
-    private ArrayList<JButton> buttons = new ArrayList<>();
 
-    public ManageSavedData(Container container) {
-        super(container);
+    public ManageSavedData(Container container, Home home) {
+        super(container,home);
         buttons.add(button1);
         buttons.add(button2);
+        buttons.add(back);
     }
 
     public void updateGUI() {
@@ -21,6 +24,7 @@ public class ManageSavedData extends Window {
         addButtons(buttons);
         button1.addActionListener(e -> load());
         button2.addActionListener(e -> save());
+        addBackButtonListener();
     }
 
     public void load() { //unfinished

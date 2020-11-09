@@ -1,9 +1,9 @@
 package ui;
 
 import ui.windows.Home;
-import ui.windows.ManageAccounts;
-import ui.windows.ManageSavedData;
-import ui.windows.MoveMoney;
+import ui.windows.subwindows.ManageAccounts;
+import ui.windows.subwindows.ManageSavedData;
+import ui.windows.subwindows.MoveMoney;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +17,12 @@ public class BaseGUI extends JFrame {
     Manage manage = new Manage();
     Container container;
 
+    // Windows
+    Home home;
+    MoveMoney moveMoney;
+    ManageAccounts manageAccounts;
+    ManageSavedData manageSavedData;
+
     public BaseGUI() {
         super("Budgeteer");
 
@@ -24,6 +30,12 @@ public class BaseGUI extends JFrame {
         setLayout(new FlowLayout());
 
         container = getContentPane();
+
+        home = new Home(container);
+        moveMoney = new MoveMoney(container,home);
+        manageAccounts = new ManageAccounts(container,home);
+        manageSavedData = new ManageSavedData(container,home);
+
         createHomeButtons();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +43,6 @@ public class BaseGUI extends JFrame {
     }
 
     private void createHomeButtons() {
-        Home home = new Home(container);
         home.updateGUI();
         ArrayList<JButton> buttons = home.getButtons();
         buttons.get(0).addActionListener(e -> createMoveMoneyButtons());
@@ -40,18 +51,14 @@ public class BaseGUI extends JFrame {
     }
 
     private void createMoveMoneyButtons() {
-        MoveMoney moveMoney = new MoveMoney(container);
         moveMoney.updateGUI();
     }
 
-
     private void createManageAccountsButtons() {
-        ManageAccounts manageAccounts = new ManageAccounts(container);
         manageAccounts.updateGUI();
     }
 
     private void createManageSavedDataButtons() {
-        ManageSavedData manageSavedData = new ManageSavedData(container);
         manageSavedData.updateGUI();
     }
 

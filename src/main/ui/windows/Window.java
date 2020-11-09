@@ -7,6 +7,7 @@ import java.util.ArrayList;
 abstract class Window {
 
     protected Container container;
+    protected ArrayList<JButton> buttons = new ArrayList<>();
 
     public Window(Container container) {
         this.container = container;
