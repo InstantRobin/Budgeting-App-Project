@@ -38,7 +38,7 @@ public class Manager {
 
     // EFFECT: The primary function, takes + follows user input until told to quit
     private void runManage() {
-        int choice;
+        CategoryChoices choice;
         System.out.println("Welcome to Budgeteer!");
         do {
             choice = getCategory();
@@ -49,33 +49,48 @@ public class Manager {
     //CATEGORIES//
     //*********//
 
+    public enum CategoryChoices {
+       MOVE, MANACCTS, MANSAVED, EXIT
+    }
+
     // EFFECT: Presents users with categories, gets User Selection
-    private int getCategory() {
+    private CategoryChoices getCategory() {
         List<String> options = new ArrayList<>();
         options.add("Move Money");
         options.add("Manage Accounts");
         options.add("Manage Saved Data");
         options.add("Exit");
         printOptions(options);
-
-        // https://www.javatpoint.com/how-to-get-input-from-user-in-java
-        return sc.nextInt();
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                return CategoryChoices.MOVE;
+            case 2:
+                return CategoryChoices.MANACCTS;
+            case 3:
+                return CategoryChoices.MANSAVED;
+            case 4:
+                return CategoryChoices.EXIT;
+            default:
+                System.out.println("Unrecognized Choice, please try again");
+                return getCategory();
+        }
     }
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding category function as outlined in getCategory()
-    public Boolean doCategory(int choice) {
+    public Boolean doCategory(CategoryChoices choice) {
         switch (choice) {
-            case 1:
+            case MOVE:
                 doMoveMoney(getMoveMoney());
                 break;
-            case 2:
+            case MANACCTS:
                 doManageAccounts(getManageAccounts());
                 break;
-            case 3:
+            case MANSAVED:
                 doManageData(getManageData());
                 break;
-            case 4:
+            case EXIT:
                 return false;
             default :
                 System.out.println("Command not recognized, please try again\n");
@@ -88,31 +103,48 @@ public class Manager {
     //MOVE MONEY//
     //*********//
 
+    public enum ManageMoneyChoices {
+        DEP, WITH, TRANS, EXIT
+    }
+
     // EFFECT: Presents users with money movement options, gets User Selection
-    private int getMoveMoney() {
+    private ManageMoneyChoices getMoveMoney() {
         List<String> options = new ArrayList<>();
         options.add("Deposit");
         options.add("Withdraw");
         options.add("Transfer");
         options.add("Go Back");
         printOptions(options);
-        return sc.nextInt();
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                return ManageMoneyChoices.DEP;
+            case 2:
+                return ManageMoneyChoices.WITH;
+            case 3:
+                return ManageMoneyChoices.TRANS;
+            case 4:
+                return ManageMoneyChoices.EXIT;
+            default:
+                System.out.println("Unrecognized Choice, please try again");
+                return getMoveMoney();
+        }
     }
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding function as outlined in getMoveMoney()
-    public void doMoveMoney(int choice) {
+    public void doMoveMoney(ManageMoneyChoices choice) {
         switch (choice) {
-            case 1:
+            case DEP:
                 deposit(getAccInput(accounts), getValInput(), getDateInput());
                 break;
-            case 2:
+            case WITH:
                 withdraw(getAccInput(accounts), getValInput(), getDateInput());
                 break;
-            case 3:
+            case TRANS:
                 transferStep(); // transfer requires 2 acc's, so needs more complicated fn
                 break;
-            case 4:
+            case EXIT:
                 break;
             default:
                 System.out.println("Command not recognized, please try again\n");
@@ -120,40 +152,66 @@ public class Manager {
         }
     }
 
+    //****************//
+    //MANAGE ACCOUNTS//
+    //**************//
+
+    public enum ManageAcctsChoices {
+        VIEW, GET, MAKE, EXIT
+    }
+
     // EFFECT: Presents users with account management options, gets User Selection
-    private int getManageAccounts() {
+    private ManageAcctsChoices getManageAccounts() {
         List<String> options = new ArrayList<>();
         options.add("View Account Balance");
         options.add("Get Account History");
         options.add("Make New Account");
         options.add("Go Back");
         printOptions(options);
-        return sc.nextInt();
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                return ManageAcctsChoices.VIEW;
+            case 2:
+                return ManageAcctsChoices.GET;
+            case 3:
+                return ManageAcctsChoices.MAKE;
+            case 4:
+                return ManageAcctsChoices.EXIT;
+            default:
+                System.out.println("Unrecognized Choice, please try again");
+                return getManageAccounts();
+        }
     }
 
-    //****************//
-    //MANAGE ACCOUNTS//
-    //**************//
 
     // REQUIRES: 1 < choice 4
     // EFFECT: Calls corresponding function as outlined in getManageAccounts()
-    public void doManageAccounts(int choice) {
+    public void doManageAccounts(ManageAcctsChoices choice) {
         switch (choice) {
-            case 1:
+            case VIEW:
                 viewBalance(getAccInput(accounts));
                 break;
-            case 2:
+            case GET:
                 printHistory(getAccInput(accounts));
                 break;
-            case 3:
+            case MAKE:
                 makeAccount(getNameInput(), getValInput(), getCurrencyInput(currencies));
                 break;
-            case 4:
+            case EXIT:
                 break;
             default:
                 System.out.println("Command not recognized, please try again\n");
                 doManageAccounts(getManageAccounts());
         }
+    }
+
+    //************//
+    //MANAGE DATA//
+    //**********//
+
+    public enum ManageDataChoices {
+        SAVE, LOAD, EXIT
     }
 
     // EFFECT: Presents users with data management options, gets User Selection
@@ -164,22 +222,17 @@ public class Manager {
         options.add("Go Back");
         printOptions(options);
         int choice = sc.nextInt();
-        if (choice == 1) {
-            return ManageDataChoices.LOAD;
-        } else if (choice == 2) {
-            return ManageDataChoices.SAVE;
-        } else {
-            System.out.println("Unrecognized Choice, please try again");
-            return getManageData();
+        switch (choice) {
+            case 1:
+                return ManageDataChoices.SAVE;
+            case 2:
+                return ManageDataChoices.LOAD;
+            case 3:
+                return ManageDataChoices.EXIT;
+            default:
+                System.out.println("Unrecognized Choice, please try again");
+                return getManageData();
         }
-    }
-
-    //************//
-    //MANAGE DATA//
-    //**********//
-
-    public enum ManageDataChoices {
-        SAVE, LOAD
     }
 
     // REQUIRES: 1 < choice 3
