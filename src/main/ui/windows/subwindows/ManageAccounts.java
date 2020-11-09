@@ -1,5 +1,7 @@
 package ui.windows.subwindows;
 
+import model.Account;
+import ui.Manager;
 import ui.windows.Home;
 import ui.windows.SubWindow;
 
@@ -30,8 +32,13 @@ public class ManageAccounts extends SubWindow {
         addBackButtonListener();
     }
 
-    public void viewAcctBal() { //unfinished
-        // stub
+    public void viewAcctBal() {
+        reset();
+        for (Account acc : manager.getAccounts()) {
+            JTextArea accountBalanceArea = new JTextArea(acc.getName() + ": " + acc.getStringBalance());
+            setClearUneditableTextArea(accountBalanceArea);
+            container.add(accountBalanceArea);
+        }
     }
 
     private void viewAcctHist() {

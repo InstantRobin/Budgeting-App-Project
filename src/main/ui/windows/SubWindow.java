@@ -22,8 +22,7 @@ public abstract class SubWindow extends Window {
         reset();
 
         JTextArea message = new JTextArea("Input Amount: ");
-        message.setEditable(false);
-        message.setBackground(home.getContainer().getBackground());
+        setClearUneditableTextArea(message);
         JTextArea inputArea = new JTextArea(1,5);
         JButton submit = new JButton("Submit");
 
@@ -38,5 +37,10 @@ public abstract class SubWindow extends Window {
     protected void setInput(String userInput) {
         input = userInput;
         home.updateGUI();
+    }
+
+    protected void setClearUneditableTextArea(JTextArea area) {
+        area.setBackground(container.getBackground());
+        area.setEditable(false);
     }
 }

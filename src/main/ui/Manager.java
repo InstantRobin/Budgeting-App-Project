@@ -273,7 +273,7 @@ public class Manager {
     }
 
     // EFFECT: Prints given Account balance as a formatted String
-    public static void viewBalance(Account acc) {
+    private static void viewBalance(Account acc) {
         System.out.println(acc.getStringBalance());
     }
 
@@ -346,5 +346,7 @@ public class Manager {
         }
     }
 
-
+    public List<Account> getAccounts() {
+        return accounts;
+    }
 }
