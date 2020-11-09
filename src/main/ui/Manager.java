@@ -14,7 +14,7 @@ import java.util.Scanner;
 import static ui.GetInput.*;
 import static model.MoveMoney.*;
 
-public class Manage {
+public class Manager {
 
     private List<Account> accounts;
     private List<Currency> currencies;
@@ -25,7 +25,7 @@ public class Manage {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    public Manage() {
+    public Manager() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 

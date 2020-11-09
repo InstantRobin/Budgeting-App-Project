@@ -28,7 +28,7 @@ public class ManageSavedData extends SubWindow {
     }
 
     public void load() { //unfinished
-        // stub
+        manager.doManageData(1);
     }
 
     private void save() {

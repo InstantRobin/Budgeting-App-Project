@@ -9,7 +9,7 @@ public abstract class SubWindow extends Window {
     protected JButton back = new JButton("Back");
 
     public SubWindow(Container container, Home home) {
-        super(container);
+        super(container,home.manager);
         this.home = home;
     }
 

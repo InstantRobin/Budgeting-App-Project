@@ -14,7 +14,7 @@ public class BaseGUI extends JFrame {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 500;
 
-    Manage manage = new Manage();
+    Manager manager = new Manager();
     Container container;
 
     // Windows
@@ -31,7 +31,7 @@ public class BaseGUI extends JFrame {
 
         container = getContentPane();
 
-        home = new Home(container);
+        home = new Home(container, manager);
         moveMoney = new MoveMoney(container,home);
         manageAccounts = new ManageAccounts(container,home);
         manageSavedData = new ManageSavedData(container,home);

@@ -1,0 +1,81 @@
+[
+    {
+        "balance": 160000,
+        "name": "Robin",
+        "currency": {
+            "symbol": "$",
+            "name": "USD",
+            "exchangeRateUSD": 1
+        },
+        "history": {"array": [
+            {
+                "val": 40000,
+                "date": "2020-10-16",
+                "total": 190000,
+                "account": "Robin"
+            },
+            {
+                "val": 50000,
+                "date": "2020-10-29",
+                "total": 190000,
+                "account": "Robin"
+            },
+            {
+                "val": 50000,
+                "date": "2020-10-30",
+                "total": 190000,
+                "account": "Robin"
+            },
+            {
+                "val": -30000,
+                "date": "2020-10-30",
+                "total": 160000,
+                "account": "Robin"
+            }
+        ]}
+    },
+    {
+        "balance": 145000,
+        "name": "test",
+        "currency": {
+            "symbol": "$",
+            "name": "USD",
+            "exchangeRateUSD": 1
+        },
+        "history": {"array": [
+            {
+                "val": -15000,
+                "date": "2020-10-26",
+                "total": 115000,
+                "account": "test"
+            },
+            {
+                "val": 100000,
+                "date": "2020-10-26",
+                "total": 115000,
+                "account": "test"
+            },
+            {
+                "val": 30000,
+                "date": "2020-10-30",
+                "total": 145000,
+                "account": "test"
+            }
+        ]}
+    },
+    {
+        "balance": 1000,
+        "name": "test2",
+        "currency": {
+            "symbol": "$",
+            "name": "USD",
+            "exchangeRateUSD": 1
+        },
+        "history": {"array": [{
+            "val": -5000,
+            "date": "2020-10-30",
+            "total": 1000,
+            "account": "test2"
+        }]}
+    }
+]
