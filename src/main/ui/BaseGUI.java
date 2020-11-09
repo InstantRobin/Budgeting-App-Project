@@ -1,13 +1,10 @@
 package ui;
 
+import ui.windows.Home;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-
-import static java.awt.event.KeyEvent.VK_E;
-import static java.awt.event.KeyEvent.VK_ENTER;
+import java.util.ArrayList;
 
 public class BaseGUI extends JFrame {
 
@@ -21,28 +18,23 @@ public class BaseGUI extends JFrame {
         super("Budgeteer");
 
         setSize(WIDTH,HEIGHT);
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
 
 
-        createFirstButtons();
+        createHomeButtons();
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-    private void createFirstButtons() {
-        JButton button1 = new JButton("Move Money");
-        JButton button2 = new JButton("Manage Accounts");
-        JButton button3 = new JButton("Manage Saved Data");
+    private void createHomeButtons() {
         container = getContentPane();
-        container.add(button1,BorderLayout.WEST);
-        container.add(button2,BorderLayout.CENTER);
-        container.add(button3,BorderLayout.EAST);
-
-        button1.addActionListener(e -> createMoveMoneyButtons());
+        Home home = new Home(container);
+        home.updateGUI();
+        ArrayList<JButton> buttons = home.getButtons();
+        buttons.get(1).addActionListener(e -> createMoveMoneyButtons());
+        buttons.get(2).addActionListener(e -> createManageAccountsButtons());
     }
-
-
 
     private void createMoveMoneyButtons() {
         reset();
@@ -64,6 +56,17 @@ public class BaseGUI extends JFrame {
         container.add(submit,BorderLayout.SOUTH);
         submit.addActionListener(e -> input.getText());
     }
+
+    private void createManageAccountsButtons() {
+        reset();
+        JButton viewAccountBalance = new JButton("View Account Balance");
+        JButton viewAccountHistory = new JButton("View Account History");
+        JButton makeNewAccount = new JButton("Make New Account");
+        container.add(viewAccountBalance,BorderLayout.WEST);
+        container.add(viewAccountHistory,BorderLayout.CENTER);
+        container.add(makeNewAccount,BorderLayout.EAST);
+    }
+
 
     private int getVal() {
         JTextArea input = new JTextArea();
