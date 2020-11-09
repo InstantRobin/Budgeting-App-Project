@@ -1,5 +1,6 @@
 package ui.windows.subwindows;
 
+import ui.Manager;
 import ui.windows.Home;
 import ui.windows.SubWindow;
 
@@ -28,10 +29,10 @@ public class ManageSavedData extends SubWindow {
     }
 
     public void load() { //unfinished
-        manager.doManageData(1);
+        manager.doManageData(Manager.ManageDataChoices.LOAD);
     }
 
     private void save() {
-        // stub
+        manager.doManageData(Manager.ManageDataChoices.SAVE);
     }
 }

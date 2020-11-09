@@ -157,30 +157,40 @@ public class Manager {
     }
 
     // EFFECT: Presents users with data management options, gets User Selection
-    private int getManageData() {
+    private ManageDataChoices getManageData() {
         List<String> options = new ArrayList<>();
         options.add("Load");
         options.add("Save");
         options.add("Go Back");
         printOptions(options);
-        return sc.nextInt();
+        int choice = sc.nextInt();
+        if (choice == 1) {
+            return ManageDataChoices.LOAD;
+        } else if (choice == 2) {
+            return ManageDataChoices.SAVE;
+        } else {
+            System.out.println("Unrecognized Choice, please try again");
+            return getManageData();
+        }
     }
 
     //************//
     //MANAGE DATA//
     //**********//
 
+    public enum ManageDataChoices {
+        SAVE, LOAD
+    }
+
     // REQUIRES: 1 < choice 3
     // EFFECT: Calls corresponding function as outlined in getManageData()
-    public void doManageData(int choice) {
+    public void doManageData(ManageDataChoices choice) {
         switch (choice) {
-            case 1:
+            case LOAD:
                 load();
                 break;
-            case 2:
+            case SAVE:
                 save();
-                break;
-            case 3:
                 break;
             default:
                 System.out.println("Command not recognized, please try again\n");
