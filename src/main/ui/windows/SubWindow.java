@@ -59,6 +59,15 @@ public abstract class SubWindow extends Window {
         return components;
     }
 
+    protected void showErrorPage(String str) {
+        reset();
+        JTextArea message = new JTextArea(str);
+        setClearUneditableTextArea(message);
+        JButton close = new JButton("Close");
+        container.add(message);
+        container.add(close);
+        close.addActionListener(e -> home.updateGUI());
+    }
 
     protected void setClearUneditableTextArea(JTextArea area) {
         area.setBackground(container.getBackground());

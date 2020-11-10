@@ -8,7 +8,6 @@ import ui.windows.SubWindow;
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -40,24 +39,18 @@ public class MoveMoney extends SubWindow {
         ArrayList<Accessible> components = getInputWindow();
         JTextArea enteredText = (JTextArea) components.get(0);
         JButton enterButton = (JButton) components.get(1);
-        try {
-            enterButton.addActionListener(e -> valueEntered(enteredText.getText()));
-        } catch (Exception e) {
-            System.out.println("Bad Input"); //stub
-        }
+
+        enterButton.addActionListener(e -> verifyValThenContinue(enteredText.getText()));
     }
 
-    private void valueEntered(String str) {
-        double val = 0;
+    private void verifyValThenContinue(String str) {
         try {
-            val = Double.parseDouble(str);
-        } catch (Exception e) {
-            // TODO: Throw Error message
-            makeDepositWindow();
+            double val = Double.parseDouble(str);
+            getAccount((int)(val * 100));
+        } catch (NumberFormatException e) {
+            showErrorPage("Unrecognized number, please try again");
         }
-        getAccount((int)(val * 100));
     }
-
 
     // Not an override (maybe should rename)
     private void getAccount(int val) {
@@ -74,17 +67,22 @@ public class MoveMoney extends SubWindow {
         JTextArea enteredText = (JTextArea) components.get(0);
         JButton enterButton = (JButton) components.get(1);
 
+        enterButton.addActionListener(e -> verifyDateThenContinue(val, acc, enteredText.getText()));
+    }
+
+    private void verifyDateThenContinue(int val, Account acc, String str) {
         try {
-            enterButton.addActionListener(e -> makeDeposit(val, acc, LocalDate.parse(enteredText.getText())));
+            LocalDate date = LocalDate.parse(str);
+            makeDeposit(val,acc,date);
         } catch (Exception e) {
-            System.out.println("Bad Input"); //stub
+            showErrorPage("Unrecognized Date, please try again");
         }
     }
 
     private void makeDeposit(int val, Account acc, LocalDate date) {
-        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getDate());
+        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getVal());
         MoveMoneyFunctions.deposit(acc,val, date);
-        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getDate());
+        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getVal());
         home.updateGUI();
     }
 
