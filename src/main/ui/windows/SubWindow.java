@@ -1,7 +1,12 @@
 package ui.windows;
 
+import model.Account;
+
+import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SubWindow extends Window {
 
@@ -18,7 +23,7 @@ public abstract class SubWindow extends Window {
         back.addActionListener(e -> home.updateGUI());
     }
 
-    protected String getInput() {
+    protected ArrayList<Accessible> getInputWindow() {
         reset();
 
         JTextArea message = new JTextArea("Input Amount: ");
@@ -30,13 +35,28 @@ public abstract class SubWindow extends Window {
         container.add(inputArea);
         container.add(submit);
 
-        submit.addActionListener(e -> setInput(inputArea.getText()));
-        return input;
+        ArrayList<Accessible> components = new ArrayList<>();
+
+        components.add(inputArea);
+        components.add(submit);
+
+        //submit.addActionListener(e -> setInput(inputArea.getText()));
+        return components;
     }
 
     protected void setInput(String userInput) {
         input = userInput;
         home.updateGUI();
+    }
+
+    protected void getAccountWindow() { // should return Account
+        reset();
+        List<Account> accounts = manager.getAccounts();
+        for (int i = 0; i < accounts.size(); i++) {
+            JButton accountButton = new JButton(accounts.get(i).getName());
+            container.add(accountButton);
+            //accountButton.addActionListener(e -> return);
+        }
     }
 
     protected void setClearUneditableTextArea(JTextArea area) {

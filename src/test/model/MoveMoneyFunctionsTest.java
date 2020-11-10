@@ -3,10 +3,10 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static model.MoveMoney.*;
+import static model.MoveMoneyFunctions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MoveMoneyTest extends TestDefaults{
+public class MoveMoneyFunctionsTest extends TestDefaults{
     private Account acc1;
     private Account acc2;
     private Account acc3;

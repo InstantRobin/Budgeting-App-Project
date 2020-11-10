@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static ui.GetInput.*;
-import static model.MoveMoney.*;
+import static model.MoveMoneyFunctions.*;
 
 public class Manager {
 

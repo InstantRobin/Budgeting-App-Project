@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 
 // Static functions involving the movement of money into, out of, and between accounts
-public class MoveMoney {
+public class MoveMoneyFunctions {
     // REQUIRES: Val > 0
     // MODIFIES: acc
     // EFFECT: Deposits given val in given account
