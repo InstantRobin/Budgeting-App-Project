@@ -8,6 +8,7 @@ import ui.windows.SubWindow;
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -54,27 +55,36 @@ public class MoveMoney extends SubWindow {
             // TODO: Throw Error message
             makeDepositWindow();
         }
-        getAccountWindow((int)(val * 100));
+        getAccount((int)(val * 100));
     }
 
-    private void getAccount(Account acc) {
-        getAccountWindow();
-    }
 
     // Not an override (maybe should rename)
-    protected void getAccountWindow(int val) {
+    private void getAccount(int val) {
         super.getAccountWindow();
         for (int i = 0; i < container.getComponents().length; i++) {
             JButton button = (JButton) container.getComponent(i);
             Account acc = manager.getAccounts().get(i);
-            button.addActionListener(e -> makeDeposit(val, acc));
+            button.addActionListener(e -> getDate(val, acc));
         }
     }
 
-    private void makeDeposit(int val, Account acc) {
-        System.out.println(acc.getStringBalance());
-        MoveMoneyFunctions.deposit(acc,val, LocalDate.of(2020,11,1));
-        System.out.println(acc.getStringBalance());
+    private void getDate(int val, Account acc) {
+        ArrayList<Accessible> components = getDateWindow();
+        JTextArea enteredText = (JTextArea) components.get(0);
+        JButton enterButton = (JButton) components.get(1);
+
+        try {
+            enterButton.addActionListener(e -> makeDeposit(val, acc, LocalDate.parse(enteredText.getText())));
+        } catch (Exception e) {
+            System.out.println("Bad Input"); //stub
+        }
+    }
+
+    private void makeDeposit(int val, Account acc, LocalDate date) {
+        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getDate());
+        MoveMoneyFunctions.deposit(acc,val, date);
+        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getDate());
         home.updateGUI();
     }
 

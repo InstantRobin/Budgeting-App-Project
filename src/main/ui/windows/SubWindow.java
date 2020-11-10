@@ -23,9 +23,26 @@ public abstract class SubWindow extends Window {
     }
 
     protected ArrayList<Accessible> getInputWindow() {
+        return getGenericInput("Input Amount: ");
+    }
+
+    protected void getAccountWindow() { // should return Account
+        reset();
+        List<Account> accounts = manager.getAccounts();
+        for (int i = 0; i < accounts.size(); i++) {
+            JButton accountButton = new JButton(accounts.get(i).getName());
+            container.add(accountButton);
+        }
+    }
+
+    protected ArrayList<Accessible> getDateWindow() {
+        return getGenericInput("Enter Date As YYYY-MM-DD:");
+    }
+
+    private ArrayList<Accessible> getGenericInput(String str) {
         reset();
 
-        JTextArea message = new JTextArea("Input Amount: ");
+        JTextArea message = new JTextArea(str);
         setClearUneditableTextArea(message);
         JTextArea inputArea = new JTextArea(1,5);
         JButton submit = new JButton("Submit");
@@ -40,15 +57,6 @@ public abstract class SubWindow extends Window {
         components.add(submit);
 
         return components;
-    }
-
-    protected void getAccountWindow() { // should return Account
-        reset();
-        List<Account> accounts = manager.getAccounts();
-        for (int i = 0; i < accounts.size(); i++) {
-            JButton accountButton = new JButton(accounts.get(i).getName());
-            container.add(accountButton);
-        }
     }
 
 
