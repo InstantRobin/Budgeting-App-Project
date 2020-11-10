@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+// Represents a window of the program
 abstract class Window {
 
     protected Container container;
@@ -17,18 +18,17 @@ abstract class Window {
         this.manager = manager;
     }
 
-    public Container getContainer() {
-        return container;
-    }
-
+    // EFFECTS: Should update the GUI to display the new window
     public abstract void updateGUI();
 
+    // EFFECTS: Clears the GUI
     protected void reset() {
         container.removeAll();
         container.revalidate();
         container.repaint();
     }
 
+    // EFFECTS: Adds a list of JButtons to the GUI
     protected void addButtons(ArrayList<JButton> buttonList) {
         for (JButton button : buttonList) {
             container.add(button);

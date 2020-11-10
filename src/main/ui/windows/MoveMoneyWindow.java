@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a window where money is moved around
 public abstract class MoveMoneyWindow extends SubWindow {
 
     protected Home home;
@@ -17,10 +18,12 @@ public abstract class MoveMoneyWindow extends SubWindow {
         this.home = home;
     }
 
+    // EFFECTS: Creates a window where the user can input an amount of money
     protected ArrayList<Accessible> getInputWindow() {
         return getGenericInput("Input Amount: ");
     }
 
+    // EFFECTS: Creates a window where all accounts are displayed as buttons
     protected void getAccountWindow() { // should return Account
         reset();
         List<Account> accounts = manager.getAccounts();
@@ -30,10 +33,18 @@ public abstract class MoveMoneyWindow extends SubWindow {
         }
     }
 
+    // EFFECTS: Creates a window where the user can input a date in YYYY-MM-DD format
     protected ArrayList<Accessible> getDateWindow() {
         return getGenericInput("Enter Date As YYYY-MM-DD:");
     }
 
+    // EFFECTS: Creates a window like so:
+    /*
+            str |     | Submit
+     */
+    //          The user can type in the white box, and Submit is a button to do so
+    //          Returns the box and the submit button so that the function that eventListeners can be added by
+    //              the function that calls this
     private ArrayList<Accessible> getGenericInput(String str) {
         reset();
 
@@ -54,6 +65,8 @@ public abstract class MoveMoneyWindow extends SubWindow {
         return components;
     }
 
+    // EFFECTS: Displays a window where a given error string is displayed to the user, \
+    //          as well as a button to return to home page
     protected void showErrorPage(String str) {
         reset();
         JTextArea message = new JTextArea(str);
