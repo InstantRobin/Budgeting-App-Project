@@ -1,33 +1,56 @@
 package ui.windows;
 
 import ui.Manager;
+import ui.windows.subwindows.ManageAccounts;
+import ui.windows.subwindows.ManageSavedData;
+import ui.windows.subwindows.MoveMoney;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
+// The Home Page of the program
 public class Home extends Window {
 
-    // maybe rename buttons?
-    private JButton button1 = new JButton("Move Money");
-    private JButton button2 = new JButton("Manage Accounts");
-    private JButton button3 = new JButton("Manage Saved Data");
+    private MoveMoney moveMoney;
+    private ManageAccounts manageAccounts;
+    private ManageSavedData manageSavedData;
+
+    private JButton moveMoneyButton = new JButton("Move Money");
+    private JButton manageAcctsButton = new JButton("Manage Accounts");
+    private JButton manageDataButton = new JButton("Manage Saved Data");
 
     public Home(Container container, Manager manager) {
         super(container, manager);
-        buttons.add(button1);
-        buttons.add(button2);
-        buttons.add(button3);
+        addButtons();
+        initializeClasses();
     }
 
+    // EFFECTS: Adds the initialized JButtons to Arraylist buttons
+    private void addButtons() {
+        buttons.add(moveMoneyButton);
+        buttons.add(manageAcctsButton);
+        buttons.add(manageDataButton);
+    }
+
+    // EFFECTS: Clears GUI, renders buttons, adds event listeners
     public void updateGUI() {
         reset();
         addButtons(buttons);
+        createActionListeners();
     }
 
+    // EFFECTS: Creates new classes for the different top level GUI's: the home screen and the three buttons
+    private void initializeClasses() {
+        moveMoney = new MoveMoney(container,this);
+        manageAccounts = new ManageAccounts(container,this);
+        manageSavedData = new ManageSavedData(container,this);
+    }
 
-    public ArrayList<JButton> getButtons() {
-        return buttons;
+    // EFFECTS: Loads the Home gui, makes buttons open up their desired GUIs
+    private void createActionListeners() {
+        moveMoneyButton.addActionListener(e -> moveMoney.updateGUI());
+        manageAcctsButton.addActionListener(e -> manageAccounts.updateGUI());
+        manageDataButton.addActionListener(e -> manageSavedData.updateGUI());
     }
 }
 

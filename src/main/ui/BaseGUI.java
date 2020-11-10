@@ -7,7 +7,6 @@ import ui.windows.subwindows.MoveMoney;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 // Initializes the Graphic Interface of the Program using JFrame
 public class BaseGUI extends JFrame {
@@ -20,18 +19,14 @@ public class BaseGUI extends JFrame {
 
     // Windows
     Home home;
-    MoveMoney moveMoney;
-    ManageAccounts manageAccounts;
-    ManageSavedData manageSavedData;
 
     public BaseGUI() {
         super("Budgeteer");
         initializeGUI();
-        initializeClasses();
-        createHomeButtons();
+        loadHome();
     }
 
-    // EFFECTS: Sets GUI to be given size, using a centered layout, to end program when closed, and to be visible
+    // EFFECTS: Creates the base information of a centered GUI
     private void initializeGUI() {
         setSize(WIDTH,HEIGHT);
         FlowLayout layout = new FlowLayout(FlowLayout.CENTER,10,(HEIGHT / 3));
@@ -43,20 +38,9 @@ public class BaseGUI extends JFrame {
         setVisible(true);
     }
 
-    // EFFECTS: Creates new classes for the different top level GUI's: the home screen and the three buttons
-    private void initializeClasses() {
+    // EFFECTS: Builds and loads the Home GUI
+    private void loadHome() {
         home = new Home(container, manager);
-        moveMoney = new MoveMoney(container,home);
-        manageAccounts = new ManageAccounts(container,home);
-        manageSavedData = new ManageSavedData(container,home);
-    }
-
-    // EFFECTS: Loads the Home gui, makes buttons open up their desired GUIs
-    private void createHomeButtons() {
         home.updateGUI();
-        ArrayList<JButton> buttons = home.getButtons();
-        buttons.get(0).addActionListener(e -> moveMoney.updateGUI());
-        buttons.get(1).addActionListener(e -> manageAccounts.updateGUI());
-        buttons.get(2).addActionListener(e -> manageSavedData.updateGUI());
     }
 }
