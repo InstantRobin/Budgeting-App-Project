@@ -12,7 +12,6 @@ public abstract class SubWindow extends Window {
 
     protected Home home;
     protected JButton back = new JButton("Back");
-    String input;
 
     public SubWindow(Container container, Home home) {
         super(container,home.manager);
@@ -40,13 +39,7 @@ public abstract class SubWindow extends Window {
         components.add(inputArea);
         components.add(submit);
 
-        //submit.addActionListener(e -> setInput(inputArea.getText()));
         return components;
-    }
-
-    protected void setInput(String userInput) {
-        input = userInput;
-        home.updateGUI();
     }
 
     protected void getAccountWindow() { // should return Account
@@ -55,9 +48,9 @@ public abstract class SubWindow extends Window {
         for (int i = 0; i < accounts.size(); i++) {
             JButton accountButton = new JButton(accounts.get(i).getName());
             container.add(accountButton);
-            //accountButton.addActionListener(e -> return);
         }
     }
+
 
     protected void setClearUneditableTextArea(JTextArea area) {
         area.setBackground(container.getBackground());
