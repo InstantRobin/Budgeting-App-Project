@@ -11,13 +11,17 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// Represents the Deposit Window
 public class Deposit extends MoveMoneyWindow {
 
     public Deposit(Container container, Home home) {
         super(container, home);
     }
 
-    public void updateGUI() { //unfinished
+    // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
+    //          Initializes function chain where windows are loaded to get user input, past input is passed along
+    //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
+    public void updateGUI() {
         ArrayList<Accessible> components = getInputWindow();
         JTextArea enteredText = (JTextArea) components.get(0);
         JButton enterButton = (JButton) components.get(1);
@@ -25,16 +29,19 @@ public class Deposit extends MoveMoneyWindow {
         enterButton.addActionListener(e -> verifyValThenContinue(enteredText.getText()));
     }
 
+    // EFFECTS: Ensures user input is a double,
+    //              if is, turns input into an integer of cents, passes it into getAccount
+    //              if not, throws error screen, returns user to home
     private void verifyValThenContinue(String str) {
         try {
             double val = Double.parseDouble(str);
             getAccount((int)(val * 100));
         } catch (NumberFormatException e) {
-            showErrorPage("Unrecognized number, please try again");
+            showMessageWindow("Unrecognized number, please try again");
         }
     }
 
-    // Not an override (maybe should rename)
+    // EFFECTS: Displays all existing accounts to the user as buttons, passes selected account into getDate
     private void getAccount(int val) {
         super.getAccountWindow();
         for (int i = 0; i < container.getComponents().length; i++) {
@@ -44,6 +51,7 @@ public class Deposit extends MoveMoneyWindow {
         }
     }
 
+    // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
     private void getDate(int val, Account acc) {
         ArrayList<Accessible> components = getDateWindow();
         JTextArea enteredText = (JTextArea) components.get(0);
@@ -52,25 +60,23 @@ public class Deposit extends MoveMoneyWindow {
         enterButton.addActionListener(e -> verifyDateThenContinue(val, acc, enteredText.getText()));
     }
 
+    // EFFECTS: Ensures user input is a properly formatted date,
+    //              if is, passes it and all past inputs into makeDeposit
+    //              if not, throws error screen, returns user to home
     private void verifyDateThenContinue(int val, Account acc, String str) {
         try {
             LocalDate date = LocalDate.parse(str);
             makeDeposit(val,acc,date);
         } catch (Exception e) {
-            showErrorPage("Unrecognized Date, please try again");
+            showMessageWindow("Unrecognized Date, please try again");
         }
     }
 
+    // EFFECTS: Takes all user input so far, deposits val into account, logs account and date
+    //          Displays a summary of the action to the user
     private void makeDeposit(int val, Account acc, LocalDate date) {
-        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getVal());
         MoveMoneyFunctions.deposit(acc,val, date);
-        System.out.println((acc.getHistory().get(acc.getHistory().size() - 1)).getVal());
-        home.updateGUI();
-    }
-
-    @Override
-    protected ArrayList<Accessible> getInputWindow() {
-        ArrayList<Accessible> result = super.getInputWindow();
-        return result;
+        showMessageWindow("Deposited " + MoveMoneyFunctions.moneyToString(val, acc.getCurrency()) + " into "
+                            + acc.getName() + " on " + date.toString());
     }
 }

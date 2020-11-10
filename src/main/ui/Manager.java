@@ -287,8 +287,8 @@ public class Manager {
         for (int i = 0; i < hist.size();i++) {
             LogEntry item = hist.get(i);
             System.out.println("     " + item.getStringDate() + ": "
-                    + Account.moneyToString(item.getVal(),acc.getCurrency()) + " | "
-                    + Account.moneyToString(item.getTotal(),acc.getCurrency()));
+                    + moneyToString(item.getVal(),acc.getCurrency()) + " | "
+                    + moneyToString(item.getTotal(),acc.getCurrency()));
         }
     }
 

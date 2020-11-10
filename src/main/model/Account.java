@@ -69,7 +69,7 @@ public class Account implements Writable {
 
     // EFFECT: Returns Balance in $X.XX string form
     public String getStringBalance() {
-        return moneyToString(balance, currency);
+        return MoveMoneyFunctions.moneyToString(balance, currency);
     }
 
     // from CPSC 210 EdX JsonSerializationDemo
@@ -84,15 +84,4 @@ public class Account implements Writable {
         return json;
     }
 
-    // EFFECT: Turns int of currency (in cents) into $X.XX string form
-    public static String moneyToString(int money, Currency cur) {
-        int before = ((money - (money % 100)) / 100);
-        int after = money % 100;
-
-        if (after >= 0 && after < 10) {
-            return (cur.getSymbol() + before + "." + "0" + after);
-        } else {
-            return (cur.getSymbol() + before + "." + Math.abs(after));
-        }
-    }
 }

@@ -1,50 +1,54 @@
 package ui.windows.subwindows;
 
-import model.Account;
-import model.MoveMoneyFunctions;
 import ui.windows.Home;
 import ui.windows.SubWindow;
 import ui.windows.subwindows.movemoneywindows.Deposit;
 
-import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
+// Represents the window where the user can deposit, withdraw, or transfer money
 public class MoveMoney extends SubWindow {
 
-    // maybe rename buttons?
-    private JButton button1 = new JButton("Deposit");
-    private JButton button2 = new JButton("Withdraw");
-    private JButton button3 = new JButton("Transfer");
+    private JButton depositButton = new JButton("Deposit");
+    private JButton withdrawButton = new JButton("Withdraw");
+    private JButton transferButton = new JButton("Transfer");
 
     public MoveMoney(Container container, Home home) {
         super(container, home);
-        buttons.add(button1);
-        buttons.add(button2);
-        buttons.add(button3);
+        initializeButtons();
+    }
+
+    // Adds the four buttons to the buttons array
+    private void initializeButtons() {
+        buttons.add(depositButton);
+        buttons.add(withdrawButton);
+        buttons.add(transferButton);
         buttons.add(back);
     }
 
+    // EFFECTS: Clears GUI, loads buttons and their actionListeners
     public void updateGUI() {
         reset();
         addButtons(buttons);
-        button1.addActionListener(e -> makeDepositWindow());
-        button2.addActionListener(e -> makeWithdrawal());
-        button3.addActionListener(e -> makeTransfer());
+        depositButton.addActionListener(e -> makeDepositWindow());
+        withdrawButton.addActionListener(e -> makeWithdrawal());
+        transferButton.addActionListener(e -> makeTransfer());
         addBackButtonListener();
     }
 
-    public void makeDepositWindow() { //unfinished
+    // EFFECTS: Instantiates and Loads deposit window
+    public void makeDepositWindow() {
         Deposit deposit = new Deposit(container,home);
         deposit.updateGUI();
     }
 
+    // EFFECTS: Instantiates and Loads withdrawal window
     private void makeWithdrawal() {
         // stub
     }
 
+    // EFFECTS: Instantiates and Loads transfer window
     private void makeTransfer() {
         // stub
     }

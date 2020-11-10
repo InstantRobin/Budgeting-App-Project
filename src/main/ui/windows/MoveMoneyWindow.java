@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a window where money is moved around
+// Represents a window where the user can choose between the money movement functions
 public abstract class MoveMoneyWindow extends SubWindow {
 
     protected Home home;
@@ -64,18 +64,4 @@ public abstract class MoveMoneyWindow extends SubWindow {
 
         return components;
     }
-
-    // EFFECTS: Displays a window where a given error string is displayed to the user, \
-    //          as well as a button to return to home page
-    protected void showErrorPage(String str) {
-        reset();
-        JTextArea message = new JTextArea(str);
-        setClearUneditableTextArea(message);
-        JButton close = new JButton("Close");
-        container.add(message);
-        container.add(close);
-        close.addActionListener(e -> home.updateGUI());
-    }
-
-
 }

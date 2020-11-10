@@ -21,12 +21,12 @@ public class Home extends Window {
 
     public Home(Container container, Manager manager) {
         super(container, manager);
-        addButtons();
+        initializeButtons();
         initializeClasses();
     }
 
     // EFFECTS: Adds the initialized JButtons to Arraylist buttons
-    private void addButtons() {
+    private void initializeButtons() {
         buttons.add(moveMoneyButton);
         buttons.add(manageAcctsButton);
         buttons.add(manageDataButton);
@@ -39,7 +39,7 @@ public class Home extends Window {
         createActionListeners();
     }
 
-    // EFFECTS: Creates new classes for the different top level GUI's: the home screen and the three buttons
+    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
     private void initializeClasses() {
         moveMoney = new MoveMoney(container,this);
         manageAccounts = new ManageAccounts(container,this);

@@ -33,5 +33,15 @@ public class MoveMoneyFunctions {
         deposit(acc2,val,date);
     }
 
+    // EFFECT: Turns int of currency (in cents) into $X.XX string form
+    public static String moneyToString(int money, Currency cur) {
+        int before = ((money - (money % 100)) / 100);
+        int after = money % 100;
 
+        if (after >= 0 && after < 10) {
+            return (cur.getSymbol() + before + "." + "0" + after);
+        } else {
+            return (cur.getSymbol() + before + "." + Math.abs(after));
+        }
+    }
 }

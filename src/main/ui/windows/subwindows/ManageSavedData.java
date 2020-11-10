@@ -7,32 +7,42 @@ import ui.windows.SubWindow;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a window where the user can choose to save or load the current data
 public class ManageSavedData extends SubWindow {
 
-    // maybe rename buttons?
-    private JButton button1 = new JButton("Load");
-    private JButton button2 = new JButton("Save");
+    private JButton loadButton = new JButton("Load");
+    private JButton saveButton = new JButton("Save");
 
     public ManageSavedData(Container container, Home home) {
         super(container,home);
-        buttons.add(button1);
-        buttons.add(button2);
+        initializeButtons();
+    }
+
+    // EFFECTS:Adds the four buttons to the buttons array
+    private void initializeButtons() {
+        buttons.add(loadButton);
+        buttons.add(saveButton);
         buttons.add(back);
     }
 
+    // EFFECTS: Clears GUI, loads buttons and their actionListeners
     public void updateGUI() {
         reset();
         addButtons(buttons);
-        button1.addActionListener(e -> load());
-        button2.addActionListener(e -> save());
+        loadButton.addActionListener(e -> load());
+        saveButton.addActionListener(e -> save());
         addBackButtonListener();
     }
 
-    public void load() { //unfinished
+    // EFFECTS: Loads the data from Json
+    public void load() {
         manager.doManageData(Manager.ManageDataChoices.LOAD);
+        showMessageWindow("Load Complete!");
     }
 
+    // EFFECTS: Saves the data to Json
     private void save() {
         manager.doManageData(Manager.ManageDataChoices.SAVE);
+        showMessageWindow("Save Complete!");
     }
 }

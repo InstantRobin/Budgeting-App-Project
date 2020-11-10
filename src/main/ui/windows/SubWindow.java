@@ -24,4 +24,16 @@ public abstract class SubWindow extends Window {
         area.setBackground(container.getBackground());
         area.setEditable(false);
     }
+
+    // EFFECTS: Displays a window where a given string is displayed to the user,
+    //          as well as a button to return to home page
+    protected void showMessageWindow(String str) {
+        reset();
+        JTextArea message = new JTextArea(str);
+        setClearUneditableTextArea(message);
+        JButton close = new JButton("Close");
+        container.add(message);
+        container.add(close);
+        close.addActionListener(e -> home.updateGUI());
+    }
 }

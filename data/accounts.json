@@ -11,19 +11,19 @@
             {
                 "val": 40000,
                 "date": "2020-10-16",
-                "total": 190000,
+                "total": 160000,
                 "account": "Robin"
             },
             {
                 "val": 50000,
                 "date": "2020-10-29",
-                "total": 190000,
+                "total": 160000,
                 "account": "Robin"
             },
             {
                 "val": 50000,
                 "date": "2020-10-30",
-                "total": 190000,
+                "total": 160000,
                 "account": "Robin"
             },
             {
@@ -46,13 +46,13 @@
             {
                 "val": -15000,
                 "date": "2020-10-26",
-                "total": 115000,
+                "total": 145000,
                 "account": "test"
             },
             {
                 "val": 100000,
                 "date": "2020-10-26",
-                "total": 115000,
+                "total": 145000,
                 "account": "test"
             },
             {
