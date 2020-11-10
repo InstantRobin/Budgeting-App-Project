@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CurrencyTest extends TestDefaults{
-    Currency test1 = new Currency("test","£",0.5);
-    Currency test2 = new Currency("test","£",0.5);
-    Currency test3 = new Currency("test3","$",2);
+    final Currency test1 = new Currency("test","£",0.5);
+    final Currency test2 = new Currency("test","£",0.5);
+    final Currency test3 = new Currency("test3","$",2);
 
     @Test
     public void testUpdateExchangeRate() {

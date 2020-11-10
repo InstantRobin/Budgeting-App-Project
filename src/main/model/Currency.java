@@ -7,8 +7,8 @@ import persistence.Writable;
 // Represents a form of currency with a name, symbol, and exchange rate of one unit into USD
 public class Currency implements Writable {
 
-    String name;
-    String symbol;
+    final String name;
+    final String symbol;
     double exchangeRateUSD;
 
     public Currency(String name, String symbol, double exchangeRateUSD) {

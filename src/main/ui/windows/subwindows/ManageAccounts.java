@@ -10,9 +10,9 @@ import java.awt.*;
 // Represents the window where the user can view an account balance, account history, or make a new account
 public class ManageAccounts extends SubWindow {
 
-    private JButton viewBalButton = new JButton("View Account Balance");
-    private JButton viewHistButton = new JButton("View Account History");
-    private JButton makeAccButton = new JButton("Make New Account");
+    private final JButton viewBalButton = new JButton("View Account Balance");
+    private final JButton viewHistButton = new JButton("View Account History");
+    private final JButton makeAccButton = new JButton("Make New Account");
 
     public ManageAccounts(Container container, Home home) {
         super(container,home);

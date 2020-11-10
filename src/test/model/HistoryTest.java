@@ -10,9 +10,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HistoryTest extends TestDefaults{
-    History hist = new History();
-    History hist2 = new History();
-    Account acc = new Account("test",0, USD);
+    final History hist = new History();
+    final History hist2 = new History();
+    final Account acc = new Account("test",0, USD);
     List<LogEntry> result;
 
     public LogEntry logEvent(int val, LocalDate date){
@@ -116,6 +116,7 @@ public class HistoryTest extends TestDefaults{
 
     @Test
     public void equalsTestDifObject() {
+        //noinspection AssertBetweenInconvertibleTypes
         assertNotEquals(hist2,date);
     }
 

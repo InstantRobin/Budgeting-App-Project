@@ -6,8 +6,8 @@ import java.awt.*;
 // Represents a non-homescreen window
 public abstract class SubWindow extends Window {
 
-    protected Home home;
-    protected JButton back = new JButton("Back");
+    protected final Home home;
+    protected final JButton back = new JButton("Back");
 
     public SubWindow(Container container, Home home) {
         super(container,home.manager);

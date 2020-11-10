@@ -17,13 +17,13 @@ import static model.MoveMoneyFunctions.*;
 public class Manager {
 
     private List<Account> accounts;
-    private List<Currency> currencies;
-    private Scanner sc = new Scanner(System.in);
+    private final List<Currency> currencies;
+    private final Scanner sc = new Scanner(System.in);
 
     // from CPSC 210 EdX JsonSerializationDemo
     private static final String JSON_STORE = "./data/accounts.json";
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private final JsonWriter jsonWriter;
+    private final JsonReader jsonReader;
 
     public Manager() {
         jsonWriter = new JsonWriter(JSON_STORE);

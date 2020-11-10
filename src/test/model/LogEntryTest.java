@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LogEntryTest {
 
-    Account acc = new Account("test",200, TestDefaults.USD);
-    LogEntry log = new LogEntry(acc,200, acc.getBalance(), LocalDate.of(2020,10,12));
+    final Account acc = new Account("test",200, TestDefaults.USD);
+    final LogEntry log = new LogEntry(acc,200, acc.getBalance(), LocalDate.of(2020,10,12));
 
     @Test
     public void getTotalTest() {

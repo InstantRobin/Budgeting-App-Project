@@ -15,9 +15,9 @@ public class Home extends Window {
     private ManageAccounts manageAccounts;
     private ManageSavedData manageSavedData;
 
-    private JButton moveMoneyButton = new JButton("Move Money");
-    private JButton manageAcctsButton = new JButton("Manage Accounts");
-    private JButton manageDataButton = new JButton("Manage Saved Data");
+    private final JButton moveMoneyButton = new JButton("Move Money");
+    private final JButton manageAcctsButton = new JButton("Manage Accounts");
+    private final JButton manageDataButton = new JButton("Manage Saved Data");
 
     public Home(Container container, Manager manager) {
         super(container, manager);

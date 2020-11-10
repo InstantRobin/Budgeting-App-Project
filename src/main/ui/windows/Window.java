@@ -9,9 +9,9 @@ import java.util.ArrayList;
 // Represents a window of the program
 abstract class Window {
 
-    protected Container container;
-    protected ArrayList<JButton> buttons = new ArrayList<>();
-    protected Manager manager;
+    protected final Container container;
+    protected final ArrayList<JButton> buttons = new ArrayList<>();
+    protected final Manager manager;
 
     public Window(Container container, Manager manager) {
         this.container = container;

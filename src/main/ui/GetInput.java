@@ -4,14 +4,10 @@ import model.Account;
 import model.Currency;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GetInput {
-    //    currencies still TODO
-    private Scanner sc = new Scanner(System.in);
-
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account
     static Account getAccInput(List<Account> accounts) {
@@ -79,6 +75,7 @@ public class GetInput {
 
     }
 
+    // EFFECTS: Takes user input, sees if it is in use, if not, prompts user for creation of new currency
     private static Currency newCurrency() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Currency Name:");

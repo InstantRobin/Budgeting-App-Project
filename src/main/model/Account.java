@@ -10,11 +10,11 @@ public class Account implements Writable {
 
     // TODO: Add Currency
 
-    private String name;
+    private final String name;
     // the balance of the account, in cents
     private int balance;
-    private Currency currency;
-    private History history = new History();
+    private final Currency currency;
+    private final History history = new History();
 
 
     // EFFECT: Initializes account with name, initial balance

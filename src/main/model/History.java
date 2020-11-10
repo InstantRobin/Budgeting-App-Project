@@ -11,7 +11,7 @@ import java.util.Collections;
 // Represents the event history of all actions upon an account
 public class History implements Writable {
 
-    private ArrayList<LogEntry> history = new ArrayList<>();
+    private final ArrayList<LogEntry> history = new ArrayList<>();
 
     public History() {
         super();
@@ -43,6 +43,7 @@ public class History implements Writable {
         sort();
         for (LogEntry entry : history) {
             if (entry.getDate().isBefore(start)) {
+                //noinspection UnnecessaryContinue
                 continue;
             } else if (!entry.getDate().isAfter(end)) {
                 dateRange.add(entry);

@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AccountTest {
 
-    Account acc = new Account("test",0, TestDefaults.USD);
-    LocalDate date = LocalDate.of(2020,10,12);
+    final Account acc = new Account("test",0, TestDefaults.USD);
+    final LocalDate date = LocalDate.of(2020,10,12);
 
     public void compareValues(Account account, List<LogEntry> result){
 

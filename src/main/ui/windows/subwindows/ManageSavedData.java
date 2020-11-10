@@ -10,8 +10,8 @@ import java.awt.*;
 // Represents a window where the user can choose to save or load the current data
 public class ManageSavedData extends SubWindow {
 
-    private JButton loadButton = new JButton("Load");
-    private JButton saveButton = new JButton("Save");
+    private final JButton loadButton = new JButton("Load");
+    private final JButton saveButton = new JButton("Save");
 
     public ManageSavedData(Container container, Home home) {
         super(container,home);

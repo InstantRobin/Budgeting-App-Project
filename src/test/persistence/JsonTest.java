@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class JsonTest {
-    Account account2 = new Account("test2",543, TestDefaults.USD);
-    Account account1 = new Account("test1",10, TestDefaults.USD);
+    final Account account2 = new Account("test2",543, TestDefaults.USD);
+    final Account account1 = new Account("test1",10, TestDefaults.USD);
 
     public void setAccounts() {
         account2.logEvent(50, LocalDate.of(2020, 10, 29));

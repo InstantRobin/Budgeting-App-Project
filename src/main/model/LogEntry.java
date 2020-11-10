@@ -9,12 +9,12 @@ import java.time.format.DateTimeFormatter;
 // Represents a log entry of an account changing in value
 public class LogEntry implements Comparable<LogEntry>, Writable {
 
-    private String acc; // Name of the Account
-    private int val;
+    private final String acc; // Name of the Account
+    private final int val;
     private int total;
-    private LocalDate date;
+    private final LocalDate date;
     // https://www.geeksforgeeks.org/localdate-format-method-in-java/
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     // TODO: Add Currency
 
     // REQUIRES: Initializes LogEntry

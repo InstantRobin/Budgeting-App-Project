@@ -11,7 +11,7 @@ import java.util.List;
 // Represents a window where the user can choose between the money movement functions
 public abstract class MoveMoneyWindow extends SubWindow {
 
-    protected Home home;
+    protected final Home home;
 
     public MoveMoneyWindow(Container container, Home home) {
         super(container,home);
@@ -27,8 +27,8 @@ public abstract class MoveMoneyWindow extends SubWindow {
     protected void getAccountWindow() { // should return Account
         reset();
         List<Account> accounts = manager.getAccounts();
-        for (int i = 0; i < accounts.size(); i++) {
-            JButton accountButton = new JButton(accounts.get(i).getName());
+        for (Account account : accounts) {
+            JButton accountButton = new JButton(account.getName());
             container.add(accountButton);
         }
     }

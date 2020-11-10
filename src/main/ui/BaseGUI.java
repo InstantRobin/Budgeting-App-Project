@@ -1,9 +1,6 @@
 package ui;
 
 import ui.windows.Home;
-import ui.windows.subwindows.ManageAccounts;
-import ui.windows.subwindows.ManageSavedData;
-import ui.windows.subwindows.MoveMoney;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +11,7 @@ public class BaseGUI extends JFrame {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 500;
 
-    Manager manager = new Manager();
+    final Manager manager = new Manager();
     Container container;
 
     // Windows

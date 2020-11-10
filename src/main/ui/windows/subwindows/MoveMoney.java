@@ -10,9 +10,9 @@ import java.awt.*;
 // Represents the window where the user can deposit, withdraw, or transfer money
 public class MoveMoney extends SubWindow {
 
-    private JButton depositButton = new JButton("Deposit");
-    private JButton withdrawButton = new JButton("Withdraw");
-    private JButton transferButton = new JButton("Transfer");
+    private final JButton depositButton = new JButton("Deposit");
+    private final JButton withdrawButton = new JButton("Withdraw");
+    private final JButton transferButton = new JButton("Transfer");
 
     public MoveMoney(Container container, Home home) {
         super(container, home);
