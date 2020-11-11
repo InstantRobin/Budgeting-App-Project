@@ -14,12 +14,10 @@ public class DepositDateInput extends DateInput {
 
     int val;
     Account acc;
-    private Home home;
     Deposit deposit;
 
     public DepositDateInput(Container container, Home home, Deposit deposit, int val, Account acc) {
         super(container,home);
-        this.home = home;
         this.deposit = deposit;
         this.val = val;
         this.acc = acc;

@@ -7,13 +7,11 @@ import ui.windows.InputWindow;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a window where the user selects an account
 public abstract class AccountInput extends InputWindow {
-
-    private Home home;
 
     public AccountInput(Container container, Home home) {
         super(container,home);
-        this.home = home;
     }
 
     // EFFECTS: Displays all existing accounts to the user as buttons, passes selected account into getDate

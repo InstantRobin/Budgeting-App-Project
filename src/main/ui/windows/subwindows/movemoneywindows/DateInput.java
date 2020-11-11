@@ -10,13 +10,11 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// Represents a window where the user inputs a date
 public abstract class DateInput extends InputWindow {
-    private Account acc;
-    private Home home;
 
     public DateInput(Container container, Home home) {
         super(container,home);
-        this.home = home;
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date

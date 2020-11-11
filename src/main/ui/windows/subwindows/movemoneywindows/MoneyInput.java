@@ -8,14 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+// Represents a window where the user inputs a quantity of money
 public abstract class MoneyInput extends InputWindow {
 
     private double val;
-    private Home home;
 
     public MoneyInput(Container container, Home home) {
         super(container,home);
-        this.home = home;
         val = 0;
     }
 

@@ -7,12 +7,10 @@ import java.awt.*;
 
 public class DepositMoneyInput extends MoneyInput {
 
-    Home home;
     Deposit deposit;
 
     public DepositMoneyInput(Container container, Home home, Deposit deposit) {
         super(container,home);
-        this.home = home;
         this.deposit = deposit;
     }
 
