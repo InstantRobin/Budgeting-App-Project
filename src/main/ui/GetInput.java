@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+// A set of static fn's to get a user's typed inputs
 public class GetInput {
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account

@@ -2,7 +2,7 @@ package ui.windows.subwindows;
 
 import ui.windows.Home;
 import ui.windows.SubWindow;
-import ui.windows.subwindows.movemoneywindows.Deposit;
+import ui.windows.subwindows.movemoneywindows.deposit.Deposit;
 
 import javax.swing.*;
 import java.awt.*;

@@ -64,4 +64,6 @@ public abstract class MoveMoneyWindow extends SubWindow {
 
         return components;
     }
+
+    //public abstract void inputButtonFunction(String str);
 }

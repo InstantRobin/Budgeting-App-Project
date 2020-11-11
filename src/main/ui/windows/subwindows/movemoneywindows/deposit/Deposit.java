@@ -1,4 +1,4 @@
-package ui.windows.subwindows.movemoneywindows;
+package ui.windows.subwindows.movemoneywindows.deposit;
 
 import model.Account;
 import model.MoveMoneyFunctions;
@@ -74,7 +74,7 @@ public class Deposit extends MoveMoneyWindow {
 
     // EFFECTS: Takes all user input so far, deposits val into account, logs account and date
     //          Displays a summary of the action to the user
-    private void makeDeposit(int val, Account acc, LocalDate date) {
+    public void makeDeposit(int val, Account acc, LocalDate date) {
         MoveMoneyFunctions.deposit(acc,val, date);
         showMessageWindow("Deposited " + MoveMoneyFunctions.moneyToString(val, acc.getCurrency()) + " into "
                             + acc.getName() + " on " + date.toString());
