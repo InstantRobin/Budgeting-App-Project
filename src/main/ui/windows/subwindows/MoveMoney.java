@@ -3,6 +3,7 @@ package ui.windows.subwindows;
 import ui.windows.Home;
 import ui.windows.SubWindow;
 import ui.windows.subwindows.movemoneywindows.deposit.Deposit;
+import ui.windows.subwindows.movemoneywindows.withdraw.Withdraw;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +46,8 @@ public class MoveMoney extends SubWindow {
 
     // EFFECTS: Instantiates and Loads withdrawal window
     private void makeWithdrawal() {
-        // stub
+        Withdraw withdraw = new Withdraw(container,home);
+        withdraw.updateGUI();
     }
 
     // EFFECTS: Instantiates and Loads transfer window
