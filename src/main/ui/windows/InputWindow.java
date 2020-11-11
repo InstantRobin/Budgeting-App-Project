@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Represents a window where the user can choose between the money movement functions
-public abstract class MoveMoneyWindow extends SubWindow {
+public abstract class InputWindow extends SubWindow {
 
     protected final Home home;
 
-    public MoveMoneyWindow(Container container, Home home) {
+    public InputWindow(Container container, Home home) {
         super(container,home);
         this.home = home;
     }

@@ -1,14 +1,14 @@
 package ui.windows.subwindows.movemoneywindows;
 
 import ui.windows.Home;
-import ui.windows.MoveMoneyWindow;
+import ui.windows.InputWindow;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class MoneyInput extends MoveMoneyWindow {
+public abstract class MoneyInput extends InputWindow {
 
     private double val;
     private Home home;

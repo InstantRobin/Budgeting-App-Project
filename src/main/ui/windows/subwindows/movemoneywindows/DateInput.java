@@ -2,7 +2,7 @@ package ui.windows.subwindows.movemoneywindows;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.MoveMoneyWindow;
+import ui.windows.InputWindow;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class DateInput extends MoveMoneyWindow {
+public abstract class DateInput extends InputWindow {
     private Account acc;
     private Home home;
 
