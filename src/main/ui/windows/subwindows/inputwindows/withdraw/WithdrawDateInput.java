@@ -1,8 +1,8 @@
-package ui.windows.subwindows.movemoneywindows;
+package ui.windows.subwindows.inputwindows.withdraw;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.InputWindow;
+import ui.windows.subwindows.inputwindows.DateInput;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -10,15 +10,21 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-// Represents a window where the user inputs a date
-public abstract class DateInput extends InputWindow {
+public class WithdrawDateInput extends DateInput {
 
-    public DateInput(Container container, Home home) {
+    int val;
+    Account acc;
+    Withdraw withdraw;
+
+    public WithdrawDateInput(Container container, Home home, Withdraw withdraw, int val, Account acc) {
         super(container,home);
+        this.withdraw = withdraw;
+        this.val = val;
+        this.acc = acc;
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
-    public void updateGUI(int val, Account acc) {
+    public void updateGUI() {
         ArrayList<Accessible> components = getDateWindow();
         JTextArea enteredText = (JTextArea) components.get(0);
         JButton enterButton = (JButton) components.get(1);
@@ -38,5 +44,8 @@ public abstract class DateInput extends InputWindow {
         }
     }
 
-    protected abstract void inputButtonFunction(LocalDate date);
+    @Override
+    protected void inputButtonFunction(LocalDate date) {
+        withdraw.makeWithdrawal(val,acc,date);
+    }
 }

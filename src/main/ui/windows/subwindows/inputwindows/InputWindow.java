@@ -1,6 +1,8 @@
-package ui.windows;
+package ui.windows.subwindows.inputwindows;
 
 import model.Account;
+import ui.windows.Home;
+import ui.windows.SubWindow;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;

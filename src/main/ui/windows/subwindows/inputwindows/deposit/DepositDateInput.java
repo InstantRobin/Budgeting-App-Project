@@ -1,9 +1,8 @@
-package ui.windows.subwindows.movemoneywindows.withdraw;
+package ui.windows.subwindows.inputwindows.deposit;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.subwindows.movemoneywindows.DateInput;
-import ui.windows.subwindows.movemoneywindows.deposit.Deposit;
+import ui.windows.subwindows.inputwindows.DateInput;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -11,15 +10,15 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WithdrawDateInput extends DateInput {
+public class DepositDateInput extends DateInput {
 
     int val;
     Account acc;
-    Withdraw withdraw;
+    Deposit deposit;
 
-    public WithdrawDateInput(Container container, Home home, Withdraw withdraw, int val, Account acc) {
+    public DepositDateInput(Container container, Home home, Deposit deposit, int val, Account acc) {
         super(container,home);
-        this.withdraw = withdraw;
+        this.deposit = deposit;
         this.val = val;
         this.acc = acc;
     }
@@ -47,6 +46,6 @@ public class WithdrawDateInput extends DateInput {
 
     @Override
     protected void inputButtonFunction(LocalDate date) {
-        withdraw.makeWithdrawal(val,acc,date);
+        deposit.makeDeposit(val,acc,date);
     }
 }

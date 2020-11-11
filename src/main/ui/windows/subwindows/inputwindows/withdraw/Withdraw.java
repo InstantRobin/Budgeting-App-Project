@@ -1,10 +1,9 @@
-package ui.windows.subwindows.movemoneywindows.withdraw;
+package ui.windows.subwindows.inputwindows.withdraw;
 
 import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
 import ui.windows.SubWindow;
-import ui.windows.subwindows.movemoneywindows.deposit.DepositMoneyInput;
 
 import java.awt.*;
 import java.time.LocalDate;

@@ -1,7 +1,6 @@
-package ui.windows.subwindows.movemoneywindows;
+package ui.windows.subwindows.inputwindows;
 
 import ui.windows.Home;
-import ui.windows.InputWindow;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;

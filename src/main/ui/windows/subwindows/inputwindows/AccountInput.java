@@ -1,8 +1,7 @@
-package ui.windows.subwindows.movemoneywindows;
+package ui.windows.subwindows.inputwindows;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.InputWindow;
 
 import javax.swing.*;
 import java.awt.*;

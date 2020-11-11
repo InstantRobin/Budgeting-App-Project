@@ -1,8 +1,7 @@
-package ui.windows.subwindows.movemoneywindows.deposit;
+package ui.windows.subwindows.inputwindows;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.subwindows.movemoneywindows.DateInput;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -10,21 +9,15 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DepositDateInput extends DateInput {
+// Represents a window where the user inputs a date
+public abstract class DateInput extends InputWindow {
 
-    int val;
-    Account acc;
-    Deposit deposit;
-
-    public DepositDateInput(Container container, Home home, Deposit deposit, int val, Account acc) {
+    public DateInput(Container container, Home home) {
         super(container,home);
-        this.deposit = deposit;
-        this.val = val;
-        this.acc = acc;
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
-    public void updateGUI() {
+    public void updateGUI(int val, Account acc) {
         ArrayList<Accessible> components = getDateWindow();
         JTextArea enteredText = (JTextArea) components.get(0);
         JButton enterButton = (JButton) components.get(1);
@@ -44,8 +37,5 @@ public class DepositDateInput extends DateInput {
         }
     }
 
-    @Override
-    protected void inputButtonFunction(LocalDate date) {
-        deposit.makeDeposit(val,acc,date);
-    }
+    protected abstract void inputButtonFunction(LocalDate date);
 }

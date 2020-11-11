@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 // Represents a window of the program
-abstract class Window {
+public abstract class Window {
 
     protected final Container container;
     protected final ArrayList<JButton> buttons = new ArrayList<>();

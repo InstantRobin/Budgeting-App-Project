@@ -1,7 +1,7 @@
-package ui.windows.subwindows.movemoneywindows.deposit;
+package ui.windows.subwindows.inputwindows.deposit;
 
 import ui.windows.Home;
-import ui.windows.subwindows.movemoneywindows.MoneyInput;
+import ui.windows.subwindows.inputwindows.MoneyInput;
 
 import java.awt.*;
 

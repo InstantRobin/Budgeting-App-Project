@@ -3,6 +3,7 @@ package ui.windows.subwindows;
 import model.Account;
 import ui.windows.Home;
 import ui.windows.SubWindow;
+import ui.windows.subwindows.inputwindows.viewaccount.ViewAccount;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,12 +42,14 @@ public class ManageAccounts extends SubWindow {
     // TODO: Make user select an account, display that (need subclass maybe?)
     // TODO: Add back button
     public void viewAcctBal() {
-        reset();
-        for (Account acc : manager.getAccounts()) {
-            JTextArea accountBalanceArea = new JTextArea(acc.getName() + ": " + acc.getStringBalance());
-            setClearUneditableTextArea(accountBalanceArea);
-            container.add(accountBalanceArea);
-        }
+//        reset();
+//        for (Account acc : manager.getAccounts()) {
+//            JTextArea accountBalanceArea = new JTextArea(acc.getName() + ": " + acc.getStringBalance());
+//            setClearUneditableTextArea(accountBalanceArea);
+//            container.add(accountBalanceArea);
+//        }
+        ViewAccount viewAccount = new ViewAccount(container,home);
+        viewAccount.updateGUI();
     }
 
     // EFFECTS: Clears GUI, Allows user to select an account, displays said account's full history
