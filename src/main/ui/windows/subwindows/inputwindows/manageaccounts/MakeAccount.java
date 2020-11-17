@@ -13,13 +13,15 @@ import java.awt.*;
 
 public class MakeAccount extends InputWindow {
 
+    //TODO: Reduce Redundancy w/ Lambda
+
     private String name;
     private int val;
     private Currency currency;
 
     private String curName;
     private String curSymbol;
-    private double exchange;
+    private double curExchange;
 
     public MakeAccount(Container container, Home home) {
         super(container, home);
@@ -59,6 +61,9 @@ public class MakeAccount extends InputWindow {
                 createAccount();
             });
         }
+        JButton newAccButton = new JButton();
+        container.add(newAccButton);
+        newAccButton.addActionListener(e -> createCurrency());
     }
 
     private void createAccount() {
@@ -68,12 +73,34 @@ public class MakeAccount extends InputWindow {
     }
 
     private void createCurrency() {
-        getGenericInput("New Currency Name: ");
+        getGenericInput("New Currency Name:");
         JButton button = (JButton)container.getComponent(2);
         JTextArea textArea = (JTextArea)container.getComponent(1);
         button.addActionListener(e -> {
-            this.name = textArea.getText();
-            //getSymbol();
+            curName = textArea.getText();
+            getSymbol();
+        });
+    }
+
+    private void getSymbol() {
+        getGenericInput("Symbol:");
+        JButton button = (JButton)container.getComponent(2);
+        JTextArea textArea = (JTextArea)container.getComponent(1);
+        button.addActionListener(e -> {
+            curSymbol = textArea.getText();
+            getExchange();
+        });
+    }
+
+    // TODO: Check if appropriate value
+    private void getExchange() {
+        getGenericInput("Exchange Rate into USD:");
+        JButton button = (JButton)container.getComponent(2);
+        JTextArea textArea = (JTextArea)container.getComponent(1);
+        button.addActionListener(e -> {
+            curExchange = Double.parseDouble(textArea.getText());
+            this.currency = new Currency(curName,curSymbol,curExchange);
+            createAccount();
         });
     }
 
