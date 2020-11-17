@@ -7,9 +7,12 @@ import persistence.Writable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+
+import static model.MoveMoneyFunctions.moneyToString;
 
 // Represents the event history of all actions upon an account
-public class History implements Writable {
+public class History implements Writable, Iterable<LogEntry> {
 
     private final ArrayList<LogEntry> history = new ArrayList<>();
 
@@ -108,5 +111,10 @@ public class History implements Writable {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public Iterator<LogEntry> iterator() {
+        return history.iterator();
     }
 }

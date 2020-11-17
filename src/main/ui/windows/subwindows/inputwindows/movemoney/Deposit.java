@@ -1,18 +1,9 @@
 package ui.windows.subwindows.inputwindows.movemoney;
 
-import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
-import ui.windows.SubWindow;
-import ui.windows.subwindows.inputwindows.AccountInput;
-import ui.windows.subwindows.inputwindows.DateInput;
-import ui.windows.subwindows.inputwindows.MoneyInput;
 
-import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 // Represents the Deposit Window
 public class Deposit extends MoveMoney {
@@ -29,12 +20,12 @@ public class Deposit extends MoveMoney {
         super.getInt(this::getAccount);
     }
 
-    protected void getAccount(int val) {
-        super.getAccount(val,this::getDate);
+    protected void getAccount() {
+        super.getAccount(this::getDate);
     }
 
-    private void getDate(Account acc) {
-        super.getDate(acc,this::makeDeposit);
+    private void getDate() {
+        super.getDate(this::makeDeposit);
     }
 
     // EFFECTS: Takes all user input so far, deposits val into account, logs account and date

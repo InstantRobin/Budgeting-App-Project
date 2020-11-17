@@ -27,7 +27,7 @@ public class ViewAccount extends InputWindow {
         }
     }
 
-    protected void displayAccount(Account acc) {
+    private void displayAccount(Account acc) {
         showMessageWindow(acc.getName() + ": " + acc.getStringBalance());
     }
 }

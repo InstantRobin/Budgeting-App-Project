@@ -3,15 +3,12 @@ package ui.windows.subwindows.inputwindows.movemoney;
 import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
-import ui.windows.SubWindow;
 import ui.windows.subwindows.inputwindows.AccountInput;
-import ui.windows.subwindows.inputwindows.DateInput;
-import ui.windows.subwindows.inputwindows.MoneyInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
 
+// Represents a transfer window
 public class Transfer extends MoveMoney {
 
     private Account acc2;
@@ -25,24 +22,26 @@ public class Transfer extends MoveMoney {
         super.getInt(this::getAccount);
     }
 
-    protected void getAccount(int val) {
-        super.getAccount(val,this::getSecondAccount);
+    protected void getAccount() {
+        super.getAccount(this::getSecondAccount);
     }
 
-    private void getSecondAccount(Account acc1) {
-        this.acc = acc1;
+    private void getSecondAccount() {
         AccountInput accountInput = new AccountInput(container,home);
         accountInput.updateGUI();
 
         for (int i = 0; i < container.getComponents().length; i++) {
             JButton button = (JButton)container.getComponent(i);
             Account acc2 = manager.getAccounts().get(i);
-            button.addActionListener(e -> getDate(acc2));
+            button.addActionListener(e -> {
+                this.acc2 = acc2;
+                getDate();
+            });
         }
     }
 
-    private void getDate(Account acc2) {
-        super.getDate(acc2,this::makeTransfer);
+    private void getDate() {
+        super.getDate(this::makeTransfer);
     }
 
     public void makeTransfer() {

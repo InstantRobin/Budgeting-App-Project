@@ -10,7 +10,6 @@ import ui.windows.subwindows.inputwindows.MoneyInput;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.util.function.Consumer;
 
 public abstract class MoveMoney extends SubWindow {
 
@@ -22,29 +21,33 @@ public abstract class MoveMoney extends SubWindow {
         super(container, home);
     }
 
-    protected void getInt(Consumer<Integer> fn) {
+    protected void getInt(Runnable fn) {
         MoneyInput moneyInput = new MoneyInput(container,home);
         moneyInput.updateGUI();
 
         JButton button = (JButton)container.getComponent(2);
         JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> fn.accept(moneyInput.verifyVal(textArea.getText())));
+        button.addActionListener(e -> {
+            this.val = moneyInput.verifyVal(textArea.getText());
+            fn.run();
+        });
     }
 
-    protected void getAccount(int val, Consumer<Account> fn) {
-        this.val = val;
+    protected void getAccount(Runnable fn) {
         AccountInput accountInput = new AccountInput(container,home);
         accountInput.updateGUI();
 
         for (int i = 0; i < container.getComponents().length; i++) {
             JButton button = (JButton)container.getComponent(i);
             Account account = manager.getAccounts().get(i);
-            button.addActionListener(e -> fn.accept(account));
+            button.addActionListener(e -> {
+                this.acc = account;
+                fn.run();
+            });
         }
     }
 
-    protected void getDate(Account acc, Runnable fn) {
-        this.acc = acc;
+    protected void getDate(Runnable fn) {
         DateInput dateInput = new DateInput(container,home);
         dateInput.updateGUI();
 
