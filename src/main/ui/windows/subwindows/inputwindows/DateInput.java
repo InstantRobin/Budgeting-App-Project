@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 public class DateInput extends InputWindow {
 
@@ -17,7 +16,7 @@ public class DateInput extends InputWindow {
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
     public void updateGUI() {
-        getDateWindow();
+        getGenericInput("Enter Date As YYYY-MM-DD:");
     }
 
     // EFFECTS: Ensures user input is a properly formatted date,

@@ -22,6 +22,7 @@ public class Deposit extends SubWindow {
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
     //          Initializes function chain where windows are loaded to get user input, past input is passed along
     //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
+    @Override
     public void updateGUI() {
         MoneyInput moneyInput = new MoneyInput(container,home);
         moneyInput.updateGUI();

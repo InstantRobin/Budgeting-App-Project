@@ -5,6 +5,7 @@ import ui.windows.Home;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class AccountInput extends InputWindow {
 
@@ -14,7 +15,11 @@ public class AccountInput extends InputWindow {
 
     // EFFECTS: Displays all existing accounts to the user as buttons, passes selected account into getDate
     public void updateGUI() {
-        super.getAccountWindow();
+        reset();
+        List<Account> accounts = manager.getAccounts();
+        for (Account account : accounts) {
+            JButton accountButton = new JButton(account.getName());
+            container.add(accountButton);
+        }
     }
-
 }
