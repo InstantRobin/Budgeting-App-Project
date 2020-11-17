@@ -1,9 +1,8 @@
 package ui.windows.subwindows;
 
-import model.Account;
 import ui.windows.Home;
 import ui.windows.SubWindow;
-import ui.windows.subwindows.inputwindows.viewaccount.ViewAccount;
+import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccount;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,12 +1,12 @@
-package ui.windows.subwindows.inputwindows;
+package ui.windows.subwindows.inputwindows.movemoney;
 
 import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
 import ui.windows.SubWindow;
-import ui.windows.subwindows.inputwindows.NewAccountInput;
-import ui.windows.subwindows.inputwindows.NewDateInput;
-import ui.windows.subwindows.inputwindows.NewMoneyInput;
+import ui.windows.subwindows.inputwindows.AccountInput;
+import ui.windows.subwindows.inputwindows.DateInput;
+import ui.windows.subwindows.inputwindows.MoneyInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,7 @@ public class Deposit extends SubWindow {
     //          Initializes function chain where windows are loaded to get user input, past input is passed along
     //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
     public void updateGUI() {
-        NewMoneyInput moneyInput = new NewMoneyInput(container,home);
+        MoneyInput moneyInput = new MoneyInput(container,home);
         moneyInput.updateGUI();
 
         JButton button = (JButton)container.getComponent(2);
@@ -32,7 +32,7 @@ public class Deposit extends SubWindow {
     }
 
     private void getAccount(int val) {
-        NewAccountInput accountInput = new NewAccountInput(container,home);
+        AccountInput accountInput = new AccountInput(container,home);
         accountInput.updateGUI();
 
         for (int i = 0; i < container.getComponents().length; i++) {
@@ -43,7 +43,7 @@ public class Deposit extends SubWindow {
     }
 
     private void getDate(int val, Account acc) {
-        NewDateInput dateInput = new NewDateInput(container,home);
+        DateInput dateInput = new DateInput(container,home);
         dateInput.updateGUI();
 
         JButton button = (JButton)container.getComponent(2);
