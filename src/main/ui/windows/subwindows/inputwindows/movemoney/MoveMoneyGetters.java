@@ -11,13 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
-public abstract class MoveMoney extends SubWindow {
+public abstract class MoveMoneyGetters extends SubWindow {
 
     protected int val;
     protected Account acc;
     protected LocalDate date;
 
-    public MoveMoney(Container container, Home home) {
+    public MoveMoneyGetters(Container container, Home home) {
         super(container, home);
     }
 

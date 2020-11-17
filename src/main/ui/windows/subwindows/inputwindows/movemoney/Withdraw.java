@@ -6,7 +6,7 @@ import ui.windows.Home;
 import java.awt.*;
 
 // Represents the Withdraw Window
-public class Withdraw extends MoveMoney {
+public class Withdraw extends MoveMoneyGetters {
 
     public Withdraw(Container container, Home home) {
         super(container, home);

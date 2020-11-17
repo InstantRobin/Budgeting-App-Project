@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 // Represents a transfer window
-public class Transfer extends MoveMoney {
+public class Transfer extends MoveMoneyGetters {
 
     private Account acc2;
 

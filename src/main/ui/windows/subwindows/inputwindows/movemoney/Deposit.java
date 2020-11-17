@@ -6,7 +6,7 @@ import ui.windows.Home;
 import java.awt.*;
 
 // Represents the Deposit Window
-public class Deposit extends MoveMoney {
+public class Deposit extends MoveMoneyGetters {
 
     public Deposit(Container container, Home home) {
         super(container, home);
@@ -20,7 +20,7 @@ public class Deposit extends MoveMoney {
         super.getInt(this::getAccount);
     }
 
-    protected void getAccount() {
+    private void getAccount() {
         super.getAccount(this::getDate);
     }
 

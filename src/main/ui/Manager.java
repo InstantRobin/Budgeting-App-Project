@@ -308,13 +308,13 @@ public class Manager {
         } catch (IOException e) {
             System.out.println("Unable to read file: " + JSON_STORE);
         }
-        getCurrencies();
+        loadCurrencies();
         setCurrencies();
     }
 
     // MODIFIES: Currencies
     // EFFECTS: Builds list of currencies from Accounts
-    private void getCurrencies() {
+    private void loadCurrencies() {
         for (Account acc : accounts) {
             if (!currencies.contains(acc.getCurrency())) {
                 currencies.add(acc.getCurrency());
@@ -348,5 +348,9 @@ public class Manager {
 
     public List<Account> getAccounts() {
         return accounts;
+    }
+
+    public List<Currency> getCurrencies() {
+        return currencies;
     }
 }

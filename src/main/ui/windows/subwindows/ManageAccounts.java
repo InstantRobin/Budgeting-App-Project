@@ -2,6 +2,7 @@ package ui.windows.subwindows;
 
 import ui.windows.Home;
 import ui.windows.SubWindow;
+import ui.windows.subwindows.inputwindows.manageaccounts.MakeAccount;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccount;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccountHistory;
 
@@ -39,8 +40,6 @@ public class ManageAccounts extends SubWindow {
     }
 
     // EFFECTS: Clears GUI, prints the values of all the accounts
-    // TODO: Make user select an account, display that (need subclass maybe?)
-    // TODO: Add back button
     public void viewAcctBal() {
         ViewAccount viewAccount = new ViewAccount(container,home);
         viewAccount.updateGUI();
@@ -54,6 +53,7 @@ public class ManageAccounts extends SubWindow {
 
     // EFFECTS: Makes window where user can input info to make a new account, adds account to manage.accounts
     private void makeNewAcct() {
-        // stub
+        MakeAccount makeAccount = new MakeAccount(container,home);
+        makeAccount.updateGUI();
     }
 }
