@@ -12,7 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
-public class Transfer extends SubWindow {
+public class Transfer extends MoveMoney {
+
+    private Account acc2;
 
     public Transfer(Container container, Home home) {
         super(container,home);
@@ -20,48 +22,32 @@ public class Transfer extends SubWindow {
 
     @Override
     public void updateGUI() {
-        MoneyInput moneyInput = new MoneyInput(container,home);
-        moneyInput.updateGUI();
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> getFirstAccount(moneyInput.verifyVal(textArea.getText())));
+        super.getInt(this::getAccount);
     }
 
-    private void getFirstAccount(int val) {
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
-
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account acc1 = manager.getAccounts().get(i);
-            button.addActionListener(e -> getSecondAccount(val,acc1));
-        }
+    protected void getAccount(int val) {
+        super.getAccount(val,this::getSecondAccount);
     }
 
-    private void getSecondAccount(int val, Account acc1) {
+    private void getSecondAccount(Account acc1) {
+        this.acc = acc1;
         AccountInput accountInput = new AccountInput(container,home);
         accountInput.updateGUI();
 
         for (int i = 0; i < container.getComponents().length; i++) {
             JButton button = (JButton)container.getComponent(i);
             Account acc2 = manager.getAccounts().get(i);
-            button.addActionListener(e -> getDate(val,acc1,acc2));
+            button.addActionListener(e -> getDate(acc2));
         }
     }
 
-    private void getDate(int val, Account acc1, Account acc2) {
-        DateInput dateInput = new DateInput(container,home);
-        dateInput.updateGUI();
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> makeTransfer(val,acc1,acc2,dateInput.verifyDate(textArea.getText())));
+    private void getDate(Account acc2) {
+        super.getDate(acc2,this::makeTransfer);
     }
 
-    public void makeTransfer(int val, Account acc1, Account acc2, LocalDate date) {
-        MoveMoneyFunctions.transfer(acc1, acc2, val, date);
-        showMessageWindow("Transferred " + MoveMoneyFunctions.moneyToString(val, acc1.getCurrency()) + " from "
-                + acc1.getName() + " to " + acc2.getName() + " on " + date.toString());
+    public void makeTransfer() {
+        MoveMoneyFunctions.transfer(acc, acc2, val, date);
+        showMessageWindow("Transferred " + MoveMoneyFunctions.moneyToString(val, acc.getCurrency()) + " from "
+                + acc.getName() + " to " + acc2.getName() + " on " + date.toString());
     }
 }

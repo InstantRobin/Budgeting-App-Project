@@ -13,7 +13,7 @@ import java.awt.*;
 import java.time.LocalDate;
 
 // Represents the Withdraw Window
-public class Withdraw extends SubWindow {
+public class Withdraw extends MoveMoney {
 
     public Withdraw(Container container, Home home) {
         super(container, home);
@@ -26,37 +26,20 @@ public class Withdraw extends SubWindow {
     //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
     @Override
     public void updateGUI() {
-        MoneyInput moneyInput = new MoneyInput(container,home);
-        moneyInput.updateGUI();
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> getAccount(moneyInput.verifyVal(textArea.getText())));
+        super.getInt(this::getAccount);
     }
 
-    private void getAccount(int val) {
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
-
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account account = manager.getAccounts().get(i);
-            button.addActionListener(e -> getDate(val,account));
-        }
+    protected void getAccount(int val) {
+        super.getAccount(val,this::getDate);
     }
 
-    private void getDate(int val, Account acc) {
-        DateInput dateInput = new DateInput(container,home);
-        dateInput.updateGUI();
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> makeWithdrawal(val,acc,dateInput.verifyDate(textArea.getText())));
+    private void getDate(Account acc) {
+        super.getDate(acc,this::makeWithdrawal);
     }
 
     // EFFECTS: Takes all user input so far, withdraws val from account, logs account and date
     //          Displays a summary of the action to the user
-    public void makeWithdrawal(int val, Account acc, LocalDate date) {
+    public void makeWithdrawal() {
         MoveMoneyFunctions.withdraw(acc,val, date);
         showMessageWindow("Withdrew " + MoveMoneyFunctions.moneyToString(val, acc.getCurrency()) + " from "
                 + acc.getName() + " on " + date.toString());
