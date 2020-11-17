@@ -4,6 +4,7 @@ import model.Account;
 import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.AccountInput;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class TransferSecondAccountInput extends AccountInput {
@@ -17,6 +18,14 @@ public class TransferSecondAccountInput extends AccountInput {
         this.transfer = transfer;
         this.val = val;
         this.acc1 = acc;
+    }
+
+    @Override
+    public void updateGUI() {
+        super.updateGUI();
+        JTextArea message = new JTextArea("(Target Account)");
+        setClearUneditableTextArea(message);
+        container.add(message);
     }
 
     @Override
