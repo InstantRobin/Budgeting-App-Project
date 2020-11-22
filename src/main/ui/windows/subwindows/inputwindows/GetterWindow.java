@@ -5,8 +5,6 @@ import ui.windows.Home;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public abstract class GetterWindow extends InputWindow {
@@ -35,6 +33,9 @@ public abstract class GetterWindow extends InputWindow {
     protected void getAccount(Runnable fn) {
         reset();
         List<Account> accounts = manager.getAccounts();
+        if (accounts.isEmpty()) {
+            showMessageWindow("No accounts");
+        }
         for (Account account : accounts) {
             JButton accountButton = new JButton(account.getName());
             container.add(accountButton);
