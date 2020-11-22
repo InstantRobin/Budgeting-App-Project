@@ -2,29 +2,30 @@ package ui.windows.subwindows.inputwindows.movemoney;
 
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
-// Represents the Withdraw Window
+// Represents a window where the user can withdraw money from an account
 public class Withdraw extends MoveMoneyWindow {
 
     public Withdraw(Container container, Home home) {
         super(container, home);
     }
 
-    // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
+    // EFFECTS: Loads an Withdraw Window, when submit is pressed, prompts user for a number, turns it into an int
     //          Initializes function chain where windows are loaded to get user input, past input is passed along
-    //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
+    //          By end of function chain, assuming good user input, will withdraw inputted amount from a given acct
     @Override
     public void updateGUI() {
         super.getInt(this::getAccount);
     }
 
+    // EFFECTS: Prompts user for an account, continues chain
     protected void getAccount() {
         super.getAccount(this::getDate);
     }
 
+    // EFFECTS: Prompts user for a date, continues chain
     private void getDate() {
         super.getDate(this::makeWithdrawal);
     }

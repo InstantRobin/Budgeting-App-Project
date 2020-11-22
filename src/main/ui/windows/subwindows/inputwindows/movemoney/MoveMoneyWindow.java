@@ -8,6 +8,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+// Represents a window that will be used to move money into, out of, or between acconts
 public abstract class MoveMoneyWindow extends GetterWindow {
 
     protected int val;
@@ -18,8 +19,8 @@ public abstract class MoveMoneyWindow extends GetterWindow {
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
-    //          Initializes function chain where windows are loaded to get user input, past input is passed along
-    //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
+    //          If input is good, turns it into an int of cents, calls given fn with the inputted value
+    //          If not, throws error, returns user to home
     protected void getInt(Runnable fn) {
         getString("Input Amount: ", () -> {
             try {
@@ -33,6 +34,9 @@ public abstract class MoveMoneyWindow extends GetterWindow {
         });
     }
 
+    // EFFECTS: Verifies inputted value is a positive double, returns value as an int of cents
+    //          If not number, throws NumberFormatException
+    //          If negatiev, throws NegativeValueException
     public int verifyVal(String str) throws NumberFormatException, NegativeValueException {
         double val;
         val = Double.parseDouble(str);
@@ -43,7 +47,7 @@ public abstract class MoveMoneyWindow extends GetterWindow {
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
-    //              if is, passes it and all past inputs into makeDeposit
+    //              if is, passes it and all past inputs into given fn
     //              if not, throws error screen, returns user to home
     protected void getDate(Runnable fn) {
         getString("Enter Date As YYYY-MM-DD:", () -> {
