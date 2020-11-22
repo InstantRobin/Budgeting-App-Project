@@ -16,10 +16,6 @@ public class MakeAccount extends GetterWindow {
     private Currency currency;
     private int val;
 
-    private String curName;
-    private String curSymbol;
-    private double curExchange;
-
     public MakeAccount(Container container, Home home) {
         super(container, home);
     }
@@ -65,6 +61,7 @@ public class MakeAccount extends GetterWindow {
         });
     }
 
+    // EFFECTS: Sets the currency to the one given by the user
     private void setCurrency(Currency currency) {
         this.currency = currency;
         manager.addCurrency(currency);

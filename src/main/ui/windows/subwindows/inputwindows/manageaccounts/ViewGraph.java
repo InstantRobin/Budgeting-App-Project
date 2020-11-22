@@ -13,25 +13,25 @@ import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
+// Represents a window where the user can choose an account to make a graph of it's total values over time
 public class ViewGraph extends GetterWindow {
 
     public ViewGraph(Container container, Home home) {
         super(container, home);
     }
 
+    // EFFECTS: Prompts user for an account, creates graph
     @Override
     public void updateGUI() {
-        getAccount(this::loadGraph);
+        getAccount(this::buildGraph);
     }
 
     // https://stackoverflow.com/questions/12837986/how-to-display-date-in-a-x-axis-of-line-graph-using-jfreechart
     // https://caveofprogramming.com/java/charts-in-java-swing-with-jfreechart.html
-    private void loadGraph() {
-        TimeSeriesCollection<String> collection = getTimeSeriesCollection(acc);
-        buildGraph(acc, collection);
-    }
 
-    private void buildGraph(Account acc, TimeSeriesCollection<String> collection) {
+    // EFFECTS: Builds the frame of the graph, fills it with data, adds to GUI
+    private void buildGraph() {
+        TimeSeriesCollection<String> collection = getTimeSeriesCollection(acc);
         JFreeChart chart = ChartFactory.createTimeSeriesChart(acc.getName(),"Date",
                 "Total (" + acc.getCurrency().getSymbol() + ")", collection);
 
@@ -46,7 +46,7 @@ public class ViewGraph extends GetterWindow {
         addBackButtonListener();
     }
 
-
+    // EFFECTS: Fills the graph with collection of dates and corresponding totals, from acc history
     private TimeSeriesCollection<String> getTimeSeriesCollection(Account acc) {
         History data = MoveMoneyFunctions.buildData(acc);
         TimeSeries<String> timeSeries = new TimeSeries<>("Data");

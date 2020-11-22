@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static model.MoveMoneyFunctions.moneyToString;
 
+// Represents a window to view the history of actions on an account
 public class ViewAccountHistory extends GetterWindow {
 
     ArrayList<String> dates = new ArrayList<>();
@@ -25,11 +26,13 @@ public class ViewAccountHistory extends GetterWindow {
         super(container, home);
     }
 
+    // EFFECTS: Prompts user for an account to act upon, initiates GUI
     @Override
     public void updateGUI() {
         getAccount(this::initGUI);
     }
 
+    // EFFECTS: Readies the GUI, loads 3 columns, loads history into them
     private void initGUI() {
         reset();
         setClearUneditableTextArea(dateColumn);
@@ -47,6 +50,7 @@ public class ViewAccountHistory extends GetterWindow {
         loadHistory(acc);
     }
 
+    // EFFECTS: Adds history into the columns from Account
     private void loadHistory(Account acc) {
         History hist = acc.getHistory();
         hist.updateTotals();
@@ -61,6 +65,7 @@ public class ViewAccountHistory extends GetterWindow {
         initTotalColumn();
     }
 
+    // EFFECTS: Loads the event dates
     private void initDateColumn() {
         dateColumn.setColumns(dates.size());
         dateColumn.append("Date\n");
@@ -69,6 +74,7 @@ public class ViewAccountHistory extends GetterWindow {
         }
     }
 
+    // EFFECTS: Loads the amounts changed
     private void initChangeColumn() {
         changeColumn.setColumns(dates.size());
         changeColumn.append("Change\n");
@@ -77,6 +83,7 @@ public class ViewAccountHistory extends GetterWindow {
         }
     }
 
+    // EFFECTS: Loads the total value
     private void initTotalColumn() {
         totalColumn.setColumns(dates.size());
         totalColumn.append("Total\n");
