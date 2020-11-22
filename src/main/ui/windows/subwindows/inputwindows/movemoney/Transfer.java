@@ -12,6 +12,7 @@ import java.awt.*;
 // Represents a transfer window
 public class Transfer extends GetterWindow {
 
+    private Account acc1;
     private Account acc2;
 
     public Transfer(Container container, Home home) {
@@ -24,21 +25,17 @@ public class Transfer extends GetterWindow {
     }
 
     protected void getAccount() {
-        super.getAccount(this::getSecondAccount);
+        super.getAccount(() -> {
+            acc1 = acc;
+            getSecondAccount();
+        });
     }
 
     private void getSecondAccount() {
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
-
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account acc2 = manager.getAccounts().get(i);
-            button.addActionListener(e -> {
-                this.acc2 = acc2;
-                getDate();
-            });
-        }
+        super.getAccount(() -> {
+            acc2 = acc;
+            getDate();
+        });
     }
 
     private void getDate() {
@@ -46,8 +43,8 @@ public class Transfer extends GetterWindow {
     }
 
     public void makeTransfer() {
-        MoveMoneyFunctions.transfer(acc, acc2, val, date);
-        showMessageWindow("Transferred " + MoveMoneyFunctions.moneyToString(val, acc.getCurrency()) + " from "
-                + acc.getName() + " to " + acc2.getName() + " on " + date.toString());
+        MoveMoneyFunctions.transfer(acc1, acc2, val, date);
+        showMessageWindow("Transferred " + MoveMoneyFunctions.moneyToString(val, acc1.getCurrency()) + " from "
+                + acc1.getName() + " to " + acc2.getName() + " on " + date.toString());
     }
 }
