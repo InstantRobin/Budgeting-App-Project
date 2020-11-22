@@ -206,6 +206,10 @@ public class Manager {
         }
     }
 
+    public void addCurrency(Currency cur) {
+        currencies.add(cur);
+    }
+
     //************//
     //MANAGE DATA//
     //**********//

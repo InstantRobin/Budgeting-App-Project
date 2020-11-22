@@ -61,7 +61,7 @@ public class MakeAccount extends InputWindow {
                 createAccount();
             });
         }
-        JButton newAccButton = new JButton();
+        JButton newAccButton = new JButton("New");
         container.add(newAccButton);
         newAccButton.addActionListener(e -> createCurrency());
     }
@@ -99,7 +99,8 @@ public class MakeAccount extends InputWindow {
         JTextArea textArea = (JTextArea)container.getComponent(1);
         button.addActionListener(e -> {
             curExchange = Double.parseDouble(textArea.getText());
-            this.currency = new Currency(curName,curSymbol,curExchange);
+            currency = new Currency(curName,curSymbol,curExchange);
+            manager.addCurrency(currency);
             createAccount();
         });
     }
