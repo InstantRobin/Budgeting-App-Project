@@ -4,8 +4,7 @@ import model.Account;
 import model.History;
 import model.LogEntry;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.AccountInput;
-import ui.windows.subwindows.inputwindows.InputWindow;
+import ui.windows.subwindows.inputwindows.AccountSelectWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 
 import static model.MoveMoneyFunctions.moneyToString;
 
-public class ViewAccountHistory extends InputWindow {
+public class ViewAccountHistory extends AccountSelectWindow {
 
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> changes = new ArrayList<>();
@@ -28,22 +27,10 @@ public class ViewAccountHistory extends InputWindow {
 
     @Override
     public void updateGUI() {
-        getAccount();
+        super.updateGUI(this::initGUI);
     }
 
-    private void getAccount() {
-        reset();
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
-
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account account = manager.getAccounts().get(i);
-            button.addActionListener(e -> updateGUIhistory(account));
-        }
-    }
-
-    private void updateGUIhistory(Account acc) {
+    private void initGUI(Account acc) {
         reset();
         setClearUneditableTextArea(dateColumn);
         setClearUneditableTextArea(changeColumn);
@@ -57,10 +44,10 @@ public class ViewAccountHistory extends InputWindow {
 
         close.addActionListener(e -> home.updateGUI());
 
-        displayAcctHistory(acc);
+        loadHistory(acc);
     }
 
-    private void displayAcctHistory(Account acc) {
+    private void loadHistory(Account acc) {
         History hist = acc.getHistory();
         hist.updateTotals();
         for (LogEntry entry: hist) {

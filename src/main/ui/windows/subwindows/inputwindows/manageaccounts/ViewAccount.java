@@ -2,13 +2,11 @@ package ui.windows.subwindows.inputwindows.manageaccounts;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.InputWindow;
-import ui.windows.subwindows.inputwindows.AccountInput;
+import ui.windows.subwindows.inputwindows.AccountSelectWindow;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class ViewAccount extends InputWindow {
+public class ViewAccount extends AccountSelectWindow {
 
     public ViewAccount(Container container, Home home) {
         super(container,home);
@@ -16,15 +14,7 @@ public class ViewAccount extends InputWindow {
 
     @Override
     public void updateGUI() {
-        reset();
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
-
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account account = manager.getAccounts().get(i);
-            button.addActionListener(e -> displayAccount(account));
-        }
+        super.updateGUI(this::displayAccount);
     }
 
     private void displayAccount(Account acc) {
