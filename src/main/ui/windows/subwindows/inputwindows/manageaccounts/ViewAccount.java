@@ -1,12 +1,11 @@
 package ui.windows.subwindows.inputwindows.manageaccounts;
 
-import model.Account;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.AccountSelectWindow;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
-public class ViewAccount extends AccountSelectWindow {
+public class ViewAccount extends GetterWindow {
 
     public ViewAccount(Container container, Home home) {
         super(container,home);
@@ -14,10 +13,10 @@ public class ViewAccount extends AccountSelectWindow {
 
     @Override
     public void updateGUI() {
-        super.updateGUI(this::displayAccount);
+        super.getAccount(this::displayAccount);
     }
 
-    private void displayAccount(Account acc) {
+    private void displayAccount() {
         showMessageWindow(acc.getName() + ": " + acc.getStringBalance());
     }
 }

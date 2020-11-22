@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 public abstract class GetterWindow extends InputWindow {
 
@@ -57,13 +58,13 @@ public abstract class GetterWindow extends InputWindow {
     }
 
     protected void getAccount(Runnable fn) {
-        AccountInput accountInput = new AccountInput(container,home);
-        accountInput.updateGUI();
+        reset();
+        List<Account> accounts = manager.getAccounts();
+        for (Account account : accounts) {
+            JButton accountButton = new JButton(account.getName());
+            container.add(accountButton);
 
-        for (int i = 0; i < container.getComponents().length; i++) {
-            JButton button = (JButton)container.getComponent(i);
-            Account account = manager.getAccounts().get(i);
-            button.addActionListener(e -> {
+            accountButton.addActionListener(e -> {
                 this.acc = account;
                 fn.run();
             });

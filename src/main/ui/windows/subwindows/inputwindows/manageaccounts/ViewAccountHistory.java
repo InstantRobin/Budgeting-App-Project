@@ -4,7 +4,7 @@ import model.Account;
 import model.History;
 import model.LogEntry;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.AccountSelectWindow;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static model.MoveMoneyFunctions.moneyToString;
 
-public class ViewAccountHistory extends AccountSelectWindow {
+public class ViewAccountHistory extends GetterWindow {
 
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> changes = new ArrayList<>();
@@ -27,10 +27,10 @@ public class ViewAccountHistory extends AccountSelectWindow {
 
     @Override
     public void updateGUI() {
-        super.updateGUI(this::initGUI);
+        getAccount(this::initGUI);
     }
 
-    private void initGUI(Account acc) {
+    private void initGUI() {
         reset();
         setClearUneditableTextArea(dateColumn);
         setClearUneditableTextArea(changeColumn);

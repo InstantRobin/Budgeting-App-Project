@@ -9,11 +9,11 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.time.*;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.AccountSelectWindow;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
-public class ViewGraph extends AccountSelectWindow {
+public class ViewGraph extends GetterWindow {
 
     public ViewGraph(Container container, Home home) {
         super(container, home);
@@ -21,12 +21,12 @@ public class ViewGraph extends AccountSelectWindow {
 
     @Override
     public void updateGUI() {
-        super.updateGUI(this::loadGraph);
+        getAccount(this::loadGraph);
     }
 
     // https://stackoverflow.com/questions/12837986/how-to-display-date-in-a-x-axis-of-line-graph-using-jfreechart
     // https://caveofprogramming.com/java/charts-in-java-swing-with-jfreechart.html
-    private void loadGraph(Account acc) {
+    private void loadGraph() {
         TimeSeriesCollection<String> collection = getTimeSeriesCollection(acc);
         buildGraph(acc, collection);
     }
