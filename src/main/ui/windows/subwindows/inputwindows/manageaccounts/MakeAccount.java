@@ -24,15 +24,11 @@ public class MakeAccount extends GetterWindow {
 
     @Override
     public void updateGUI() {
-        getGenericInput("Name: ");
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("Name: ", () -> {
             this.name = textArea.getText();
             getStartingVal();
         });
     }
-
 
     private void getStartingVal() {
         getInt(this::getCurrency);
@@ -59,31 +55,25 @@ public class MakeAccount extends GetterWindow {
                 + MoveMoneyFunctions.moneyToString(val,currency) + " stored in " + currency.getName());
     }
 
+
+    // Currency Related
+
     private void createCurrency() {
-        getGenericInput("New Currency Name:");
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("New Currency Name:", () -> {
             curName = textArea.getText();
             getSymbol();
         });
     }
 
     private void getSymbol() {
-        getGenericInput("Symbol:");
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("Symbol:", () -> {
             curSymbol = textArea.getText();
             getExchange();
         });
     }
 
     private void getExchange() {
-        getGenericInput("Exchange Rate into USD:");
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("Exchange Rate into USD:", () -> {
             curExchange = Double.parseDouble(textArea.getText());
             if (curExchange <= 0) {
                 showMessageWindow("Error: Value must be positive");

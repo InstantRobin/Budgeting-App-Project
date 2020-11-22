@@ -13,20 +13,29 @@ public abstract class GetterWindow extends InputWindow {
     protected int val;
     protected Account acc;
     protected LocalDate date;
+    protected JButton button;
+    protected JTextArea textArea;
 
     public GetterWindow(Container container, Home home) {
         super(container, home);
+    }
+
+    protected void initButtons() {
+        button = (JButton)container.getComponent(2);
+        textArea = (JTextArea)container.getComponent(1);
+    }
+
+    protected void getString(String str, Runnable rn) {
+        getGenericInput(str);
+        initButtons();
+        button.addActionListener(e -> rn.run());
     }
 
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
     //          Initializes function chain where windows are loaded to get user input, past input is passed along
     //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
     protected void getInt(Runnable fn) {
-        getGenericInput("Input Amount: ");
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("Input Amount: ", () -> {
             try {
                 this.val = verifyVal(textArea.getText());
                 fn.run();
@@ -66,11 +75,7 @@ public abstract class GetterWindow extends InputWindow {
     //              if is, passes it and all past inputs into makeDeposit
     //              if not, throws error screen, returns user to home
     protected void getDate(Runnable fn) {
-        getGenericInput("Enter Date As YYYY-MM-DD:");
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
+        getString("Enter Date As YYYY-MM-DD:", () -> {
             try {
                 this.date = LocalDate.parse(textArea.getText());
                 fn.run();
