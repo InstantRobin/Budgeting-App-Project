@@ -7,7 +7,7 @@ import ui.windows.subwindows.inputwindows.GetterWindow;
 import java.awt.*;
 
 // Represents the Deposit Window
-public class Deposit extends GetterWindow {
+public class Deposit extends MoveMoneyWindow {
 
     public Deposit(Container container, Home home) {
         super(container, home);

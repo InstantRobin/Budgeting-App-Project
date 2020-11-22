@@ -13,6 +13,7 @@ public class MakeAccount extends GetterWindow {
 
     private String name;
     private Currency currency;
+    private int val;
 
     private String curName;
     private String curSymbol;
@@ -30,8 +31,16 @@ public class MakeAccount extends GetterWindow {
         });
     }
 
+    // Not using getInt because it can be negative
     private void getStartingVal() {
-        getInt(this::getCurrency);
+        getString("Input Amount: ", () -> {
+            try {
+                this.val = (int)(Double.parseDouble(textArea.getText()) * 100);
+                getCurrency();
+            } catch (NumberFormatException exception) {
+                showMessageWindow("Unrecognized number, please try again");
+            }
+        });
     }
 
     private void getCurrency() {

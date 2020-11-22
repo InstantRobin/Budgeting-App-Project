@@ -7,7 +7,7 @@ import ui.windows.subwindows.inputwindows.GetterWindow;
 import java.awt.*;
 
 // Represents the Withdraw Window
-public class Withdraw extends GetterWindow {
+public class Withdraw extends MoveMoneyWindow {
 
     public Withdraw(Container container, Home home) {
         super(container, home);

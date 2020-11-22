@@ -8,7 +8,7 @@ import ui.windows.subwindows.inputwindows.GetterWindow;
 import java.awt.*;
 
 // Represents a transfer window
-public class Transfer extends GetterWindow {
+public class Transfer extends MoveMoneyWindow {
 
     private Account acc1;
     private Account acc2;
