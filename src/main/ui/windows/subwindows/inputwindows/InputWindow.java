@@ -10,6 +10,7 @@ import java.awt.*;
 public abstract class InputWindow extends SubWindow {
 
     protected final Home home;
+    protected JTextArea textArea;
 
     public InputWindow(Container container, Home home) {
         super(container,home);
@@ -21,9 +22,9 @@ public abstract class InputWindow extends SubWindow {
             str |     | Submit
      */
     //          The user can type in the white box, and Submit is a button to do so
-    //          Returns the box and the submit button so that the function that eventListeners can be added by
-    //              the function that calls this
-    protected void getGenericInput(String str) {
+    //          Sets the textArea variable so it can be accessed by subclasses
+    //          Calls the given function
+    protected void getGenericInput(String str, Runnable rn) {
         reset();
 
         JTextArea message = new JTextArea(str);
@@ -34,5 +35,8 @@ public abstract class InputWindow extends SubWindow {
         container.add(message);
         container.add(inputArea);
         container.add(submit);
+
+        textArea = (JTextArea)container.getComponent(1);
+        submit.addActionListener(e -> rn.run());
     }
 }

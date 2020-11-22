@@ -7,28 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+// Represents a window used to get user input
 public abstract class GetterWindow extends InputWindow {
 
-
     protected Account acc;
-    protected JButton button;
-    protected JTextArea textArea;
 
     public GetterWindow(Container container, Home home) {
         super(container, home);
     }
-
-    protected void initButtons() {
-        button = (JButton)container.getComponent(2);
-        textArea = (JTextArea)container.getComponent(1);
-    }
-
-    protected void getString(String str, Runnable rn) {
-        getGenericInput(str);
-        initButtons();
-        button.addActionListener(e -> rn.run());
-    }
-
 
     protected void getAccount(Runnable fn) {
         reset();

@@ -23,7 +23,7 @@ public class MakeAccount extends GetterWindow {
     // EFFECTS: Displays a GUI to get a name from the user
     @Override
     public void updateGUI() {
-        getString("Name: ", () -> {
+        getGenericInput("Name: ", () -> {
             this.name = textArea.getText();
             getStartingVal();
         });
@@ -32,7 +32,7 @@ public class MakeAccount extends GetterWindow {
     // EFFECTS: Gets an amount of money from the user, turns it into cents
     // Not using getInt because it can be negative
     private void getStartingVal() {
-        getString("Input Amount: ", () -> {
+        getGenericInput("Input Amount: ", () -> {
             try {
                 this.val = (int)(Double.parseDouble(textArea.getText()) * 100);
                 getCurrency();

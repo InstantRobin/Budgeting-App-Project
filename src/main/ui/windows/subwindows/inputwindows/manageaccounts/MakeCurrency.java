@@ -28,7 +28,7 @@ public class MakeCurrency extends GetterWindow {
 
     // EFFECTS: Prompts user for a name
     private void createCurrency() {
-        getString("New Currency Name:", () -> {
+        getGenericInput("New Currency Name:", () -> {
             curName = textArea.getText();
             getSymbol();
         });
@@ -36,7 +36,7 @@ public class MakeCurrency extends GetterWindow {
 
     // EFFECTS: Prompts user for a symbol, can be anything, even nothing
     private void getSymbol() {
-        getString("Symbol:", () -> {
+        getGenericInput("Symbol:", () -> {
             curSymbol = textArea.getText();
             getExchange();
         });
@@ -45,7 +45,7 @@ public class MakeCurrency extends GetterWindow {
     // EFFECTS: Prompts user for an exchange rate to USD
     //          Runs whatever fn requires the currency
     private void getExchange() {
-        getString("Exchange Rate into USD:", () -> {
+        getGenericInput("Exchange Rate into USD:", () -> {
             curExchange = Double.parseDouble(textArea.getText());
             if (curExchange <= 0) {
                 showMessageWindow("Error: Value must be positive");

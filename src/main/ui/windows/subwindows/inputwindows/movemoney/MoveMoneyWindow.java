@@ -22,7 +22,7 @@ public abstract class MoveMoneyWindow extends GetterWindow {
     //          If input is good, turns it into an int of cents, calls given fn with the inputted value
     //          If not, throws error, returns user to home
     protected void getInt(Runnable fn) {
-        getString("Input Amount: ", () -> {
+        getGenericInput("Input Amount: ", () -> {
             try {
                 this.val = verifyVal(textArea.getText());
                 fn.run();
@@ -50,7 +50,7 @@ public abstract class MoveMoneyWindow extends GetterWindow {
     //              if is, passes it and all past inputs into given fn
     //              if not, throws error screen, returns user to home
     protected void getDate(Runnable fn) {
-        getString("Enter Date As YYYY-MM-DD:", () -> {
+        getGenericInput("Enter Date As YYYY-MM-DD:", () -> {
             try {
                 this.date = LocalDate.parse(textArea.getText());
                 fn.run();
