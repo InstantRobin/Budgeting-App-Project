@@ -9,6 +9,7 @@ import ui.windows.subwindows.inputwindows.GetterWindow;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a window where the user can create an account
 public class MakeAccount extends GetterWindow {
 
     private String name;
@@ -23,6 +24,7 @@ public class MakeAccount extends GetterWindow {
         super(container, home);
     }
 
+    // EFFECTS: Displays a GUI to get a name from the user
     @Override
     public void updateGUI() {
         getString("Name: ", () -> {
@@ -31,6 +33,7 @@ public class MakeAccount extends GetterWindow {
         });
     }
 
+    // EFFECTS: Gets an amount of money from the user, turns it into cents
     // Not using getInt because it can be negative
     private void getStartingVal() {
         getString("Input Amount: ", () -> {
@@ -43,6 +46,7 @@ public class MakeAccount extends GetterWindow {
         });
     }
 
+    // EFFECTS: Allows user to select an existing currency, or to create a new one
     private void getCurrency() {
         reset();
         for (Currency currency : manager.getCurrencies()) {
@@ -55,43 +59,23 @@ public class MakeAccount extends GetterWindow {
         }
         JButton newAccButton = new JButton("New");
         container.add(newAccButton);
-        newAccButton.addActionListener(e -> createCurrency());
+        newAccButton.addActionListener(e -> {
+            MakeCurrency makeCurrency = new MakeCurrency(container,home,this::setCurrency);
+            makeCurrency.updateGUI();
+        });
     }
 
+    private void setCurrency(Currency currency) {
+        this.currency = currency;
+        manager.addCurrency(currency);
+        createAccount();
+    }
+
+    // EFFECTS: Creates an account using all the information the user has provided so far
     private void createAccount() {
         manager.getAccounts().add(new Account(name,val,currency));
         showMessageWindow("Created new account called " + name + " and has "
                 + MoveMoneyFunctions.moneyToString(val,currency) + " stored in " + currency.getName());
-    }
-
-
-    // Currency Related
-
-    private void createCurrency() {
-        getString("New Currency Name:", () -> {
-            curName = textArea.getText();
-            getSymbol();
-        });
-    }
-
-    private void getSymbol() {
-        getString("Symbol:", () -> {
-            curSymbol = textArea.getText();
-            getExchange();
-        });
-    }
-
-    private void getExchange() {
-        getString("Exchange Rate into USD:", () -> {
-            curExchange = Double.parseDouble(textArea.getText());
-            if (curExchange <= 0) {
-                showMessageWindow("Error: Value must be positive");
-                return;
-            }
-            currency = new Currency(curName,curSymbol,curExchange);
-            manager.addCurrency(currency);
-            createAccount();
-        });
     }
 
 }
