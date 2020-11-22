@@ -4,19 +4,14 @@ import model.Account;
 import model.Currency;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.AccountInput;
-import ui.windows.subwindows.inputwindows.InputWindow;
-import ui.windows.subwindows.inputwindows.MoneyInput;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MakeAccount extends InputWindow {
-
-    //TODO: Reduce Redundancy w/ Lambda
+public class MakeAccount extends GetterWindow {
 
     private String name;
-    private int val;
     private Currency currency;
 
     private String curName;
@@ -40,15 +35,7 @@ public class MakeAccount extends InputWindow {
 
 
     private void getStartingVal() {
-        MoneyInput moneyInput = new MoneyInput(container,home);
-        moneyInput.updateGUI();
-
-        JButton button = (JButton)container.getComponent(2);
-        JTextArea textArea = (JTextArea)container.getComponent(1);
-        button.addActionListener(e -> {
-            this.val = moneyInput.verifyVal(textArea.getText());
-            getCurrency();
-        });
+        getInt(this::getCurrency);
     }
 
     private void getCurrency() {
@@ -92,13 +79,16 @@ public class MakeAccount extends InputWindow {
         });
     }
 
-    // TODO: Check if appropriate value
     private void getExchange() {
         getGenericInput("Exchange Rate into USD:");
         JButton button = (JButton)container.getComponent(2);
         JTextArea textArea = (JTextArea)container.getComponent(1);
         button.addActionListener(e -> {
             curExchange = Double.parseDouble(textArea.getText());
+            if (curExchange <= 0) {
+                showMessageWindow("Error: Value must be positive");
+                return;
+            }
             currency = new Currency(curName,curSymbol,curExchange);
             manager.addCurrency(currency);
             createAccount();

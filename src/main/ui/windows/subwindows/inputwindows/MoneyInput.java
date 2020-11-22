@@ -18,16 +18,13 @@ public class MoneyInput extends InputWindow {
         getGenericInput("Input Amount: ");
     }
 
-    // TODO: Fix Duplication, fix error screen (maybe use throw?)
-    public int verifyVal(String str) {
+    public int verifyVal(String str) throws NumberFormatException, NegativeValueException {
         double val;
-        try {
-            val = Double.parseDouble(str);
-            return (int)(val * 100);
-        } catch (NumberFormatException e) {
-            showMessageWindow("Unrecognized number, please try again");
-            return -1;
+        val = Double.parseDouble(str);
+        if (val <= 0) {
+            throw new NegativeValueException();
         }
+        return (int)(val * 100);
     }
 
 }

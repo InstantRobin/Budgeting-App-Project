@@ -2,11 +2,12 @@ package ui.windows.subwindows.inputwindows.movemoney;
 
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
 // Represents the Deposit Window
-public class Deposit extends MoveMoneyGetters {
+public class Deposit extends GetterWindow {
 
     public Deposit(Container container, Home home) {
         super(container, home);

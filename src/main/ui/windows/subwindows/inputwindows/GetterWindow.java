@@ -1,23 +1,19 @@
-package ui.windows.subwindows.inputwindows.movemoney;
+package ui.windows.subwindows.inputwindows;
 
 import model.Account;
 import ui.windows.Home;
-import ui.windows.SubWindow;
-import ui.windows.subwindows.inputwindows.AccountInput;
-import ui.windows.subwindows.inputwindows.DateInput;
-import ui.windows.subwindows.inputwindows.MoneyInput;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
-public abstract class MoveMoneyGetters extends SubWindow {
+public abstract class GetterWindow extends InputWindow {
 
     protected int val;
     protected Account acc;
     protected LocalDate date;
 
-    public MoveMoneyGetters(Container container, Home home) {
+    public GetterWindow(Container container, Home home) {
         super(container, home);
     }
 
@@ -28,8 +24,14 @@ public abstract class MoveMoneyGetters extends SubWindow {
         JButton button = (JButton)container.getComponent(2);
         JTextArea textArea = (JTextArea)container.getComponent(1);
         button.addActionListener(e -> {
-            this.val = moneyInput.verifyVal(textArea.getText());
-            fn.run();
+            try {
+                this.val = moneyInput.verifyVal(textArea.getText());
+                fn.run();
+            } catch (NumberFormatException exception) {
+                showMessageWindow("Unrecognized number, please try again");
+            } catch (NegativeValueException exception) {
+                showMessageWindow("Negative number not allowed, please try again");
+            }
         });
     }
 

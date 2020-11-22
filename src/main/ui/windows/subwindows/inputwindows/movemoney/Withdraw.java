@@ -2,11 +2,12 @@ package ui.windows.subwindows.inputwindows.movemoney;
 
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import java.awt.*;
 
 // Represents the Withdraw Window
-public class Withdraw extends MoveMoneyGetters {
+public class Withdraw extends GetterWindow {
 
     public Withdraw(Container container, Home home) {
         super(container, home);

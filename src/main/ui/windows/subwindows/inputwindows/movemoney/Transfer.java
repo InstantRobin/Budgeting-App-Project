@@ -4,12 +4,13 @@ import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.AccountInput;
+import ui.windows.subwindows.inputwindows.GetterWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
 // Represents a transfer window
-public class Transfer extends MoveMoneyGetters {
+public class Transfer extends GetterWindow {
 
     private Account acc2;
 
