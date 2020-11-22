@@ -101,4 +101,20 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
 
         assertEquals(history,buildData(acc1));
     }
+
+    @Test
+    public void buildDataTestDuplicateDate() {
+        LocalDate date1 = LocalDate.of(2020,8,15);
+        LocalDate date2 = LocalDate.of(2020,8,18);
+        deposit(acc1,50, date1);
+        withdraw(acc1,20, date2);
+        withdraw(acc1,35, date2);
+
+        history.add(new LogEntry(acc1,50,50,date1));
+        history.add(new LogEntry(acc1,0,50,date1.plusDays(1)));
+        history.add(new LogEntry(acc1,0,50,date1.plusDays(2)));
+        history.add(new LogEntry(acc1,-55,-5,date2));
+
+        assertEquals(history,buildData(acc1));
+    }
 }

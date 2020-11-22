@@ -81,6 +81,10 @@ public class History implements Writable, Iterable<LogEntry> {
         history.add(ent);
     }
 
+    public void remove(int loc) {
+        history.remove(loc);
+    }
+
     public LogEntry get(int i) {
         return history.get(i);
     }

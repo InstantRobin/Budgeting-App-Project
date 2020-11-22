@@ -55,14 +55,32 @@ public class MoveMoneyFunctions {
         for (int i = 0; i < hist.size() - 1; i++) {
             LogEntry item = hist.get(i);
             LocalDate start = item.getDate();
-            data.add(item);
-            for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
-                    date = date.plusDays(1)) {
-                data.add(new LogEntry(acc,0,item.getTotal(),date));
+
+            if (i != 0 && item.getDate().equals(hist.get(i - 1).getDate())) {
+                data.add(new LogEntry(acc,hist.get(i - 1).getVal() + item.getVal(),item.getTotal(),start));
+                data.remove(data.size() - 2);
+            } else {
+                data.add(item);
+            }
+            if (start != hist.get(i + 1).getDate()) {
+                for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
+                        date = date.plusDays(1)) {
+                    data.add(new LogEntry(acc, 0, item.getTotal(), date));
+                }
             }
         }
 
-        data.add(hist.get(hist.size() - 1));
+        if (data.size() > 1) {
+            LogEntry secondToLast = hist.get(hist.size() - 2);
+            LogEntry last = hist.get(hist.size() - 1);
+            if (data.size() > 1 && last.getDate().equals(secondToLast.getDate())) {
+                data.add(new LogEntry(acc, secondToLast.getVal() + last.getVal(),
+                        last.getTotal(), last.getDate()));
+                data.remove(data.size() - 2);
+            } else {
+                data.add(hist.get(hist.size() - 1));
+            }
+        }
         return data;
     }
 }
