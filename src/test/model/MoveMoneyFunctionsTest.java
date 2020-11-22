@@ -84,6 +84,12 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
     }
 
     @Test
+    public void buildDataTestEmpty() {
+        assertEquals(history,buildData(acc1));
+    }
+
+
+    @Test
     public void buildDataTest() {
         LocalDate date1 = LocalDate.of(2020,8,15);
         LocalDate date2 = LocalDate.of(2020,8,18);
@@ -98,8 +104,8 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         history.add(new LogEntry(acc1,-20,30,date2));
         history.add(new LogEntry(acc1,0,30,date2.plusDays(1)));
         history.add(new LogEntry(acc1,-35,-5,date3));
-
-        assertEquals(history,buildData(acc1));
+        History result = buildData(acc1);
+        assertEquals(history,result);
     }
 
     @Test

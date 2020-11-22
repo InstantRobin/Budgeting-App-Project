@@ -218,4 +218,18 @@ public class HistoryTest extends TestDefaults{
                 date4),
                 result);
     }
+
+    @Test
+    public void iterableTest() {
+        int i = 0;
+        hist.add(logEvent(200,date));
+        hist.add(logEvent(-300,date));
+        hist.add(logEvent(-400,date));
+        hist.add(logEvent(500,date));
+        hist.add(logEvent(-600,date));
+        for (LogEntry entry : hist) {
+            assertEquals(entry,hist.get(i));
+            i += 1;
+        }
+    }
 }

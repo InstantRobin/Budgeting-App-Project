@@ -51,7 +51,7 @@ public class MoveMoneyFunctions {
         History hist = acc.getHistory();
         hist.updateTotals();
 
-        if (data.size() >= 1) {
+        if (hist.size() <= 1) {
             return hist;
         }
 
