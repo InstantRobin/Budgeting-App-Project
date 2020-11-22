@@ -4,7 +4,7 @@ import model.Account;
 import model.History;
 import model.LogEntry;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static model.MoveMoneyFunctions.moneyToString;
 
 // Represents a window to view the history of actions on an account
-public class ViewAccountHistory extends GetterWindow {
+public class ViewAccountHistory extends InputWindow {
 
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<String> changes = new ArrayList<>();

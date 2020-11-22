@@ -9,12 +9,12 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.time.*;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 
 import java.awt.*;
 
 // Represents a window where the user can choose an account to make a graph of it's total values over time
-public class ViewGraph extends GetterWindow {
+public class ViewGraph extends InputWindow {
 
     public ViewGraph(Container container, Home home) {
         super(container, home);

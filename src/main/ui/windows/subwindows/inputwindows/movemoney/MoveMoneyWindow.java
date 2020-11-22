@@ -1,7 +1,7 @@
 package ui.windows.subwindows.inputwindows.movemoney;
 
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 import ui.windows.subwindows.inputwindows.NegativeValueException;
 
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 // Represents a window that will be used to move money into, out of, or between acconts
-public abstract class MoveMoneyWindow extends GetterWindow {
+public abstract class MoveMoneyWindow extends InputWindow {
 
     protected int val;
     protected LocalDate date;

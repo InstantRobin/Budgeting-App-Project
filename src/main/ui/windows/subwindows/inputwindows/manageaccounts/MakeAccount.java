@@ -4,13 +4,13 @@ import model.Account;
 import model.Currency;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 
 import javax.swing.*;
 import java.awt.*;
 
 // Represents a window where the user can create an account
-public class MakeAccount extends GetterWindow {
+public class MakeAccount extends InputWindow {
 
     private String name;
     private Currency currency;

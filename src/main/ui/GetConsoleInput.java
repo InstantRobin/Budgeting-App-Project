@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 // A set of static fn's to get a user's typed inputs
-public class GetInput {
+public class GetConsoleInput {
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account
     static Account getAccInput(List<Account> accounts) {
@@ -54,8 +54,6 @@ public class GetInput {
 
     // EFFECT: Gets Currency from user
     static Currency getCurrencyInput(List<Currency> currencies) {
-        // TODO: Implement Currency Array, default USD
-        // TODO: Save Currency Array?
         Scanner sc = new Scanner(System.in);
         System.out.println("Select Currency");
         int item = 1;

@@ -9,12 +9,12 @@ import java.awt.*;
 import java.util.List;
 
 // Represents a window used to get user input
-public abstract class GetterWindow extends SubWindow {
+public abstract class InputWindow extends SubWindow {
 
     protected Account acc;
     protected JTextArea textArea;
 
-    public GetterWindow(Container container, Home home) {
+    public InputWindow(Container container, Home home) {
         super(container, home);
     }
 

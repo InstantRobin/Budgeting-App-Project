@@ -2,13 +2,13 @@ package ui.windows.subwindows.inputwindows.manageaccounts;
 
 import model.Currency;
 import ui.windows.Home;
-import ui.windows.subwindows.inputwindows.GetterWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 
 import java.awt.*;
 import java.util.function.Consumer;
 
 // Represents a window to create a new Currency
-public class MakeCurrency extends GetterWindow {
+public class MakeCurrency extends InputWindow {
 
     private String curName;
     private String curSymbol;

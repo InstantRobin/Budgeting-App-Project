@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static ui.GetInput.*;
+import static ui.GetConsoleInput.*;
 import static model.MoveMoneyFunctions.*;
 
 public class Manager {
