@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import static model.MoveMoneyFunctions.moneyToString;
-
 // Represents the event history of all actions upon an account
 public class History implements Writable, Iterable<LogEntry> {
 
@@ -103,7 +101,8 @@ public class History implements Writable, Iterable<LogEntry> {
                 if ((!(history1.get(entry).getAcc().equals(history.get(entry).getAcc()))
                         || (history1.get(entry).getVal() != history.get(entry).getVal())
                         || (history1.get(entry).getTotal() != history.get(entry).getTotal())
-                        || (history1.get(entry).getDate() != history.get(entry).getDate()))) {
+                        || (!history1.get(entry).getDate().toString().equals(
+                                history.get(entry).getDate().toString())))) {
                     return false;
                 }
             }

@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static model.MoveMoneyFunctions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -79,5 +81,24 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         history = new History();
         history.add(new LogEntry(acc3,-500,1500,date));
         assertEquals(history,acc3.getHistory());
+    }
+
+    @Test
+    public void buildDataTest() {
+        LocalDate date1 = LocalDate.of(2020,8,15);
+        LocalDate date2 = LocalDate.of(2020,8,18);
+        LocalDate date3 = LocalDate.of(2020,8,20);
+        deposit(acc1,50, date1);
+        withdraw(acc1,20, date2);
+        withdraw(acc1,35, date3);
+
+        history.add(new LogEntry(acc1,50,50,date1));
+        history.add(new LogEntry(acc1,0,50,date1.plusDays(1)));
+        history.add(new LogEntry(acc1,0,50,date1.plusDays(2)));
+        history.add(new LogEntry(acc1,-20,30,date2));
+        history.add(new LogEntry(acc1,0,30,date2.plusDays(1)));
+        history.add(new LogEntry(acc1,-35,-5,date3));
+
+        assertEquals(history,buildData(acc1));
     }
 }

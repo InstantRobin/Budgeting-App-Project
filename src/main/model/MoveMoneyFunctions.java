@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 // Static functions involving the movement of money into, out of, and between accounts
 public class MoveMoneyFunctions {
@@ -43,5 +44,25 @@ public class MoveMoneyFunctions {
         } else {
             return (cur.getSymbol() + before + "." + Math.abs(after));
         }
+    }
+
+    // Takes an account, builds a day-by-day list of events in the account
+    public static History buildData(Account acc) {
+        History data = new History();
+        History hist = acc.getHistory();
+        hist.updateTotals();
+
+        for (int i = 0; i < hist.size() - 1; i++) {
+            LogEntry item = hist.get(i);
+            LocalDate start = item.getDate();
+            data.add(item);
+            for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
+                    date = date.plusDays(1)) {
+                data.add(new LogEntry(acc,0,item.getTotal(),date));
+            }
+        }
+
+        data.add(hist.get(hist.size() - 1));
+        return data;
     }
 }
