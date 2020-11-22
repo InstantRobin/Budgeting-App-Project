@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 // Static functions involving the movement of money into, out of, and between accounts
 public class MoveMoneyFunctions {
@@ -46,22 +45,22 @@ public class MoveMoneyFunctions {
         }
     }
 
-    // Takes an account, builds a day-by-day list of events in the account
+    // EFFECT: Takes an account, builds a day-by-day list of events in the account
     public static History buildData(Account acc) {
         History data = new History();
         History hist = acc.getHistory();
         hist.updateTotals();
 
+        if (data.size() >= 1) {
+            return hist;
+        }
+
         for (int i = 0; i < hist.size() - 1; i++) {
             LogEntry item = hist.get(i);
             LocalDate start = item.getDate();
 
-            if (i != 0 && item.getDate().equals(hist.get(i - 1).getDate())) {
-                data.add(new LogEntry(acc,hist.get(i - 1).getVal() + item.getVal(),item.getTotal(),start));
-                data.remove(data.size() - 2);
-            } else {
-                data.add(item);
-            }
+            addIfNotDuplicate(acc, data, i, item);
+
             if (start != hist.get(i + 1).getDate()) {
                 for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
                         date = date.plusDays(1)) {
@@ -70,17 +69,23 @@ public class MoveMoneyFunctions {
             }
         }
 
-        if (data.size() > 1) {
-            LogEntry secondToLast = hist.get(hist.size() - 2);
-            LogEntry last = hist.get(hist.size() - 1);
-            if (data.size() > 1 && last.getDate().equals(secondToLast.getDate())) {
-                data.add(new LogEntry(acc, secondToLast.getVal() + last.getVal(),
-                        last.getTotal(), last.getDate()));
-                data.remove(data.size() - 2);
-            } else {
-                data.add(hist.get(hist.size() - 1));
-            }
-        }
+        // adds the last entry
+        addIfNotDuplicate(acc, data, data.size(), hist.get(hist.size() - 1));
+
         return data;
+    }
+
+    // REQUIRES: i >= 0
+    // EFFECT: Checks if the new entry is the same date as the last one
+    //        if so, removes the last one, adds new one w/ sum of two events
+    //        if not, just adds it like normal
+    private static void addIfNotDuplicate(Account acc, History data, int i, LogEntry item) {
+        if (i != 0 && item.getDate().equals(data.get(i - 1).getDate())) {
+            LogEntry prev = data.get(i - 1);
+            data.remove(data.size() - 1);
+            data.add(new LogEntry(acc,prev.getVal() + item.getVal(), item.getTotal(),item.getDate()));
+        } else {
+            data.add(item);
+        }
     }
 }

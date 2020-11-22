@@ -25,16 +25,16 @@ public class ViewGraph extends AccountSelectWindow {
     }
 
     // https://stackoverflow.com/questions/12837986/how-to-display-date-in-a-x-axis-of-line-graph-using-jfreechart
-
+    // https://caveofprogramming.com/java/charts-in-java-swing-with-jfreechart.html
     private void loadGraph(Account acc) {
         History data = MoveMoneyFunctions.buildData(acc);
-        TimeSeries<String> timeSeries = new TimeSeries<String>("Data");
+        TimeSeries<String> timeSeries = new TimeSeries<>("Data");
         for (LogEntry entry : data) {
             Day day = new Day(entry.getDay(),entry.getMonth(),entry.getYear());
-            timeSeries.add(day,Double.valueOf(entry.getTotal()) / 100);
+            timeSeries.add(day, (double) entry.getTotal() / 100);
         }
 
-        TimeSeriesCollection<String> collection = new TimeSeriesCollection<String>();
+        TimeSeriesCollection<String> collection = new TimeSeriesCollection<>();
         collection.addSeries(timeSeries);
         JFreeChart chart = ChartFactory.createTimeSeriesChart(acc.getName(),"Date","Total",collection);
         ChartPanel chartPanel = new ChartPanel(chart);
