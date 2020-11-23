@@ -8,8 +8,6 @@ import java.time.LocalDate;
 // Represents a place where money is stored, also contains a history of all deposits/withdrawals
 public class Account implements Writable {
 
-    // TODO: Add Currency
-
     private final String name;
     // the balance of the account, in cents
     private int balance;

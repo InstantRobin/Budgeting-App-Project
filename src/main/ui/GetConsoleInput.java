@@ -12,7 +12,6 @@ public class GetConsoleInput {
 
     // EFFECT: Presents user with list of accounts, takes user input, returns selected account
     static Account getAccInput(List<Account> accounts) {
-        //TODO: Don't allow duplicate names
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the corresponding number of desired account");

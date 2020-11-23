@@ -15,7 +15,6 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     private final LocalDate date;
     // https://www.geeksforgeeks.org/localdate-format-method-in-java/
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    // TODO: Add Currency
 
     // REQUIRES: Initializes LogEntry
     public LogEntry(Account acc, int val, int total, LocalDate date) {

@@ -25,8 +25,19 @@ public class MakeAccount extends InputWindow {
     public void updateGUI() {
         getGenericInput("Name: ", () -> {
             this.name = textArea.getText();
-            getStartingVal();
+            verifyName();
         });
+    }
+
+    // EFFECTS: Checks to make sure an account with the provided name does not already exist, throws error page if so
+    public void verifyName() {
+        for (Account acc: manager.getAccounts()) {
+            if (name.equals(acc.getName())) {
+                showMessageWindow("An account with this name already exists, please try again");
+                return;
+            }
+        }
+        getStartingVal();
     }
 
     // EFFECTS: Gets an amount of money from the user, turns it into cents

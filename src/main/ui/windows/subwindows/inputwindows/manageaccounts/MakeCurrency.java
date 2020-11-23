@@ -51,8 +51,7 @@ public class MakeCurrency extends InputWindow {
                 showMessageWindow("Error: Value must be positive");
                 return;
             }
-            Currency currency = new Currency(curName,curSymbol,curExchange);
-            cons.accept(currency);
+            cons.accept(new Currency(curName,curSymbol,curExchange));
         });
     }
 }
