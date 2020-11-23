@@ -1,5 +1,5 @@
 package ui;
-// Manages main actions of program
+
 
 import model.*;
 import persistence.JsonReader;
@@ -14,13 +14,20 @@ import java.util.Scanner;
 import static ui.GetConsoleInput.*;
 import static model.MoveMoneyFunctions.*;
 
+//// SOURCE ////
+// Class name, basic idea of manager class + runManage fn based on UBC CPSC 210's Teller program
+// All specific implementation aside from that is my own, however
+
+// Manages main actions of program
 public class Manager {
 
     private List<Account> accounts;
     private final List<Currency> currencies;
     private final Scanner sc = new Scanner(System.in);
 
-    // from CPSC 210 EdX JsonSerializationDemo
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // Adapted from an example fn given in the source
     private static final String JSON_STORE = "./data/accounts.json";
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
@@ -304,6 +311,10 @@ public class Manager {
         accounts.add(new Account(name,val, currency));
     }
 
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // The structure of this file is essentially that of the example, save for the implementation of the write method
+
     // MODIFIES: Accounts, Currencies
     // EFFECTS: Loads Accounts from json file, creates Currencies from loaded Accounts
     private void load() {
@@ -338,7 +349,11 @@ public class Manager {
         }
     }
 
-    // from CPSC 210 EdX JsonSerializationDemo
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // The structure of this file is essentially that of the example, save for the implementation of the write method
+
+    // EFFECTS: Saves the contents of accounts to a json file, or prints an error
     private void save() {
         try {
             jsonWriter.open();

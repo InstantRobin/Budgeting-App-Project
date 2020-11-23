@@ -20,11 +20,12 @@ public class MakeAccount extends InputWindow {
         super(container, home);
     }
 
+    // MODIFIES: name
     // EFFECTS: Displays a GUI to get a name from the user
     @Override
     public void updateGUI() {
         getGenericInput("Name: ", () -> {
-            this.name = textArea.getText();
+            name = textArea.getText();
             verifyName();
         });
     }
@@ -53,9 +54,17 @@ public class MakeAccount extends InputWindow {
         });
     }
 
+    // MODIFIES: container
     // EFFECTS: Allows user to select an existing currency, or to create a new one
     private void getCurrency() {
         reset();
+        loadCurrencyButtons();
+        loadNewCurrencyButton();
+    }
+
+    // MODIFIES: container, currency
+    // EFFECTS: Loads all existing currencies as buttons that can be selected by the user
+    private void loadCurrencyButtons() {
         for (Currency currency : manager.getCurrencies()) {
             JButton accountButton = new JButton(currency.getName());
             container.add(accountButton);
@@ -64,6 +73,11 @@ public class MakeAccount extends InputWindow {
                 createAccount();
             });
         }
+    }
+
+    // MODIFIES: container
+    // EFFECTS: Loads a button to allow the user to create a new currency
+    private void loadNewCurrencyButton() {
         JButton newAccButton = new JButton("New");
         container.add(newAccButton);
         newAccButton.addActionListener(e -> {
@@ -72,6 +86,7 @@ public class MakeAccount extends InputWindow {
         });
     }
 
+    // MODIFIES: currency, manager
     // EFFECTS: Sets the currency to the one given by the user
     private void setCurrency(Currency currency) {
         this.currency = currency;
@@ -79,6 +94,7 @@ public class MakeAccount extends InputWindow {
         createAccount();
     }
 
+    // MODIFIES: manager
     // EFFECTS: Creates an account using all the information the user has provided so far
     private void createAccount() {
         manager.getAccounts().add(new Account(name,val,currency));

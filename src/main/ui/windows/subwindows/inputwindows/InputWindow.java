@@ -18,6 +18,7 @@ public abstract class InputWindow extends SubWindow {
         super(container, home);
     }
 
+    // MODIFIES: container, textArea
     // EFFECTS: Creates a window like so:
     /*
             str |     | Submit
@@ -41,6 +42,7 @@ public abstract class InputWindow extends SubWindow {
         submit.addActionListener(e -> rn.run());
     }
 
+    // MODIFIES: container, acc
     // Prompts user for an Account, sets acc to that account, runs the given fn
     protected void getAccount(Runnable fn) {
         reset();

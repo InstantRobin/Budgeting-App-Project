@@ -30,6 +30,7 @@ public class Withdraw extends MoveMoneyWindow {
         super.getDate(this::makeWithdrawal);
     }
 
+    // MODIFIES: acc
     // EFFECTS: Takes all user input so far, withdraws val from account, logs account and date
     //          Displays a summary of the action to the user
     public void makeWithdrawal() {

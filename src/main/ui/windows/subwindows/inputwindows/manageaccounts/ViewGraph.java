@@ -1,6 +1,5 @@
 package ui.windows.subwindows.inputwindows.manageaccounts;
 
-import model.Account;
 import model.History;
 import model.LogEntry;
 import model.MoveMoneyFunctions;
@@ -29,9 +28,10 @@ public class ViewGraph extends InputWindow {
     // https://stackoverflow.com/questions/12837986/how-to-display-date-in-a-x-axis-of-line-graph-using-jfreechart
     // https://caveofprogramming.com/java/charts-in-java-swing-with-jfreechart.html
 
+    // MODIFIES: container
     // EFFECTS: Builds the frame of the graph, fills it with data, adds to GUI
     private void buildGraph() {
-        TimeSeriesCollection<String> collection = getTimeSeriesCollection(acc);
+        TimeSeriesCollection<String> collection = getTimeSeriesCollection();
         JFreeChart chart = ChartFactory.createTimeSeriesChart(acc.getName(),"Date",
                 "Total (" + acc.getCurrency().getSymbol() + ")", collection);
 
@@ -46,8 +46,8 @@ public class ViewGraph extends InputWindow {
         addBackButtonListener();
     }
 
-    // EFFECTS: Fills the graph with collection of dates and corresponding totals, from acc history
-    private TimeSeriesCollection<String> getTimeSeriesCollection(Account acc) {
+    // EFFECTS: Builds collection of dates and corresponding totals, from acc history
+    private TimeSeriesCollection<String> getTimeSeriesCollection() {
         History data = MoveMoneyFunctions.buildData(acc);
         TimeSeries<String> timeSeries = new TimeSeries<>("Data");
         for (LogEntry entry : data) {

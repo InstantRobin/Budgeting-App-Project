@@ -15,6 +15,11 @@ import java.util.stream.Stream;
 import model.Currency;
 import org.json.*;
 
+//// SOURCE: ////
+// Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+// The structure of this file is based on the example, but all aside from the name, constructor,
+//                                                     and general structure overview are made by me
+
 // Represents a reader that reads a list of Accounts from JSON data stored in file
 public class JsonReader {
     private final String source;

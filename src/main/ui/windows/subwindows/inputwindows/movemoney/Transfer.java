@@ -24,6 +24,7 @@ public class Transfer extends MoveMoneyWindow {
         super.getInt(this::getAccount);
     }
 
+    // MODIFIES: acc1
     // EFFECTS: Prompts user for source account, stores it as acc1, continues fn chain
     protected void getAccount() {
         super.getAccount(() -> {
@@ -32,6 +33,7 @@ public class Transfer extends MoveMoneyWindow {
         });
     }
 
+    // MODIFIES: acc2
     // EFFECTS: Prompts user for target account, stores it as acc2, continues fn chain
     private void getSecondAccount() {
         super.getAccount(() -> {
@@ -45,6 +47,7 @@ public class Transfer extends MoveMoneyWindow {
         super.getDate(this::makeTransfer);
     }
 
+    // MODIFIES: acc1, acc2
     // EFFECTS: Takes all user input so far, transfers val from acc1 to acc2, including currency exchange
     //          Displays a summary of the action to the user
     public void makeTransfer() {

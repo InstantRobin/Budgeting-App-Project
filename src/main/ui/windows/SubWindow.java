@@ -14,6 +14,7 @@ public abstract class SubWindow extends Window {
         this.home = home;
     }
 
+    // MODIFIES: back
     // EFFECTS: Makes back button return to home screen when pressed
     protected void addBackButtonListener() {
         back.addActionListener(e -> home.updateGUI());
@@ -25,6 +26,7 @@ public abstract class SubWindow extends Window {
         area.setEditable(false);
     }
 
+    // MODIFIES: container
     // EFFECTS: Displays a window where a given string is displayed to the user,
     //          as well as a button to return to home page
     protected void showMessageWindow(String str) {

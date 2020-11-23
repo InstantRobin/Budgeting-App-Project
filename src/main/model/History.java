@@ -18,13 +18,16 @@ public class History implements Writable, Iterable<LogEntry> {
         super();
     }
 
+    //// SOURCE: ////
     // https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date/33790426
-    // EFFECT: Sorts the History List, because items can be added non-chronologically
+    // Implementation of sort, Comparable across History and LogEntry classes based on the structure provided by Domchi
+
+    // EFFECTS: Sorts the History List, because items can be added non-chronologically
     public void sort() {
         Collections.sort(history);
     }
 
-    // EFFECT: Sorts history, then goes through chronologically to update the total values to be accurate
+    // EFFECTS: Sorts history, then goes through chronologically to update the total values to be accurate
     public void updateTotals() {
         sort();
         for (int loc = 0; loc < history.size(); loc++) {
@@ -37,8 +40,11 @@ public class History implements Writable, Iterable<LogEntry> {
         }
     }
 
+    //// Source ////
     // https://stackoverflow.com/questions/56357708/joda-localdate-compare-if-equal-or-before-and-after
-    // EFFECT: Returns all entries in a given date range
+    // Got before-or-equal structure for first else if from Borgy Manotoy's response
+
+    // EFFECTS: Returns all entries in a given date range
     public History getDateRange(LocalDate start, LocalDate end) {
         History dateRange = new History();
         sort();
@@ -54,28 +60,6 @@ public class History implements Writable, Iterable<LogEntry> {
         }
         return dateRange;
     }
-
-    // from CPSC 210 EdX JsonSerializationDemo
-    // EFFECTS: Converts History into a JsonArray
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("array",logEntriesToJson());
-        return json;
-    }
-
-    // from CPSC 210 EdX JsonSerializationDemo
-    // EFFECTS: Converts internal history into a JsonArray
-    private JSONArray logEntriesToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (LogEntry entry : history) {
-            jsonArray.put(entry.toJson());
-        }
-
-        return jsonArray;
-    }
-
 
     public void add(LogEntry ent) {
         history.add(ent);
@@ -93,7 +77,34 @@ public class History implements Writable, Iterable<LogEntry> {
         return history.size();
     }
 
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // Adapted from an example fn given in the source
+
+    // EFFECTS: Converts the History object into a Json Object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("array",logEntriesToJson());
+        return json;
+    }
+
+    // EFFECTS: Goes through the list of log entries, and turns them into a JSON array
+    private JSONArray logEntriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (LogEntry entry : history) {
+            jsonArray.put(entry.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    //// SOURCE: ////
     // https://stackoverflow.com/questions/46444855/checking-if-arraylist-contains-an-object-with-an-attribute
+    // Implementation based on example in response given by AxelH
+    // EFFECTS: Returns false if not a History, are dif sizes, or if any of entries are different
+    //          Otherwise returns true
     @Override
     public boolean equals(Object o) {
         if (o instanceof History) {
@@ -105,8 +116,7 @@ public class History implements Writable, Iterable<LogEntry> {
                 if ((!(history1.get(entry).getAcc().equals(history.get(entry).getAcc()))
                         || (history1.get(entry).getVal() != history.get(entry).getVal())
                         || (history1.get(entry).getTotal() != history.get(entry).getTotal())
-                        || (!history1.get(entry).getDate().toString().equals(
-                                history.get(entry).getDate().toString())))) {
+                        || (!history1.get(entry).getDate().equals(history.get(entry).getDate())))) {
                     return false;
                 }
             }

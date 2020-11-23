@@ -30,6 +30,7 @@ public class Deposit extends MoveMoneyWindow {
         super.getDate(this::makeDeposit);
     }
 
+    // MODIFIES: acc
     // EFFECTS: Takes all user input so far, deposits val into account, logs account and date
     //          Displays a summary of the action to the user
     public void makeDeposit() {

@@ -10,7 +10,7 @@ import java.util.Scanner;
 // A set of static fn's to get a user's typed inputs
 public class GetConsoleInput {
 
-    // EFFECT: Presents user with list of accounts, takes user input, returns selected account
+    // EFFECTS: Presents user with list of accounts, takes user input, returns selected account
     static Account getAccInput(List<Account> accounts) {
         Scanner sc = new Scanner(System.in);
 
@@ -23,14 +23,14 @@ public class GetConsoleInput {
         return accounts.get(acc - 1);
     }
 
-    // EFFECT: Gets int value from User
+    // EFFECTS: Gets int value from User
     static int getValInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter desired amount:");
         return (int)(sc.nextFloat() * 100);
     }
 
-    // EFFECT: Gets LocalDate date from user, separate input for year, month, date
+    // EFFECTS: Gets LocalDate date from user, separate input for year, month, date
     static LocalDate getDateInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter date of action in number form:");
@@ -44,14 +44,14 @@ public class GetConsoleInput {
         return LocalDate.of(year,month,day);
     }
 
-    // EFFECT: Gets string name from user
+    // EFFECTS: Gets string name from user
     static String getNameInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name:");
         return sc.next();
     }
 
-    // EFFECT: Gets Currency from user
+    // EFFECTS: Gets Currency from user
     static Currency getCurrencyInput(List<Currency> currencies) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Select Currency");

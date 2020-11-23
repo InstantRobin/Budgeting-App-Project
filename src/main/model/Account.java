@@ -46,7 +46,6 @@ public class Account implements Writable {
     }
 
 
-
     // Getters
 
     public String getName() {
@@ -70,7 +69,9 @@ public class Account implements Writable {
         return MoveMoneyFunctions.moneyToString(balance, currency);
     }
 
-    // from CPSC 210 EdX JsonSerializationDemo
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // Adapted from the example fn given in the source
     // EFFECT: Converts Account into Json Object
     @Override
     public JSONObject toJson() {

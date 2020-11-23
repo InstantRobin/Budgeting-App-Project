@@ -21,6 +21,7 @@ public abstract class Window {
     // EFFECTS: Should update the GUI to display the new window
     public abstract void updateGUI();
 
+    // MODIFIES: container
     // EFFECTS: Clears the GUI
     protected void reset() {
         container.removeAll();
@@ -28,6 +29,7 @@ public abstract class Window {
         container.repaint();
     }
 
+    // MODIFIES: container
     // EFFECTS: Adds a list of JButtons to the GUI
     protected void addButtons(ArrayList<JButton> buttonList) {
         for (JButton button : buttonList) {

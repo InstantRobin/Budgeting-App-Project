@@ -18,6 +18,7 @@ public class ManageSavedData extends SubWindow {
         initializeButtons();
     }
 
+    // MODIFIES: buttons
     // EFFECTS:Adds the four buttons to the buttons array
     private void initializeButtons() {
         buttons.add(loadButton);
@@ -34,12 +35,14 @@ public class ManageSavedData extends SubWindow {
         addBackButtonListener();
     }
 
+    // MODIFIES: manager
     // EFFECTS: Loads the data from Json
     public void load() {
         manager.doManageData(Manager.ManageDataChoices.LOAD);
         showMessageWindow("Load Complete!");
     }
 
+    // MODIFIES: manager
     // EFFECTS: Saves the data to Json
     private void save() {
         manager.doManageData(Manager.ManageDataChoices.SAVE);

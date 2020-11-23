@@ -23,6 +23,7 @@ public class BaseGUI extends JFrame {
         loadHome();
     }
 
+    // MODIFIES: container
     // EFFECTS: Creates the base information of a centered GUI
     private void initializeGUI() {
         setSize(WIDTH,HEIGHT);

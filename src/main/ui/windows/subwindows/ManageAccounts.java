@@ -23,6 +23,7 @@ public class ManageAccounts extends SubWindow {
         initializeButtons();
     }
 
+    // MODIFIES: buttons
     // EFFECTS:Adds the four buttons to the buttons array
     private void initializeButtons() {
         buttons.add(viewBalButton);
@@ -32,6 +33,7 @@ public class ManageAccounts extends SubWindow {
         buttons.add(back);
     }
 
+    // MODIFIES: viewBalButton, viewHistButton, viewGraphButton, makeAccButton
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
     public void updateGUI() {
         reset();

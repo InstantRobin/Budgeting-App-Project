@@ -18,6 +18,7 @@ public abstract class MoveMoneyWindow extends InputWindow {
         super(container, home);
     }
 
+    // MODIFIES val
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double
     //          If input is good, turns it into an int of cents, calls given fn with the inputted value
     //          If not, throws error, returns user to home
@@ -46,6 +47,7 @@ public abstract class MoveMoneyWindow extends InputWindow {
         return (int)(val * 100);
     }
 
+    // MODIFIES: date
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a date
     //              if is, passes it and all past inputs into given fn
     //              if not, throws error screen, returns user to home

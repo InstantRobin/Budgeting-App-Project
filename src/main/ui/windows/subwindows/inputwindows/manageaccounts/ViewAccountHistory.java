@@ -32,6 +32,7 @@ public class ViewAccountHistory extends InputWindow {
         getAccount(this::initGUI);
     }
 
+    // MODIFIES: container, dateColumn, changeColumn, totalColumn, acc
     // EFFECTS: Readies the GUI, loads 3 columns, loads history into them
     private void initGUI() {
         reset();
@@ -47,11 +48,12 @@ public class ViewAccountHistory extends InputWindow {
 
         close.addActionListener(e -> home.updateGUI());
 
-        loadHistory(acc);
+        loadHistory();
     }
 
+    // MODIFIES: dates, changes, totals, acc
     // EFFECTS: Adds history into the columns from Account
-    private void loadHistory(Account acc) {
+    private void loadHistory() {
         History hist = acc.getHistory();
         hist.updateTotals();
         for (LogEntry entry: hist) {
@@ -65,6 +67,7 @@ public class ViewAccountHistory extends InputWindow {
         initTotalColumn();
     }
 
+    // MODIFIES: dateColumn
     // EFFECTS: Loads the event dates
     private void initDateColumn() {
         dateColumn.setColumns(dates.size());
@@ -74,6 +77,7 @@ public class ViewAccountHistory extends InputWindow {
         }
     }
 
+    // MODIFIES: changeColumn
     // EFFECTS: Loads the amounts changed
     private void initChangeColumn() {
         changeColumn.setColumns(dates.size());
@@ -83,6 +87,7 @@ public class ViewAccountHistory extends InputWindow {
         }
     }
 
+    // MODIFIES: totalColumn
     // EFFECTS: Loads the total value
     private void initTotalColumn() {
         totalColumn.setColumns(dates.size());

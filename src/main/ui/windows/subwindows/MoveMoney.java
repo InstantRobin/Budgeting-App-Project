@@ -21,7 +21,8 @@ public class MoveMoney extends SubWindow {
         initializeButtons();
     }
 
-    // Adds the four buttons to the buttons array
+    // MODIFIES: buttons
+    // EFFECTS: Adds the four buttons to the buttons array
     private void initializeButtons() {
         buttons.add(depositButton);
         buttons.add(withdrawButton);
@@ -29,6 +30,7 @@ public class MoveMoney extends SubWindow {
         buttons.add(back);
     }
 
+    // MODIFIES: container
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
     public void updateGUI() {
         reset();

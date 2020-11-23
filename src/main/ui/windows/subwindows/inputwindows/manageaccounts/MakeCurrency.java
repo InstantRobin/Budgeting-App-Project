@@ -26,6 +26,7 @@ public class MakeCurrency extends InputWindow {
         createCurrency();
     }
 
+    // MODIFIES: curName
     // EFFECTS: Prompts user for a name
     private void createCurrency() {
         getGenericInput("New Currency Name:", () -> {
@@ -34,6 +35,7 @@ public class MakeCurrency extends InputWindow {
         });
     }
 
+    // MODIFIES: curSymbol
     // EFFECTS: Prompts user for a symbol, can be anything, even nothing
     private void getSymbol() {
         getGenericInput("Symbol:", () -> {
@@ -42,6 +44,7 @@ public class MakeCurrency extends InputWindow {
         });
     }
 
+    // MODIFIES: curExchange
     // EFFECTS: Prompts user for an exchange rate to USD
     //          Runs whatever fn requires the currency
     private void getExchange() {

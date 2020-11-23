@@ -1,11 +1,14 @@
 package persistence;
-// from CPSC 210 EdX JsonSerializationDemo
 
 import model.Account;
 import org.json.JSONArray;
 
 import java.io.*;
 import java.util.List;
+
+//// SOURCE: ////
+// Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+// The structure of this file is essentially that of the example, save for the implementation of the write method
 
 // Represents a writer that writes JSON representation of a List of Accounts to file
 public class JsonWriter {

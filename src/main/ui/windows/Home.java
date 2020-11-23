@@ -25,6 +25,7 @@ public class Home extends Window {
         initializeClasses();
     }
 
+    // MODIFIES: buttons
     // EFFECTS: Adds the initialized JButtons to Arraylist buttons
     private void initializeButtons() {
         buttons.add(moveMoneyButton);

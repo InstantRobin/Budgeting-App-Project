@@ -24,17 +24,6 @@ public class Currency implements Writable {
         this.exchangeRateUSD = newRate;
     }
 
-    // from CPSC 210 EdX JsonSerializationDemo
-    // EFFECTS: Converts Currency into Json Object
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("name",name);
-        json.put("symbol", symbol);
-        json.put("exchangeRateUSD",exchangeRateUSD);
-        return json;
-    }
-
     public String getName() {
         return name;
     }
@@ -47,8 +36,21 @@ public class Currency implements Writable {
         return exchangeRateUSD;
     }
 
+    //// SOURCE: ////
+    // Save / Load System file structure based on example system JsonSerializationDemo provided by UBC CPSC 210 course
+    // Adapted from the example fn given in the source
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("symbol", symbol);
+        json.put("exchangeRateUSD",exchangeRateUSD);
+        return json;
+    }
 
+    //// SOURCE: ////
     // https://stackoverflow.com/questions/46444855/checking-if-arraylist-contains-an-object-with-an-attribute
+    // Implementation fully sourced from AxelH's response
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Currency) {
