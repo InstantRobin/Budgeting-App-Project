@@ -85,7 +85,7 @@ public final class MoveMoneyFunctions {
     //        if so, removes the last one, adds new one w/ sum of two events
     //        if not, just adds it like normal
     private static void addIfNotDuplicate(Account acc, History data, int i, LogEntry item) {
-        if (i != 0 && item.getDate().equals(data.get(i - 1).getDate())) {
+        if (i != 0 && item.getDate().equals(data.get(data.size() - 1).getDate())) {
             LogEntry prev = data.get(i - 1);
             data.remove(data.size() - 1);
             data.add(new LogEntry(acc,prev.getVal() + item.getVal(), item.getTotal(),item.getDate()));
