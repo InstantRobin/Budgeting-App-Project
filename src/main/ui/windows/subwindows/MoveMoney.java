@@ -32,6 +32,7 @@ public class MoveMoney extends SubWindow {
 
     // MODIFIES: container
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
+    @Override
     public void updateGUI() {
         reset();
         addButtons(buttons);

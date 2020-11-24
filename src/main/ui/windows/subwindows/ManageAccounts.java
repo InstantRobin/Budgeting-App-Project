@@ -35,6 +35,7 @@ public class ManageAccounts extends SubWindow {
 
     // MODIFIES: viewBalButton, viewHistButton, viewGraphButton, makeAccButton
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
+    @Override
     public void updateGUI() {
         reset();
         addButtons(buttons);

@@ -32,6 +32,7 @@ public class Home extends Window {
         buttons.add(manageDataButton);
     }
 
+    @Override
     // EFFECTS: Clears GUI, renders buttons, adds event listeners
     public void updateGUI() {
         reset();

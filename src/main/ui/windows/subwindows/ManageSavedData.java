@@ -27,6 +27,7 @@ public class ManageSavedData extends SubWindow {
     }
 
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
+    @Override
     public void updateGUI() {
         reset();
         addButtons(buttons);
