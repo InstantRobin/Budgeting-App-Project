@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 // A set of static fn's to get a user's typed inputs
-public class GetConsoleInput {
+public final class GetConsoleInput {
+
+    private GetConsoleInput() {
+
+    }
 
     // EFFECTS: Presents user with list of accounts, takes user input, returns selected account
     static Account getAccInput(List<Account> accounts) {
