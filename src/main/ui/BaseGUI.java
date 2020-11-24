@@ -38,7 +38,7 @@ public class BaseGUI extends JFrame {
 
     // EFFECTS: Builds and loads the Home GUI
     private void loadHome() {
-        home = new Home(container, manager);
+        home = new Home(container);
         home.updateGUI();
     }
 }
