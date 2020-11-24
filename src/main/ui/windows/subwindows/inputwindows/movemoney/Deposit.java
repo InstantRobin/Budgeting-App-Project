@@ -12,22 +12,9 @@ public class Deposit extends MoveMoneyWindow {
         super(container, home);
     }
 
-    // EFFECTS: Loads an Input Window, when submit is pressed, prompts user for a number, turns it into an int
-    //          Initializes function chain where windows are loaded to get user input, past input is passed along
-    //          By end of function chain, assuming good user input, will deposit inputted amount into a given acct
     @Override
-    public void updateGUI() {
-        super.getInt(this::getAccount);
-    }
-
-    // EFFECTS: Prompts user for an account, continues chain
-    private void getAccount() {
-        super.getAccount(this::getDate);
-    }
-
-    // EFFECTS: Prompts user for a date, continues chain
-    private void getDate() {
-        super.getDate(this::makeDeposit);
+    protected void finalFn() {
+        makeDeposit();
     }
 
     // MODIFIES: acc

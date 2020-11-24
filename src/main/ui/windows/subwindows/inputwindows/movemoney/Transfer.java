@@ -16,36 +16,30 @@ public class Transfer extends MoveMoneyWindow {
         super(container,home);
     }
 
-    // EFFECTS: Loads a Transfer Window, when submit is pressed, prompts user for a number, turns it into an int
-    //          Initializes function chain where windows are loaded to get user input, past input is passed along
-    //          By end of function chain, assuming good user input, will transfer inputted amount from acc1 to acc2
-    @Override
-    public void updateGUI() {
-        super.getInt(this::getAccount);
-    }
-
     // MODIFIES: acc1
     // EFFECTS: Prompts user for source account, stores it as acc1, continues fn chain
-    protected void getAccount() {
+    @Override
+    protected void getAccountInput() {
         super.getAccount(() -> {
             acc1 = acc;
-            getSecondAccount();
+            getSecondAccountInput();
         });
     }
 
     // MODIFIES: acc2
     // EFFECTS: Prompts user for target account, stores it as acc2, continues fn chain
-    private void getSecondAccount() {
+    private void getSecondAccountInput() {
         super.getAccount(() -> {
             acc2 = acc;
-            getDate();
+            getDateInput();
         });
     }
 
-    // EFFECTS: Prompts user for a date, continues fn chain
-    private void getDate() {
-        super.getDate(this::makeTransfer);
+    @Override
+    protected void finalFn() {
+        makeTransfer();
     }
+
 
     // MODIFIES: acc1, acc2
     // EFFECTS: Takes all user input so far, transfers val from acc1 to acc2, including currency exchange

@@ -1,6 +1,6 @@
 [
     {
-        "balance": 160000,
+        "balance": 175000,
         "name": "Robin",
         "currency": {
             "symbol": "$",
@@ -11,25 +11,31 @@
             {
                 "val": 40000,
                 "date": "2020-10-16",
-                "total": 160000,
+                "total": 175000,
                 "account": "Robin"
             },
             {
                 "val": 50000,
                 "date": "2020-10-29",
-                "total": 160000,
+                "total": 175000,
                 "account": "Robin"
             },
             {
                 "val": 50000,
                 "date": "2020-10-30",
-                "total": 160000,
+                "total": 175000,
                 "account": "Robin"
             },
             {
                 "val": -30000,
                 "date": "2020-10-30",
-                "total": 160000,
+                "total": 175000,
+                "account": "Robin"
+            },
+            {
+                "val": 15000,
+                "date": "2020-11-23",
+                "total": 175000,
                 "account": "Robin"
             }
         ]}
@@ -46,36 +52,60 @@
             {
                 "val": -15000,
                 "date": "2020-10-26",
-                "total": 145000,
+                "total": -15000,
                 "account": "test"
             },
             {
                 "val": 100000,
                 "date": "2020-10-26",
-                "total": 145000,
+                "total": 85000,
                 "account": "test"
             },
             {
                 "val": 30000,
                 "date": "2020-10-30",
-                "total": 145000,
+                "total": 115000,
                 "account": "test"
             }
         ]}
     },
     {
-        "balance": 1000,
+        "balance": 7300,
         "name": "test2",
         "currency": {
             "symbol": "$",
             "name": "USD",
             "exchangeRateUSD": 1
         },
-        "history": {"array": [{
-            "val": -5000,
-            "date": "2020-10-30",
-            "total": 1000,
-            "account": "test2"
-        }]}
+        "history": {"array": [
+            {
+                "val": -5000,
+                "date": "2020-10-30",
+                "total": -5000,
+                "account": "test2"
+            },
+            {
+                "val": 7500,
+                "date": "2020-11-23",
+                "total": 2500,
+                "account": "test2"
+            },
+            {
+                "val": -1200,
+                "date": "2020-11-23",
+                "total": 1300,
+                "account": "test2"
+            }
+        ]}
+    },
+    {
+        "balance": 200000,
+        "name": "test4",
+        "currency": {
+            "symbol": "#",
+            "name": "CAD",
+            "exchangeRateUSD": 0.75
+        },
+        "history": {"array": []}
     }
 ]
