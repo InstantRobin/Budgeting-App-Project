@@ -14,8 +14,8 @@ public abstract class MoveMoneyWindow extends InputWindow {
     protected int val;
     protected LocalDate date;
 
-    public MoveMoneyWindow(Container container, Home home) {
-        super(container, home);
+    public MoveMoneyWindow(Home home) {
+        super(home);
     }
 
 

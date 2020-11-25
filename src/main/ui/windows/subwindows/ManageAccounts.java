@@ -13,7 +13,7 @@ public class ManageAccounts extends SubWindowWithInputs {
 
     // EFFECTS: Adds all the buttons declared above the buttons array
     public ManageAccounts(Container container, Home home) {
-        super(container,home);
+        super(home);
         initializeButtons();
     }
 

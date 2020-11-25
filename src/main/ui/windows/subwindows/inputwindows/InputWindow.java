@@ -14,8 +14,8 @@ public abstract class InputWindow extends SubWindow {
     protected Account acc;
     protected JTextArea textArea;
 
-    public InputWindow(Container container, Home home) {
-        super(container, home);
+    public InputWindow(Home home) {
+        super(home);
     }
 
     // MODIFIES: container, textArea

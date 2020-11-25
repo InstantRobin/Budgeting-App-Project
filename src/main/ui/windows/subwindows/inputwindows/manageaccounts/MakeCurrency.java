@@ -17,7 +17,7 @@ public class MakeCurrency extends InputWindow {
 
     // EFFECTS: Builds a GUI to make a currency, cons represents fn to run on the given currency once completed
     public MakeCurrency(Container container, Home home, Consumer<Currency> cons) {
-        super(container, home);
+        super(home);
         this.cons = cons;
     }
 

@@ -22,7 +22,7 @@ public class ViewAccountHistory extends InputWindow {
     private  JTextArea totalColumn;
 
     public ViewAccountHistory(Container container, Home home) {
-        super(container, home);
+        super(home);
     }
 
     // EFFECTS: Prompts user for an account, loads history as a table

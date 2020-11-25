@@ -36,4 +36,12 @@ public abstract class Window {
             container.add(button);
         }
     }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
 }

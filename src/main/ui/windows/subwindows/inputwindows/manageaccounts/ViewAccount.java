@@ -9,7 +9,7 @@ import java.awt.*;
 public class ViewAccount extends InputWindow {
 
     public ViewAccount(Container container, Home home) {
-        super(container,home);
+        super(home);
     }
 
     // EFFECTS: Prompts user for an account, displays it

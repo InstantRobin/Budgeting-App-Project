@@ -1,7 +1,6 @@
 package ui.windows;
 
 import javax.swing.*;
-import java.awt.*;
 
 // Represents a non-homescreen window
 public abstract class SubWindow extends Window {
@@ -9,8 +8,8 @@ public abstract class SubWindow extends Window {
     protected final Home home;
     protected final JButton back = new JButton("Back");
 
-    public SubWindow(Container container, Home home) {
-        super(container,home.manager);
+    public SubWindow(Home home) {
+        super(home.getContainer(),home.getManager());
         this.home = home;
     }
 

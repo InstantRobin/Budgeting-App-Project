@@ -17,7 +17,7 @@ public class MakeAccount extends InputWindow {
     private int val;
 
     public MakeAccount(Container container, Home home) {
-        super(container, home);
+        super(home);
     }
 
     // MODIFIES: name

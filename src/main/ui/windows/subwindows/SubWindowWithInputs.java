@@ -13,8 +13,8 @@ public abstract class SubWindowWithInputs extends SubWindow {
 
     protected final ArrayList<InputWindow> inputWindows = new ArrayList<>();
 
-    public SubWindowWithInputs(Container container, Home home) {
-        super(container, home);
+    public SubWindowWithInputs(Home home) {
+        super(home);
     }
 
     // MODIFIES: Buttons

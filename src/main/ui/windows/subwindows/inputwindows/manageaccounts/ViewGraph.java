@@ -16,7 +16,7 @@ import java.awt.*;
 public class ViewGraph extends InputWindow {
 
     public ViewGraph(Container container, Home home) {
-        super(container, home);
+        super(home);
     }
 
     // EFFECTS: Prompts user for an account, creates graph

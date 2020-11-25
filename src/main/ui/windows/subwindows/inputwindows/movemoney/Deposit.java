@@ -9,7 +9,7 @@ import java.awt.*;
 public class Deposit extends MoveMoneyWindow {
 
     public Deposit(Container container, Home home) {
-        super(container, home);
+        super(home);
     }
 
     // EFFECTS: calls makeDeposit once all other input steps completed

@@ -15,7 +15,7 @@ public class ManageSavedData extends SubWindow {
 
     // EFFECTS: Adds all the buttons declared above the buttons array
     public ManageSavedData(Container container, Home home) {
-        super(container,home);
+        super(home);
         initializeButtons();
     }
 

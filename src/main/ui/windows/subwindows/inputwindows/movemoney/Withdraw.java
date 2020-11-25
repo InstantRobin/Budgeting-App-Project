@@ -9,7 +9,7 @@ import java.awt.*;
 public class Withdraw extends MoveMoneyWindow {
 
     public Withdraw(Container container, Home home) {
-        super(container, home);
+        super(home);
     }
 
     // EFFECTS: calls makeWithdrawal once all other input steps completed
