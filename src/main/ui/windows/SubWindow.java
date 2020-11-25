@@ -1,7 +1,5 @@
 package ui.windows;
 
-import ui.Manager;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,13 +8,10 @@ public abstract class SubWindow extends Window {
 
     protected final Home home;
     protected final JButton back = new JButton("Back");
-    protected Manager manager;
 
-    // Sets home variable to t
     public SubWindow(Container container, Home home) {
-        super(container);
+        super(container,home.manager);
         this.home = home;
-        manager = home.getManager();
     }
 
     // MODIFIES: back

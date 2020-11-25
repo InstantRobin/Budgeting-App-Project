@@ -1,5 +1,7 @@
 package ui.windows;
 
+import ui.Manager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,9 +11,11 @@ public abstract class Window {
 
     protected final Container container;
     protected final ArrayList<JButton> buttons = new ArrayList<>();
+    protected final Manager manager;
 
-    public Window(Container container) {
+    public Window(Container container, Manager manager) {
         this.container = container;
+        this.manager = manager;
     }
 
     // EFFECTS: Should update the GUI to display the new window

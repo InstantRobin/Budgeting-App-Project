@@ -17,10 +17,9 @@ public class Home extends Window {
     private final JButton moveMoneyButton = new JButton("Move Money");
     private final JButton manageAcctsButton = new JButton("Manage Accounts");
     private final JButton manageDataButton = new JButton("Manage Saved Data");
-    private final Manager manager = new Manager();
 
-    public Home(Container container) {
-        super(container);
+    public Home(Container container, Manager manager) {
+        super(container, manager);
         initializeButtons();
         initializeClasses();
     }
@@ -56,10 +55,6 @@ public class Home extends Window {
             SubWindow subwindow = subWindows.get(i);
             button.addActionListener(e -> subwindow.updateGUI());
         }
-    }
-
-    public Manager getManager() {
-        return manager;
     }
 }
 
