@@ -1,6 +1,5 @@
 package ui.windows.subwindows.inputwindows.manageaccounts;
 
-import model.Account;
 import model.History;
 import model.LogEntry;
 import ui.windows.Home;
@@ -15,12 +14,12 @@ import static model.MoveMoneyFunctions.moneyToString;
 // Represents a window to view the history of actions on an account
 public class ViewAccountHistory extends InputWindow {
 
-    ArrayList<String> dates = new ArrayList<>();
-    ArrayList<String> changes = new ArrayList<>();
-    ArrayList<String> totals = new ArrayList<>();
-    JTextArea dateColumn = new JTextArea();
-    JTextArea changeColumn = new JTextArea();
-    JTextArea totalColumn = new JTextArea();
+    private final ArrayList<String> dates = new ArrayList<>();
+    private final ArrayList<String> changes = new ArrayList<>();
+    private final ArrayList<String> totals = new ArrayList<>();
+    private final JTextArea dateColumn = new JTextArea();
+    private final JTextArea changeColumn = new JTextArea();
+    private final JTextArea totalColumn = new JTextArea();
 
     public ViewAccountHistory(Container container, Home home) {
         super(container, home);

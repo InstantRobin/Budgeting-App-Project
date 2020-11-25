@@ -35,11 +35,11 @@ public class Transfer extends MoveMoneyWindow {
         });
     }
 
+    // EFFECTS: calls makeTransfer once all other input steps completed
     @Override
     protected void finalFn() {
         makeTransfer();
     }
-
 
     // MODIFIES: acc1, acc2
     // EFFECTS: Takes all user input so far, transfers val from acc1 to acc2, including currency exchange

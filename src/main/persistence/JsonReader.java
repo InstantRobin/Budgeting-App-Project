@@ -76,9 +76,11 @@ public class JsonReader {
         return new Currency(name,symbol,exchangeRateUSD);
     }
 
+    //// SOURCE: ////
+    // https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
+    // I used this explanation to transform the date string saved to the file into a LocalDate object
     // EFFECTS: Parses History, adds to given account
     private void getHistory(Account acc,JSONArray array) {
-        // https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         for (Object object : array) {

@@ -13,6 +13,7 @@ public class ManageSavedData extends SubWindow {
     private final JButton loadButton = new JButton("Load");
     private final JButton saveButton = new JButton("Save");
 
+    // EFFECTS: Adds all the buttons declared above the buttons array
     public ManageSavedData(Container container, Home home) {
         super(container,home);
         initializeButtons();
@@ -26,6 +27,7 @@ public class ManageSavedData extends SubWindow {
         buttons.add(back);
     }
 
+    // MODIFIES: loadButton, saveButton
     // EFFECTS: Clears GUI, loads buttons and their actionListeners
     @Override
     public void updateGUI() {

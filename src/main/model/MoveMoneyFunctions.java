@@ -5,8 +5,8 @@ import java.time.LocalDate;
 // Static functions involving the movement of money into, out of, and between accounts
 public final class MoveMoneyFunctions {
 
+    // EFFECTS: Prevents fn from being initiated, since it only holds static fns
     private MoveMoneyFunctions() {
-
     }
 
     // REQUIRES: Val > 0
@@ -51,6 +51,7 @@ public final class MoveMoneyFunctions {
     }
 
     // EFFECT: Takes an account, builds a day-by-day list of events in the account
+    //         If it has one or fewer items, it just returns the inputted account's history
     public static History buildData(Account acc) {
         History data = new History();
         History hist = acc.getHistory();

@@ -15,7 +15,6 @@ public class History implements Writable, Iterable<LogEntry> {
     private final ArrayList<LogEntry> history = new ArrayList<>();
 
     public History() {
-        super();
     }
 
     //// SOURCE: ////
@@ -40,7 +39,7 @@ public class History implements Writable, Iterable<LogEntry> {
         }
     }
 
-    //// Source ////
+    //// SOURCE: ////
     // https://stackoverflow.com/questions/56357708/joda-localdate-compare-if-equal-or-before-and-after
     // Got before-or-equal structure for first else if from Borgy Manotoy's response
 
@@ -61,18 +60,24 @@ public class History implements Writable, Iterable<LogEntry> {
         return dateRange;
     }
 
+    // MODIFIES: history
+    // EFFECTS: Adds the given logEntry to the history
     public void add(LogEntry ent) {
         history.add(ent);
     }
 
+    // MODIFIES: history
+    // EFFECTS: Removes the given logEntry index from the history
     public void remove(int loc) {
         history.remove(loc);
     }
 
+    // EFFECTS: Fetches the logEntry at a given index
     public LogEntry get(int i) {
         return history.get(i);
     }
 
+    // EFFECTS: Returns the the number of entries in the history
     public int size() {
         return history.size();
     }
@@ -125,6 +130,7 @@ public class History implements Writable, Iterable<LogEntry> {
         }
     }
 
+    // EFFECTS: Allows this class to be iterated, going through each item in the history array
     @Override
     public Iterator<LogEntry> iterator() {
         return history.iterator();

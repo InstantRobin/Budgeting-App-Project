@@ -16,6 +16,7 @@ public class MoveMoney extends SubWindow {
     private final JButton withdrawButton = new JButton("Withdraw");
     private final JButton transferButton = new JButton("Transfer");
 
+    // EFFECTS: Adds all the buttons declared above the buttons array
     public MoveMoney(Container container, Home home) {
         super(container, home);
         initializeButtons();

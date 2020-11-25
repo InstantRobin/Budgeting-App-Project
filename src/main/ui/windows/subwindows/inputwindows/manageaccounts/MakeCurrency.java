@@ -13,8 +13,9 @@ public class MakeCurrency extends InputWindow {
     private String curName;
     private String curSymbol;
     private double curExchange;
-    private Consumer<Currency> cons;
+    private final Consumer<Currency> cons;
 
+    // EFFECTS: Builds a GUI to make a currency, cons represents fn to run on the given currency once completed
     public MakeCurrency(Container container, Home home, Consumer<Currency> cons) {
         super(container, home);
         this.cons = cons;

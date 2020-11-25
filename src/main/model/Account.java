@@ -15,7 +15,7 @@ public class Account implements Writable {
     private final History history = new History();
 
 
-    // EFFECT: Initializes account with name, initial balance
+    // EFFECTS: Initializes account with name, initial balance, and a currency
     // Modifies: this
     // Balance can be negative
     public Account(String name, int balance, Currency currency) {

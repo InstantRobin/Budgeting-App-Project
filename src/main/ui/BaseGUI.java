@@ -17,6 +17,7 @@ public class BaseGUI extends JFrame {
     // Windows
     Home home;
 
+    // EFFECTS: Starts up the GUI, loads the homepage
     public BaseGUI() {
         super("Budgeteer");
         initializeGUI();

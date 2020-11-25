@@ -40,6 +40,7 @@ public class Home extends Window {
         createActionListeners();
     }
 
+    // MODIFIES: subWindows
     // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
     private void initializeClasses() {
         subWindows.add(new MoveMoney(container,this));

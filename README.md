@@ -25,11 +25,8 @@ User Stories:
 +As a user, I want to be able to move money between accounts, and give a date of the action <br>
 +As a user, I want to be able to view the values on an account <br>
 +As a user, I want to be able to assign a currency to an account <br>
-As a user, I want to be able to set up regular purchases <br>
-As a user, I want to be able to set up regular deposits <br>
 
 +As a user, I want to be able to log my actions and their date <br>
-As a user, I want to be able to remove actions from the log <br>
 +As a user, I want to be able to add logged action to a history of logged actions <br>
 +As a user, I want to be able to sort and update this history <br>
 +As a user, I want to be able to print a history of these actions <br>
@@ -40,5 +37,5 @@ As a user, I want to be able to remove actions from the log <br>
 +As a user, I want to be able to create charts/graphs of this data <br>
 
 This program uses a type hierarchy in the form of different types of Windows <br>
-These are all descended from the Window type, which has an abstract updateUI method which is overriden by each <br>
-Classes that override this method are: Home, ManageAccounts, ManageSavedData, MoveMoney, Deposit, Transfer, Withdraw, MakeAccount, ViewAccount, ViewAccountHistory, and ViewGraph <br>
+These are all descended from the Window type, which has an abstract updateUI method that is overriden by each <br>
+Classes that override this method are: Home, ManageAccounts, ManageSavedData, MoveMoney, MoveMoneyWindow, MakeAccount, ViewAccount, ViewAccountHistory, and ViewGraph <br>

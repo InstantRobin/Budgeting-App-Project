@@ -12,6 +12,7 @@ public class Deposit extends MoveMoneyWindow {
         super(container, home);
     }
 
+    // EFFECTS: calls makeDeposit once all other input steps completed
     @Override
     protected void finalFn() {
         makeDeposit();

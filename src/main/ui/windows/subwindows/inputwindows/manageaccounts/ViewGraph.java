@@ -25,8 +25,11 @@ public class ViewGraph extends InputWindow {
         getAccount(this::buildGraph);
     }
 
+    //// SOURCES: ////
     // https://stackoverflow.com/questions/12837986/how-to-display-date-in-a-x-axis-of-line-graph-using-jfreechart
     // https://caveofprogramming.com/java/charts-in-java-swing-with-jfreechart.html
+    // I used the response by GrahamA on stackoverflow, and the overall structure of the examples given by
+    // caveofprogramming in tandem to design the methods of this class, and adapted them for the needs of this program
 
     // MODIFIES: container
     // EFFECTS: Builds the frame of the graph, fills it with data, adds to GUI

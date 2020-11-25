@@ -18,7 +18,9 @@ public abstract class MoveMoneyWindow extends InputWindow {
         super(container, home);
     }
 
-    // METHOD SERIES
+
+    // INPUT METHOD SERIES
+
 
     // EFFECTS: Loads an Input Window, when submit is pressed, prompts user for a number, turns it into an int
     //          Initializes function chain where windows are loaded to get user input, past input is passed along
@@ -40,7 +42,9 @@ public abstract class MoveMoneyWindow extends InputWindow {
 
     protected abstract void finalFn();
 
+
     // OTHER METHODS
+
 
     // MODIFIES val
     // EFFECTS: Loads an Input Window, when submit is pressed, takes the TextArea value and verifies it as a Double

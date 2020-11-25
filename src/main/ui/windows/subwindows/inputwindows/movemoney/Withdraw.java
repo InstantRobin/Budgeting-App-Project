@@ -12,11 +12,11 @@ public class Withdraw extends MoveMoneyWindow {
         super(container, home);
     }
 
+    // EFFECTS: calls makeWithdrawal once all other input steps completed
     @Override
     protected void finalFn() {
         makeWithdrawal();
     }
-
 
     // MODIFIES: acc
     // EFFECTS: Takes all user input so far, withdraws val from account, logs account and date

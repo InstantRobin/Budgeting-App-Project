@@ -10,8 +10,8 @@ import java.util.Scanner;
 // A set of static fn's to get a user's typed inputs
 public final class GetConsoleInput {
 
+    // EFFECTS: Prevents fn from being initiated, since it only holds static fns
     private GetConsoleInput() {
-
     }
 
     // EFFECTS: Presents user with list of accounts, takes user input, returns selected account

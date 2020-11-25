@@ -18,6 +18,7 @@ public class ManageAccounts extends SubWindow {
     private final JButton viewGraphButton = new JButton("View Account Graph");
     private final JButton makeAccButton = new JButton("Make New Account");
 
+    // EFFECTS: Adds all the buttons declared above the buttons array
     public ManageAccounts(Container container, Home home) {
         super(container,home);
         initializeButtons();
