@@ -17,13 +17,18 @@ public abstract class SubWindowWithInputs extends SubWindow {
         super(container, home);
     }
 
+    // MODIFIES: Buttons
+    // EFFECTS: Creates a new button with the given text in the button array,
+    //          and puts the target window into the inputWindows array
+    protected void addButton(String text, InputWindow window) {
+        buttons.add(new JButton(text));
+        inputWindows.add(window);
+    }
+
     // MODIFIES: buttons
-    // EFFECTS:Adds the four buttons to the buttons array
+    // EFFECTS:Adds and initializes all the buttons
     protected abstract void initializeButtons();
 
-    // MODIFIES: subWindows
-    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
-    protected abstract void initializeClasses();
 
     // MODIFIES: container
     // EFFECTS: Clears GUI, loads buttons and their actionListeners, and a back button
