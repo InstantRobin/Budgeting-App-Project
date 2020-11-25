@@ -14,12 +14,12 @@ import static model.MoveMoneyFunctions.moneyToString;
 // Represents a window to view the history of actions on an account
 public class ViewAccountHistory extends InputWindow {
 
-    private final ArrayList<String> dates = new ArrayList<>();
-    private final ArrayList<String> changes = new ArrayList<>();
-    private final ArrayList<String> totals = new ArrayList<>();
-    private final JTextArea dateColumn = new JTextArea();
-    private final JTextArea changeColumn = new JTextArea();
-    private final JTextArea totalColumn = new JTextArea();
+    private  ArrayList<String> dates = new ArrayList<>();
+    private  ArrayList<String> changes = new ArrayList<>();
+    private  ArrayList<String> totals = new ArrayList<>();
+    private  JTextArea dateColumn = new JTextArea();
+    private  JTextArea changeColumn = new JTextArea();
+    private  JTextArea totalColumn = new JTextArea();
 
     public ViewAccountHistory(Container container, Home home) {
         super(container, home);
@@ -34,7 +34,8 @@ public class ViewAccountHistory extends InputWindow {
     // MODIFIES: container, dateColumn, changeColumn, totalColumn, acc
     // EFFECTS: Readies the GUI, loads 3 columns, loads history into them
     private void initGUI() {
-        reset();
+        resetAll();
+
         setClearUneditableTextArea(dateColumn);
         setClearUneditableTextArea(changeColumn);
         setClearUneditableTextArea(totalColumn);
@@ -48,6 +49,18 @@ public class ViewAccountHistory extends InputWindow {
         close.addActionListener(e -> home.updateGUI());
 
         loadHistory();
+    }
+
+    // MODIFIES: dates, changes, totals, dateColumn, changeColumnm, totalColumn
+    // EFFECTS: resets all variables, if not reset then when window re-opened, all prev loaded tables will load again
+    private void resetAll() {
+        reset();
+        dates = new ArrayList<>();
+        changes = new ArrayList<>();
+        totals = new ArrayList<>();
+        dateColumn = new JTextArea();
+        changeColumn = new JTextArea();
+        totalColumn = new JTextArea();
     }
 
     // MODIFIES: dates, changes, totals, acc
