@@ -2,6 +2,7 @@ package ui.windows.subwindows;
 
 import ui.windows.Home;
 import ui.windows.SubWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 import ui.windows.subwindows.inputwindows.manageaccounts.MakeAccount;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccount;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccountHistory;
@@ -9,9 +10,12 @@ import ui.windows.subwindows.inputwindows.manageaccounts.ViewGraph;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 // Represents the window where the user can view an account balance, account history, or make a new account
 public class ManageAccounts extends SubWindow {
+
+    private final ArrayList<InputWindow> inputWindows = new ArrayList<>();
 
     private final JButton viewBalButton = new JButton("View Account Balance");
     private final JButton viewHistButton = new JButton("View Account History");
@@ -22,6 +26,7 @@ public class ManageAccounts extends SubWindow {
     public ManageAccounts(Container container, Home home) {
         super(container,home);
         initializeButtons();
+        initializeClasses();
     }
 
     // MODIFIES: buttons
@@ -40,33 +45,25 @@ public class ManageAccounts extends SubWindow {
     public void updateGUI() {
         reset();
         addButtons(buttons);
-        viewBalButton.addActionListener(e -> viewAcctBal());
-        viewHistButton.addActionListener(e -> viewAcctHist());
-        viewGraphButton.addActionListener(e -> viewGraph());
-        makeAccButton.addActionListener(e -> makeNewAcct());
+        createActionListeners();
         addBackButtonListener();
     }
 
-    // EFFECTS: Clears GUI, prints the values of all the accounts
-    public void viewAcctBal() {
-        ViewAccount viewAccount = new ViewAccount(container,home);
-        viewAccount.updateGUI();
+    // MODIFIES: subWindows
+    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
+    private void initializeClasses() {
+        inputWindows.add(new ViewAccount(container,home));
+        inputWindows.add(new ViewAccountHistory(container,home));
+        inputWindows.add(new ViewGraph(container,home));
+        inputWindows.add(new MakeAccount(container,home));
     }
 
-    // EFFECTS: Clears GUI, Allows user to select an account, displays said account's full history
-    private void viewAcctHist() {
-        ViewAccountHistory viewAccountHistory = new ViewAccountHistory(container,home);
-        viewAccountHistory.updateGUI();
-    }
-
-    private void viewGraph() {
-        ViewGraph viewGraph = new ViewGraph(container,home);
-        viewGraph.updateGUI();
-    }
-
-    // EFFECTS: Makes window where user can input info to make a new account, adds account to manage.accounts
-    private void makeNewAcct() {
-        MakeAccount makeAccount = new MakeAccount(container,home);
-        makeAccount.updateGUI();
+    // EFFECTS: Makes buttons open up their desired GUIs
+    private void createActionListeners() {
+        for (int i = 0; i < inputWindows.size(); i++) {
+            JButton button = (JButton)container.getComponent(i);
+            InputWindow inputWindow = inputWindows.get(i);
+            button.addActionListener(e -> inputWindow.updateGUI());
+        }
     }
 }

@@ -2,15 +2,19 @@ package ui.windows.subwindows;
 
 import ui.windows.Home;
 import ui.windows.SubWindow;
+import ui.windows.subwindows.inputwindows.InputWindow;
 import ui.windows.subwindows.inputwindows.movemoney.Deposit;
 import ui.windows.subwindows.inputwindows.movemoney.Transfer;
 import ui.windows.subwindows.inputwindows.movemoney.Withdraw;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 // Represents the window where the user can deposit, withdraw, or transfer money
 public class MoveMoney extends SubWindow {
+
+    private final ArrayList<InputWindow> inputWindows = new ArrayList<>();
 
     private final JButton depositButton = new JButton("Deposit");
     private final JButton withdrawButton = new JButton("Withdraw");
@@ -20,6 +24,7 @@ public class MoveMoney extends SubWindow {
     public MoveMoney(Container container, Home home) {
         super(container, home);
         initializeButtons();
+        initializeClasses();
     }
 
     // MODIFIES: buttons
@@ -37,27 +42,24 @@ public class MoveMoney extends SubWindow {
     public void updateGUI() {
         reset();
         addButtons(buttons);
-        depositButton.addActionListener(e -> makeDepositWindow());
-        withdrawButton.addActionListener(e -> makeWithdrawal());
-        transferButton.addActionListener(e -> makeTransfer());
+        createActionListeners();
         addBackButtonListener();
     }
 
-    // EFFECTS: Instantiates and Loads deposit window
-    public void makeDepositWindow() {
-        Deposit deposit = new Deposit(container,home);
-        deposit.updateGUI();
+    // MODIFIES: subWindows
+    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
+    private void initializeClasses() {
+        inputWindows.add(new Deposit(container,home));
+        inputWindows.add(new Withdraw(container,home));
+        inputWindows.add(new Transfer(container,home));
     }
 
-    // EFFECTS: Instantiates and Loads withdrawal window
-    private void makeWithdrawal() {
-        Withdraw withdraw = new Withdraw(container,home);
-        withdraw.updateGUI();
-    }
-
-    // EFFECTS: Instantiates and Loads transfer window
-    public void makeTransfer() {
-        Transfer transfer = new Transfer(container,home);
-        transfer.updateGUI();
+    // EFFECTS: Makes buttons open up their desired GUIs
+    private void createActionListeners() {
+        for (int i = 0; i < inputWindows.size(); i++) {
+            JButton button = (JButton)container.getComponent(i);
+            InputWindow inputWindow = inputWindows.get(i);
+            button.addActionListener(e -> inputWindow.updateGUI());
+        }
     }
 }

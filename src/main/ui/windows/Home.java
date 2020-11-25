@@ -32,12 +32,15 @@ public class Home extends Window {
         buttons.add(manageDataButton);
     }
 
-    @Override
     // EFFECTS: Clears GUI, renders buttons, adds event listeners
+    //          Visibility is necessary otherwise sometimes would be missing at least one button
+    @Override
     public void updateGUI() {
+        container.setVisible(false);
         reset();
         addButtons(buttons);
         createActionListeners();
+        container.setVisible(true);
     }
 
     // MODIFIES: subWindows

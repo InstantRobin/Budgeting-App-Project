@@ -40,6 +40,7 @@ public abstract class MoveMoneyWindow extends InputWindow {
         getDate(this::finalFn);
     }
 
+    // EFFECTS: Performs the final operation on the data inputted through the above proccess
     protected abstract void finalFn();
 
 

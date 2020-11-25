@@ -213,6 +213,8 @@ public class Manager {
         }
     }
 
+    // MODIFIES: currencies
+    // EFFECTS: adds given currency to list of currencies
     public void addCurrency(Currency cur) {
         currencies.add(cur);
     }

@@ -11,7 +11,6 @@ public class BaseGUI extends JFrame {
     public static final int WIDTH = 1000;
     public static final int HEIGHT = 500;
 
-    final Manager manager = new Manager();
     Container container;
 
     // Windows
@@ -39,7 +38,7 @@ public class BaseGUI extends JFrame {
 
     // EFFECTS: Builds and loads the Home GUI
     private void loadHome() {
-        home = new Home(container, manager);
+        home = new Home(container, new Manager());
         home.updateGUI();
     }
 }
