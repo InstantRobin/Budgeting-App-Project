@@ -14,12 +14,12 @@ import static model.MoveMoneyFunctions.moneyToString;
 // Represents a window to view the history of actions on an account
 public class ViewAccountHistory extends InputWindow {
 
-    private  ArrayList<String> dates = new ArrayList<>();
-    private  ArrayList<String> changes = new ArrayList<>();
-    private  ArrayList<String> totals = new ArrayList<>();
-    private  JTextArea dateColumn = new JTextArea();
-    private  JTextArea changeColumn = new JTextArea();
-    private  JTextArea totalColumn = new JTextArea();
+    private  ArrayList<String> dates;
+    private  ArrayList<String> changes;
+    private  ArrayList<String> totals;
+    private  JTextArea dateColumn;
+    private  JTextArea changeColumn;
+    private  JTextArea totalColumn;
 
     public ViewAccountHistory(Container container, Home home) {
         super(container, home);
@@ -68,10 +68,19 @@ public class ViewAccountHistory extends InputWindow {
     private void loadHistory() {
         History hist = acc.getHistory();
         hist.updateTotals();
+
+        int sum = 0;
         for (LogEntry entry: hist) {
             dates.add(entry.getDate().toString());
             changes.add(moneyToString(entry.getVal(),acc.getCurrency()));
-            totals.add(moneyToString(entry.getTotal(),acc.getCurrency()));
+            sum += entry.getVal();
+        }
+        // This needs to be separate as an account's initial balance is technically never deposited, as is not
+        //      stored so dif is equal to that amount, as calculated by subtracting the total of all past actions
+        // This is probably not great design, should really be overhauled at some point
+        int dif = acc.getBalance() - sum;
+        for (LogEntry entry: hist) {
+            totals.add(moneyToString(entry.getTotal() + dif, acc.getCurrency()));
         }
 
         initDateColumn();
