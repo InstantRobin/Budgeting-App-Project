@@ -32,6 +32,14 @@ public class Home extends Window {
         buttons.add(manageDataButton);
     }
 
+    // MODIFIES: subWindows
+    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
+    private void initializeClasses() {
+        subWindows.add(new MoveMoney(container,this));
+        subWindows.add(new ManageAccounts(container,this));
+        subWindows.add(new ManageSavedData(container,this));
+    }
+
     // EFFECTS: Clears GUI, renders buttons, adds event listeners
     //          Visibility is necessary otherwise sometimes would be missing at least one button
     @Override
@@ -41,14 +49,6 @@ public class Home extends Window {
         addButtons(buttons);
         createActionListeners();
         container.setVisible(true);
-    }
-
-    // MODIFIES: subWindows
-    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
-    private void initializeClasses() {
-        subWindows.add(new MoveMoney(container,this));
-        subWindows.add(new ManageAccounts(container,this));
-        subWindows.add(new ManageSavedData(container,this));
     }
 
     // EFFECTS: Loads the Home gui, makes buttons open up their desired GUIs

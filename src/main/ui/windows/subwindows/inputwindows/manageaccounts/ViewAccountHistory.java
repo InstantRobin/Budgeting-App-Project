@@ -25,15 +25,15 @@ public class ViewAccountHistory extends InputWindow {
         super(container, home);
     }
 
-    // EFFECTS: Prompts user for an account to act upon, initiates GUI
+    // EFFECTS: Prompts user for an account, loads history as a table
     @Override
     public void updateGUI() {
-        getAccount(this::initGUI);
+        getAccount(this::initTable);
     }
 
     // MODIFIES: container, dateColumn, changeColumn, totalColumn, acc
     // EFFECTS: Readies the GUI, loads 3 columns, loads history into them
-    private void initGUI() {
+    private void initTable() {
         resetAll();
 
         setClearUneditableTextArea(dateColumn);
