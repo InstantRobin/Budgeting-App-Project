@@ -33,7 +33,7 @@ public abstract class Window {
 
     // MODIFIES: container
     // EFFECTS: Adds a list of JButtons to the GUI
-    protected void addButtons(ArrayList<JButton> buttonList) {
+    protected void loadButtons(ArrayList<JButton> buttonList) {
         for (JButton button : buttonList) {
             container.add(button);
         }

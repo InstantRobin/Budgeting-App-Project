@@ -9,46 +9,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-// The Home Page of the program
+// Represents the Home Page of the program
 public class Home extends Window {
 
-    private final ArrayList<SubWindow> subWindows = new ArrayList<>();
-
-    private final JButton moveMoneyButton = new JButton("Move Money");
-    private final JButton manageAcctsButton = new JButton("Manage Accounts");
-    private final JButton manageDataButton = new JButton("Manage Saved Data");
+    protected final ArrayList<SubWindow> subWindows = new ArrayList<>();
 
     // EFFECTS: Makes a new Window with the given Container, Manager
     //          Initializes all the buttons and subwindows
     public Home(Container container, Manager manager) {
         super(container, manager);
         initializeButtons();
-        initializeClasses();
+    }
+
+    // MODIFIES: Buttons
+    // EFFECTS: Creates a new button with the given text in the button array,
+    //          and puts the target window into the inputWindows array
+    protected void addButton(String text, SubWindow window) {
+        buttons.add(new JButton(text));
+        subWindows.add(window);
     }
 
     // MODIFIES: buttons
-    // EFFECTS: Adds the initialized JButtons to Arraylist buttons
+    // EFFECTS: Adds and initializes all the buttons
     private void initializeButtons() {
-        buttons.add(moveMoneyButton);
-        buttons.add(manageAcctsButton);
-        buttons.add(manageDataButton);
+        addButton("Move Money", new MoveMoney(this));
+        addButton("Manage Accounts", new ManageAccounts(this));
+        addButton("Manage Saved Data", new ManageSavedData(this));
     }
 
-    // MODIFIES: subWindows
-    // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
-    private void initializeClasses() {
-        subWindows.add(new MoveMoney(this));
-        subWindows.add(new ManageAccounts(this));
-        subWindows.add(new ManageSavedData(this));
-    }
-
+    // MODIFIES: Container
     // EFFECTS: Clears GUI, renders buttons, adds event listeners
     //          Visibility is necessary otherwise sometimes would be missing at least one button
     @Override
     public void updateGUI() {
         container.setVisible(false);
         reset();
-        addButtons(buttons);
+        loadButtons(buttons);
         createActionListeners();
         container.setVisible(true);
     }

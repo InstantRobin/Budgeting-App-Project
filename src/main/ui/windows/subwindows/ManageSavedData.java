@@ -32,7 +32,7 @@ public class ManageSavedData extends SubWindow {
     @Override
     public void updateGUI() {
         reset();
-        addButtons(buttons);
+        loadButtons(buttons);
         loadButton.addActionListener(e -> load());
         saveButton.addActionListener(e -> save());
         addBackButtonListener();

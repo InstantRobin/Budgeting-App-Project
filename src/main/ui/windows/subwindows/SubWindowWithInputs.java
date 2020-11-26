@@ -26,7 +26,7 @@ public abstract class SubWindowWithInputs extends SubWindow {
     }
 
     // MODIFIES: buttons
-    // EFFECTS:Adds and initializes all the buttons
+    // EFFECTS: Adds and initializes all the buttons
     protected abstract void initializeButtons();
 
 
@@ -35,7 +35,7 @@ public abstract class SubWindowWithInputs extends SubWindow {
     @Override
     public void updateGUI() {
         reset();
-        addButtons(buttons);
+        loadButtons(buttons);
         createActionListeners();
         addBackButtonListener();
     }
