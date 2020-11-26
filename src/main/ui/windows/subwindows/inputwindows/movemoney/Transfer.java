@@ -4,7 +4,6 @@ import model.Account;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
 
-import java.awt.*;
 
 // Represents a window where the user can transfer money between two accounts
 public class Transfer extends MoveMoneyWindow {

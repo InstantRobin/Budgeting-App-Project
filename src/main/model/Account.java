@@ -26,7 +26,7 @@ public class Account implements Writable {
 
     // EFFECT: Logs date, amount changed, current total account value, and the date of the action in a LogEntry
     public void logEvent(int value, LocalDate date) {
-        history.add(new LogEntry(this, value, this.balance, date));
+        history.add(new LogEntry(value, this.balance, date));
     }
 
     // REQUIRES: Value > 0

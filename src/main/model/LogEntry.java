@@ -9,15 +9,13 @@ import java.time.format.DateTimeFormatter;
 // Represents a log entry of an account changing in value
 public class LogEntry implements Comparable<LogEntry>, Writable {
 
-    private final String acc; // Name of the Account
     private final int val;
     private int total;
     private final LocalDate date;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     // EFFECTS: Initializes LogEntry with variables as explained below
-    public LogEntry(Account acc, int val, int total, LocalDate date) {
-        this.acc = acc.getName(); // Account of where even occurred
+    public LogEntry(int val, int total, LocalDate date) {
         this.val = val; // Value of the change (pos for deposit, negative for withdrawal
         this.total = total; // The total money in the account at the time of the event
         this.date = date; // The date of the event
@@ -37,10 +35,6 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     }
 
     // Getters
-
-    public String getAcc() {
-        return acc;
-    }
 
     public int getVal() {
         return val;
@@ -79,7 +73,6 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("account",acc);
         json.put("val", val);
         json.put("total",total);
         json.put("date", date);

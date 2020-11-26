@@ -11,14 +11,12 @@
             {
                 "val": -60,
                 "date": "2019-09-15",
-                "total": 10,
-                "account": "test1"
+                "total": 10
             },
             {
                 "val": 230,
                 "date": "2020-02-12",
-                "total": 10,
-                "account": "test1"
+                "total": 10
             }
         ]}
     },
@@ -34,14 +32,12 @@
             {
                 "val": 50,
                 "date": "2020-10-29",
-                "total": 543,
-                "account": "test2"
+                "total": 543
             },
             {
                 "val": 80,
                 "date": "2020-11-19",
-                "total": 543,
-                "account": "test2"
+                "total": 543
             }
         ]}
     }

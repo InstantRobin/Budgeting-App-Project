@@ -4,7 +4,6 @@ import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.InputWindow;
 import ui.windows.subwindows.inputwindows.NegativeValueException;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 

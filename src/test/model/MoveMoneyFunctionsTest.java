@@ -26,7 +26,7 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         deposit(acc1,500,date);
         assertEquals(5500, acc1.getBalance());
 
-        history.add(new LogEntry(acc1,500,5500,date));
+        history.add(new LogEntry(500,5500,date));
         assertEquals(history,acc1.getHistory());
     }
 
@@ -35,7 +35,7 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         withdraw(acc1,500,date);
         assertEquals(4500, acc1.getBalance());
 
-        history.add(new LogEntry(acc1,-500,4500,date));
+        history.add(new LogEntry(-500,4500,date));
         assertEquals(history,acc1.getHistory());
     }
 
@@ -45,11 +45,11 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         assertEquals(4500, acc1.getBalance());
         assertEquals(1500, acc2.getBalance());
 
-        history.add(new LogEntry(acc1,-500,4500,date));
+        history.add(new LogEntry(-500,4500,date));
         assertEquals(history,acc1.getHistory());
 
         history = new History();
-        history.add(new LogEntry(acc2,500,1500,date));
+        history.add(new LogEntry(500,1500,date));
         assertEquals(history,acc2.getHistory());
     }
 
@@ -60,11 +60,11 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         assertEquals(4500, acc1.getBalance());
         assertEquals(2000 + newAmount , acc3.getBalance());
 
-        history.add(new LogEntry(acc1,-500,4500,date));
+        history.add(new LogEntry(-500,4500,date));
         assertEquals(history,acc1.getHistory());
 
         history = new History();
-        history.add(new LogEntry(acc3,newAmount,2000 + newAmount,date));
+        history.add(new LogEntry(newAmount,2000 + newAmount,date));
         assertEquals(history,acc3.getHistory());
     }
 
@@ -75,11 +75,11 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         assertEquals(5000 + newAmount, acc1.getBalance());
         assertEquals(1500, acc3.getBalance());
 
-        history.add(new LogEntry(acc1,newAmount,5000 + newAmount,date));
+        history.add(new LogEntry(newAmount,5000 + newAmount,date));
         assertEquals(history,acc1.getHistory());
 
         history = new History();
-        history.add(new LogEntry(acc3,-500,1500,date));
+        history.add(new LogEntry(-500,1500,date));
         assertEquals(history,acc3.getHistory());
     }
 
@@ -98,12 +98,12 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         withdraw(acc1,20, date2);
         withdraw(acc1,35, date3);
 
-        history.add(new LogEntry(acc1,50,50,date1));
-        history.add(new LogEntry(acc1,0,50,date1.plusDays(1)));
-        history.add(new LogEntry(acc1,0,50,date1.plusDays(2)));
-        history.add(new LogEntry(acc1,-20,30,date2));
-        history.add(new LogEntry(acc1,0,30,date2.plusDays(1)));
-        history.add(new LogEntry(acc1,-35,-5,date3));
+        history.add(new LogEntry(50,50,date1));
+        history.add(new LogEntry(0,50,date1.plusDays(1)));
+        history.add(new LogEntry(0,50,date1.plusDays(2)));
+        history.add(new LogEntry(-20,30,date2));
+        history.add(new LogEntry(0,30,date2.plusDays(1)));
+        history.add(new LogEntry(-35,-5,date3));
         History result = buildData(acc1);
         assertEquals(history,result);
     }
@@ -116,10 +116,10 @@ public class MoveMoneyFunctionsTest extends TestDefaults{
         withdraw(acc1,20, date2);
         withdraw(acc1,35, date2);
 
-        history.add(new LogEntry(acc1,50,50,date1));
-        history.add(new LogEntry(acc1,0,50,date1.plusDays(1)));
-        history.add(new LogEntry(acc1,0,50,date1.plusDays(2)));
-        history.add(new LogEntry(acc1,-55,-5,date2));
+        history.add(new LogEntry(50,50,date1));
+        history.add(new LogEntry(0,50,date1.plusDays(1)));
+        history.add(new LogEntry(0,50,date1.plusDays(2)));
+        history.add(new LogEntry(-55,-5,date2));
 
         assertEquals(history,buildData(acc1));
     }

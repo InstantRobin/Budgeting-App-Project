@@ -70,7 +70,7 @@ public final class MoveMoneyFunctions {
             if (start != hist.get(i + 1).getDate()) {
                 for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
                         date = date.plusDays(1)) {
-                    data.add(new LogEntry(acc, 0, item.getTotal(), date));
+                    data.add(new LogEntry(0, item.getTotal(), date));
                 }
             }
         }
@@ -89,7 +89,7 @@ public final class MoveMoneyFunctions {
         if (i != 0 && item.getDate().equals(data.get(data.size() - 1).getDate())) {
             LogEntry prev = data.get(i - 1);
             data.remove(data.size() - 1);
-            data.add(new LogEntry(acc,prev.getVal() + item.getVal(), item.getTotal(),item.getDate()));
+            data.add(new LogEntry(prev.getVal() + item.getVal(), item.getTotal(),item.getDate()));
         } else {
             data.add(item);
         }

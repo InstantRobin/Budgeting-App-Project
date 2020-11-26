@@ -16,12 +16,11 @@ public class HistoryTest extends TestDefaults{
     List<LogEntry> result;
 
     public LogEntry logEvent(int val, LocalDate date){
-        return (new LogEntry(acc,val,0,date));
+        return (new LogEntry(val,0,date));
     }
 
     public void compareValues(History history, List<LogEntry> result){
         for (int entry = 0; entry < history.size(); entry++){
-            assertEquals(result.get(entry).getAcc(), history.get(entry).getAcc());
             assertEquals(result.get(entry).getVal(), history.get(entry).getVal());
             assertEquals(result.get(entry).getTotal(), history.get(entry).getTotal());
             assertEquals(result.get(entry).getDate(), history.get(entry).getDate());
@@ -40,8 +39,8 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(800,LocalDate.of(2020,5,19)));
         hist.sort();
 
-        result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
-        result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,20)));
+        result.add(new LogEntry(800, acc.getBalance(),LocalDate.of(2020,5,19)));
+        result.add(new LogEntry(500, acc.getBalance(),LocalDate.of(2020,5,20)));
 
         compareValues(hist,result);
     }
@@ -52,8 +51,8 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(500,LocalDate.of(2020,5,20)));
         hist.sort();
 
-        result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
-        result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,20)));
+        result.add(new LogEntry(800, acc.getBalance(),LocalDate.of(2020,5,19)));
+        result.add(new LogEntry(500, acc.getBalance(),LocalDate.of(2020,5,20)));
 
         compareValues(hist,result);
     }
@@ -65,9 +64,9 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(500,LocalDate.of(2020,5,18)));
         hist.sort();
 
-        result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2020,5,17)));
-        result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,5,18)));
-        result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,5,19)));
+        result.add(new LogEntry(200, acc.getBalance(),LocalDate.of(2020,5,17)));
+        result.add(new LogEntry(500, acc.getBalance(),LocalDate.of(2020,5,18)));
+        result.add(new LogEntry(800, acc.getBalance(),LocalDate.of(2020,5,19)));
 
         compareValues(hist,result);
     }
@@ -79,9 +78,9 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(500,LocalDate.of(2020,3,19)));
         hist.sort();
 
-        result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2020,2,17)));
-        result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2020,3,19)));
-        result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,4,15)));
+        result.add(new LogEntry(200, acc.getBalance(),LocalDate.of(2020,2,17)));
+        result.add(new LogEntry(500, acc.getBalance(),LocalDate.of(2020,3,19)));
+        result.add(new LogEntry(800, acc.getBalance(),LocalDate.of(2020,4,15)));
 
         compareValues(hist,result);
     }
@@ -93,9 +92,9 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(500,LocalDate.of(2019,3,19)));
         hist.sort();
 
-        result.add(new LogEntry(acc,200, acc.getBalance(),LocalDate.of(2018,5,17)));
-        result.add(new LogEntry(acc,500, acc.getBalance(),LocalDate.of(2019,3,19)));
-        result.add(new LogEntry(acc,800, acc.getBalance(),LocalDate.of(2020,2,15)));
+        result.add(new LogEntry(200, acc.getBalance(),LocalDate.of(2018,5,17)));
+        result.add(new LogEntry(500, acc.getBalance(),LocalDate.of(2019,3,19)));
+        result.add(new LogEntry(800, acc.getBalance(),LocalDate.of(2020,2,15)));
 
         compareValues(hist,result);
     }
@@ -107,9 +106,9 @@ public class HistoryTest extends TestDefaults{
         hist.add(logEvent(-500,LocalDate.of(2019,3,19)));
         hist.updateTotals();
 
-        result.add(new LogEntry(acc,200,200,LocalDate.of(2018,5,17)));
-        result.add(new LogEntry(acc,-500,-300,LocalDate.of(2019,3,19)));
-        result.add(new LogEntry(acc,800,500,LocalDate.of(2020,2,15)));
+        result.add(new LogEntry(200,200,LocalDate.of(2018,5,17)));
+        result.add(new LogEntry(-500,-300,LocalDate.of(2019,3,19)));
+        result.add(new LogEntry(800,500,LocalDate.of(2020,2,15)));
 
         compareValues(hist,result);
     }
@@ -130,38 +129,29 @@ public class HistoryTest extends TestDefaults{
         Account acc2 = new Account("test2",1200,USD);
         LocalDate date2 = LocalDate.of(2020,1,1);
 
-        hist.add(new LogEntry(acc,500,500,date2));
-        hist2.add(new LogEntry(acc,500,500,date2));
+        hist.add(new LogEntry(500,500,date2));
+        hist2.add(new LogEntry(500,500,date2));
         assertEquals(hist, hist2);
 
-        hist.add(new LogEntry(acc2,1400,1900,date));
-        hist2.add(new LogEntry(acc2,1400,1900,date));
+        hist.add(new LogEntry(1400,1900,date));
+        hist2.add(new LogEntry(1400,1900,date));
         assertEquals(hist, hist2);
     }
 
     @Test
     public void equalsTestDifSize() {
-        hist.add(new LogEntry(acc,500,500,date));
+        hist.add(new LogEntry(500,500,date));
         assertNotEquals(hist, hist2);
 
-        hist.add(new LogEntry(acc,500,500,date));
-        hist2.add(new LogEntry(acc,500,500,date));
+        hist.add(new LogEntry(500,500,date));
+        hist2.add(new LogEntry(500,500,date));
         assertNotEquals(hist, hist2);
-    }
-
-    @Test
-    public void equalsTestDifAccounts() {
-        Account acc2 = new Account("test2",1200,USD);
-
-        hist.add(new LogEntry(acc,500,100,date));
-        hist2.add(new LogEntry(acc2,500,100,date));
-        assertNotEquals(hist,hist2);
     }
 
     @Test
     public void equalsTestDifVal() {
-        hist.add(new LogEntry(acc,500,100,date));
-        hist2.add(new LogEntry(acc,400,100,date));
+        hist.add(new LogEntry(500,100,date));
+        hist2.add(new LogEntry(400,100,date));
         assertNotEquals(hist,hist2);
     }
 
@@ -169,8 +159,8 @@ public class HistoryTest extends TestDefaults{
     public void equalsTestDifDate() {
         LocalDate date2 = LocalDate.of(2020,1,1);
 
-        hist.add(new LogEntry(acc,500,100,date));
-        hist2.add(new LogEntry(acc,500,100,date2));
+        hist.add(new LogEntry(500,100,date));
+        hist2.add(new LogEntry(500,100,date2));
         assertNotEquals(hist,hist2);
     }
 

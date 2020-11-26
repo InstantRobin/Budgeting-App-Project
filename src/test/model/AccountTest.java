@@ -18,7 +18,6 @@ public class AccountTest {
         History history = account.getHistory();
 
         for (int ent = 0; ent < history.size(); ent++){
-            assertEquals(result.get(ent).getAcc(), history.get(ent).getAcc());
             assertEquals(result.get(ent).getVal(), history.get(ent).getVal());
             assertEquals(result.get(ent).getTotal(), history.get(ent).getTotal());
             assertEquals(result.get(ent).getDate(), history.get(ent).getDate());
@@ -26,7 +25,7 @@ public class AccountTest {
     }
 
     public LogEntry newLogEntry(int val, int total){
-        return (new LogEntry(acc,val,total,date));
+        return (new LogEntry(val,total,date));
     }
 
 

@@ -45,5 +45,5 @@ Classes that override this method are: Home, ManageAccounts, ManageSavedData, Mo
 
 
 Phase 4: Task 3<br>
- - Remove initial value from Account, it adds confusion to the history and would simplify the methods that rely on it. <br>
+ - Remove initial value from Account creation, it adds confusion to the history and would simplify the methods that rely on it, specifically ViewAccountHistory and ViewGraph <br>
  - There seems to be some functional overlap between Home and SubWindowWithInputs, I would like to try to refactor it so that this redundancy can be reduced. <br>
