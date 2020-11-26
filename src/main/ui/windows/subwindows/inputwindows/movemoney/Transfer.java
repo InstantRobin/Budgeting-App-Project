@@ -11,6 +11,7 @@ public class Transfer extends MoveMoneyWindow {
     private Account acc1;
     private Account acc2;
 
+    // EFFECTS: Creates a new MoveMoneyWindow with the given Home
     public Transfer(Home home) {
         super(home);
     }

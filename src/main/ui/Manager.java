@@ -32,6 +32,9 @@ public class Manager {
     private final JsonWriter jsonWriter;
     private final JsonReader jsonReader;
 
+    // Modifies: this
+    // EFFECTS: Initializes a new Manager Object with a JsonWriter, array of accounts, array of currencies, and
+    //                                                a default currency of USD
     public Manager() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);

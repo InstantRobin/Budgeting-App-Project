@@ -8,6 +8,8 @@ public abstract class SubWindow extends Window {
     protected final Home home;
     protected final JButton back = new JButton("Back");
 
+    // Modifies: this
+    // EFFECTS: Creates a new Window using the container and manager from the given home, also sets home to given Home
     public SubWindow(Home home) {
         super(home.getContainer(),home.getManager());
         this.home = home;

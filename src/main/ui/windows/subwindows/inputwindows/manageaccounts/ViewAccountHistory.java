@@ -20,6 +20,7 @@ public class ViewAccountHistory extends InputWindow {
     private  JTextArea changeColumn;
     private  JTextArea totalColumn;
 
+    // EFFECTS: Creates a new InputWindow with the given Home
     public ViewAccountHistory(Home home) {
         super(home);
     }

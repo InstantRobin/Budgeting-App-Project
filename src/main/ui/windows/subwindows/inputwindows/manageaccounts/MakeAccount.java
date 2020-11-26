@@ -15,6 +15,7 @@ public class MakeAccount extends InputWindow {
     private Currency currency;
     private int val;
 
+    // EFFECTS: Makes a new InputWindow with the given Home
     public MakeAccount(Home home) {
         super(home);
     }

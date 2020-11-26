@@ -14,6 +14,7 @@ public class LogEntry implements Comparable<LogEntry>, Writable {
     private final LocalDate date;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    // Modifies: this
     // EFFECTS: Initializes LogEntry with variables as explained below
     public LogEntry(int val, int total, LocalDate date) {
         this.val = val; // Value of the change (pos for deposit, negative for withdrawal

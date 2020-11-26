@@ -9,7 +9,8 @@ import ui.windows.subwindows.inputwindows.manageaccounts.ViewGraph;
 // Represents the window where the user can view an account balance, account history, or make a new account
 public class ManageAccounts extends SubWindowWithInputs {
 
-    // EFFECTS: Adds all the buttons declared above the buttons array
+    // EFFECTS: Creates a new SubWindowWithInputs with given Home
+    //          Creates and initializes a set of buttons
     public ManageAccounts(Home home) {
         super(home);
         initializeButtons();

@@ -6,6 +6,7 @@ import ui.windows.Home;
 // Represents a window where the user can withdraw money from an account
 public class Withdraw extends MoveMoneyWindow {
 
+    // EFFECTS: Creates a new MoveMoneyWindow with the given Home
     public Withdraw(Home home) {
         super(home);
     }

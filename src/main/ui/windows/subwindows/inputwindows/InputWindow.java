@@ -13,6 +13,7 @@ public abstract class InputWindow extends SubWindow {
     protected Account acc;
     protected JTextArea textArea;
 
+    // EFFECTS: Creates a new Subwindow with the given Home
     public InputWindow(Home home) {
         super(home);
     }

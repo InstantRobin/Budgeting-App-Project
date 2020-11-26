@@ -8,7 +8,8 @@ import ui.windows.subwindows.inputwindows.movemoney.Withdraw;
 // Represents the window where the user can deposit, withdraw, or transfer money
 public class MoveMoney extends SubWindowWithInputs {
 
-    // EFFECTS: Adds all the buttons declared above the buttons array
+    // EFFECTS: Creates a new SubWindowWithInputs with given Home
+    //          Creates and initializes a set of buttons
     public MoveMoney(Home home) {
         super(home);
         initializeButtons();

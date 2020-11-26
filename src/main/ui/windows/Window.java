@@ -13,6 +13,8 @@ public abstract class Window {
     protected final ArrayList<JButton> buttons = new ArrayList<>();
     protected final Manager manager;
 
+    // Modifies: this
+    // EFFECTS: sets container and manager to given values
     public Window(Container container, Manager manager) {
         this.container = container;
         this.manager = manager;

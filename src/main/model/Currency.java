@@ -11,6 +11,7 @@ public class Currency implements Writable {
     private final String symbol;
     private double exchangeRateUSD;
 
+    // Modifies: this
     // EFFECTS: Initializes a currency with a given name, symbol, and exchange rate of one unit into USD
     public Currency(String name, String symbol, double exchangeRateUSD) {
         this.name = name;

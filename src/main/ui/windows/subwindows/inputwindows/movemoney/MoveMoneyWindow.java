@@ -13,6 +13,7 @@ public abstract class MoveMoneyWindow extends InputWindow {
     protected int val;
     protected LocalDate date;
 
+    // EFFECTS: Creates a new InputWindow with the given Home
     public MoveMoneyWindow(Home home) {
         super(home);
     }

@@ -14,6 +14,7 @@ public class History implements Writable, Iterable<LogEntry> {
 
     private final ArrayList<LogEntry> history = new ArrayList<>();
 
+    // EFFECTS: Makes a new History
     public History() {
     }
 

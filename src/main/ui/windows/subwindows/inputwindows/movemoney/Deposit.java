@@ -6,6 +6,7 @@ import ui.windows.Home;
 // Represents a window where the user can deposit money
 public class Deposit extends MoveMoneyWindow {
 
+    // EFFECTS: Creates a new MoveMoneyWindow with the given Home
     public Deposit(Home home) {
         super(home);
     }

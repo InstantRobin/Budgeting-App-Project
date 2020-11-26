@@ -18,6 +18,8 @@ public class Home extends Window {
     private final JButton manageAcctsButton = new JButton("Manage Accounts");
     private final JButton manageDataButton = new JButton("Manage Saved Data");
 
+    // EFFECTS: Makes a new Window with the given Container, Manager
+    //          Initializes all the buttons and subwindows
     public Home(Container container, Manager manager) {
         super(container, manager);
         initializeButtons();

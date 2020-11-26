@@ -12,6 +12,7 @@ public abstract class SubWindowWithInputs extends SubWindow {
 
     protected final ArrayList<InputWindow> inputWindows = new ArrayList<>();
 
+    // EFFECTS: Creates a new subwindow with the given Home
     public SubWindowWithInputs(Home home) {
         super(home);
     }

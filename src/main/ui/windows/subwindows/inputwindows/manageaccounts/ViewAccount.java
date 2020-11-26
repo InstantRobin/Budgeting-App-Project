@@ -6,6 +6,7 @@ import ui.windows.subwindows.inputwindows.InputWindow;
 // Represents a window to view an account's balance
 public class ViewAccount extends InputWindow {
 
+    // EFFECTS: Creates a new InputWindow with the given Home
     public ViewAccount(Home home) {
         super(home);
     }

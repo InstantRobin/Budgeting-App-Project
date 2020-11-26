@@ -15,6 +15,7 @@ import java.awt.*;
 // Represents a window where the user can choose an account to make a graph of it's total values over time
 public class ViewGraph extends InputWindow {
 
+    // EFFECTS: Creates a new InputWindow with the given Home
     public ViewGraph(Home home) {
         super(home);
     }
