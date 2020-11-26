@@ -5,7 +5,6 @@ import ui.windows.SubWindow;
 import ui.windows.subwindows.inputwindows.InputWindow;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 // Represents a window that has buttons leading to windows that take inputs

@@ -5,7 +5,6 @@ import ui.windows.Home;
 import ui.windows.SubWindow;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 // Represents a window used to get user input
