@@ -14,7 +14,7 @@ public class ManageSavedData extends SubWindow {
     private final JButton saveButton = new JButton("Save");
 
     // EFFECTS: Adds all the buttons declared above the buttons array
-    public ManageSavedData(Container container, Home home) {
+    public ManageSavedData(Home home) {
         super(home);
         initializeButtons();
     }

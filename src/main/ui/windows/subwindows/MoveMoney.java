@@ -11,7 +11,7 @@ import java.awt.*;
 public class MoveMoney extends SubWindowWithInputs {
 
     // EFFECTS: Adds all the buttons declared above the buttons array
-    public MoveMoney(Container container, Home home) {
+    public MoveMoney(Home home) {
         super(home);
         initializeButtons();
     }
@@ -20,9 +20,9 @@ public class MoveMoney extends SubWindowWithInputs {
     // EFFECTS: Adds and initializes all Move Money buttons
     @Override
     protected void initializeButtons() {
-        addButton("Deposit", new Deposit(container,home));
-        addButton("Withdraw", new Withdraw(container,home));
-        addButton("Transfer", new Transfer(container,home));
+        addButton("Deposit", new Deposit(home));
+        addButton("Withdraw", new Withdraw(home));
+        addButton("Transfer", new Transfer(home));
         buttons.add(back);
     }
 

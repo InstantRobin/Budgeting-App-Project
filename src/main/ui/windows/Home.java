@@ -35,9 +35,9 @@ public class Home extends Window {
     // MODIFIES: subWindows
     // EFFECTS: Instantiates new classes for the different top level GUI's: the home screen and the three buttons
     private void initializeClasses() {
-        subWindows.add(new MoveMoney(container,this));
-        subWindows.add(new ManageAccounts(container,this));
-        subWindows.add(new ManageSavedData(container,this));
+        subWindows.add(new MoveMoney(this));
+        subWindows.add(new ManageAccounts(this));
+        subWindows.add(new ManageSavedData(this));
     }
 
     // EFFECTS: Clears GUI, renders buttons, adds event listeners

@@ -12,7 +12,7 @@ import java.awt.*;
 public class ManageAccounts extends SubWindowWithInputs {
 
     // EFFECTS: Adds all the buttons declared above the buttons array
-    public ManageAccounts(Container container, Home home) {
+    public ManageAccounts(Home home) {
         super(home);
         initializeButtons();
     }
@@ -21,10 +21,10 @@ public class ManageAccounts extends SubWindowWithInputs {
     // EFFECTS: Adds and initializes all Manage Accounts buttons
     @Override
     protected void initializeButtons() {
-        addButton("View Account Balance", new ViewAccount(container,home));
-        addButton("View Account History", new ViewAccountHistory(container,home));
-        addButton("View Account Graph", new ViewGraph(container,home));
-        addButton("Make New Account", new MakeAccount(container,home));
+        addButton("View Account Balance", new ViewAccount(home));
+        addButton("View Account History", new ViewAccountHistory(home));
+        addButton("View Account Graph", new ViewGraph(home));
+        addButton("Make New Account", new MakeAccount(home));
         buttons.add(back);
     }
 }

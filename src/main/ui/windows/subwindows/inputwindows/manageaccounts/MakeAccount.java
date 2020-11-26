@@ -7,7 +7,6 @@ import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.InputWindow;
 
 import javax.swing.*;
-import java.awt.*;
 
 // Represents a window where the user can create an account
 public class MakeAccount extends InputWindow {
@@ -16,7 +15,7 @@ public class MakeAccount extends InputWindow {
     private Currency currency;
     private int val;
 
-    public MakeAccount(Container container, Home home) {
+    public MakeAccount(Home home) {
         super(home);
     }
 
@@ -81,7 +80,7 @@ public class MakeAccount extends InputWindow {
         JButton newAccButton = new JButton("New");
         container.add(newAccButton);
         newAccButton.addActionListener(e -> {
-            MakeCurrency makeCurrency = new MakeCurrency(container,home,this::setCurrency);
+            MakeCurrency makeCurrency = new MakeCurrency(home,this::setCurrency);
             makeCurrency.updateGUI();
         });
     }

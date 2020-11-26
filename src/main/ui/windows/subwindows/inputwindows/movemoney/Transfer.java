@@ -12,7 +12,7 @@ public class Transfer extends MoveMoneyWindow {
     private Account acc1;
     private Account acc2;
 
-    public Transfer(Container container, Home home) {
+    public Transfer(Home home) {
         super(home);
     }
 

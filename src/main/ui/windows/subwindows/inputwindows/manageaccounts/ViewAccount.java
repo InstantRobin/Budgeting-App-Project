@@ -8,7 +8,7 @@ import java.awt.*;
 // Represents a window to view an account's balance
 public class ViewAccount extends InputWindow {
 
-    public ViewAccount(Container container, Home home) {
+    public ViewAccount(Home home) {
         super(home);
     }
 

@@ -8,7 +8,7 @@ import java.awt.*;
 // Represents a window where the user can withdraw money from an account
 public class Withdraw extends MoveMoneyWindow {
 
-    public Withdraw(Container container, Home home) {
+    public Withdraw(Home home) {
         super(home);
     }
 

@@ -21,7 +21,7 @@ public class ViewAccountHistory extends InputWindow {
     private  JTextArea changeColumn;
     private  JTextArea totalColumn;
 
-    public ViewAccountHistory(Container container, Home home) {
+    public ViewAccountHistory(Home home) {
         super(home);
     }
 
