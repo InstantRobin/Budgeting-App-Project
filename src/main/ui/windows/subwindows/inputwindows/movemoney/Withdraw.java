@@ -3,8 +3,6 @@ package ui.windows.subwindows.inputwindows.movemoney;
 import model.MoveMoneyFunctions;
 import ui.windows.Home;
 
-import java.awt.*;
-
 // Represents a window where the user can withdraw money from an account
 public class Withdraw extends MoveMoneyWindow {
 

@@ -5,7 +5,6 @@ import ui.windows.Home;
 import ui.windows.SubWindow;
 
 import javax.swing.*;
-import java.awt.*;
 
 // Represents a window where the user can choose to save or load the current data
 public class ManageSavedData extends SubWindow {

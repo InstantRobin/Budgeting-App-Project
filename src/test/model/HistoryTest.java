@@ -126,7 +126,6 @@ public class HistoryTest extends TestDefaults{
 
     @Test
     public void equalsTestSame() {
-        Account acc2 = new Account("test2",1200,USD);
         LocalDate date2 = LocalDate.of(2020,1,1);
 
         hist.add(new LogEntry(500,500,date2));

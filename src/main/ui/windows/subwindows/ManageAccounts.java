@@ -6,8 +6,6 @@ import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccount;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewAccountHistory;
 import ui.windows.subwindows.inputwindows.manageaccounts.ViewGraph;
 
-import java.awt.*;
-
 // Represents the window where the user can view an account balance, account history, or make a new account
 public class ManageAccounts extends SubWindowWithInputs {
 

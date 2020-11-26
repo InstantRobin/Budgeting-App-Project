@@ -6,7 +6,6 @@ import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.InputWindow;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 import static model.MoveMoneyFunctions.moneyToString;

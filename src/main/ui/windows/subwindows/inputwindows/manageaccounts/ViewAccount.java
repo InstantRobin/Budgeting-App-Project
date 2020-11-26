@@ -3,8 +3,6 @@ package ui.windows.subwindows.inputwindows.manageaccounts;
 import ui.windows.Home;
 import ui.windows.subwindows.inputwindows.InputWindow;
 
-import java.awt.*;
-
 // Represents a window to view an account's balance
 public class ViewAccount extends InputWindow {
 

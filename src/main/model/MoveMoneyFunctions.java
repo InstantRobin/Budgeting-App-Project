@@ -65,7 +65,7 @@ public final class MoveMoneyFunctions {
             LogEntry item = hist.get(i);
             LocalDate start = item.getDate();
 
-            addIfNotDuplicate(acc, data, i, item);
+            addIfNotDuplicate(data, i, item);
 
             if (start != hist.get(i + 1).getDate()) {
                 for (LocalDate date = start.plusDays(1); date.isBefore(hist.get(i + 1).getDate());
@@ -76,7 +76,7 @@ public final class MoveMoneyFunctions {
         }
 
         // adds the last entry
-        addIfNotDuplicate(acc, data, data.size(), hist.get(hist.size() - 1));
+        addIfNotDuplicate(data, data.size(), hist.get(hist.size() - 1));
 
         return data;
     }
@@ -85,7 +85,7 @@ public final class MoveMoneyFunctions {
     // EFFECT: Checks if the new entry is the same date as the last one
     //        if so, removes the last one, adds new one w/ sum of two events
     //        if not, just adds it like normal
-    private static void addIfNotDuplicate(Account acc, History data, int i, LogEntry item) {
+    private static void addIfNotDuplicate(History data, int i, LogEntry item) {
         if (i != 0 && item.getDate().equals(data.get(data.size() - 1).getDate())) {
             LogEntry prev = data.get(i - 1);
             data.remove(data.size() - 1);

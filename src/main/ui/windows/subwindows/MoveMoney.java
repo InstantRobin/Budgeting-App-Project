@@ -5,8 +5,6 @@ import ui.windows.subwindows.inputwindows.movemoney.Deposit;
 import ui.windows.subwindows.inputwindows.movemoney.Transfer;
 import ui.windows.subwindows.inputwindows.movemoney.Withdraw;
 
-import java.awt.*;
-
 // Represents the window where the user can deposit, withdraw, or transfer money
 public class MoveMoney extends SubWindowWithInputs {
 
